@@ -230,9 +230,9 @@ struct DefaultAuthAPIClient: AuthAPIClient, SDKInfo, DeviceIdentifiable, APIAnal
         )
             .handleEvents(receiveOutput: { newSession in
                 // Save new tokens into the session manager after successful refresh
-                print("--------- new session: serverResponse = \(newSession) ---------")
+                debugPrint("--------- new session: serverResponse = \(newSession) ---------")
                 let dto = newSession.data
-                print("--------- new session: DTO = \(dto) ---------")
+                debugPrint("--------- new session: DTO = \(dto) ---------")
                 try? sessionManager.saveSession(authSession: dto.toModel(), isRefreshToken: true)
             })
             .mapError { error -> Error in
@@ -277,21 +277,21 @@ struct DefaultAuthAPIClient: AuthAPIClient, SDKInfo, DeviceIdentifiable, APIAnal
         
         return makeRequest()
             .tryCatch { error -> AnyPublisher<T, Error> in
-                print("MakeRequest Error: \(error)")
+                debugPrint("MakeRequest Error: \(error)")
                 // Only refresh on clear expiry signals
                 guard isAccessExpired(error) else {
-                    print("MakeRequest Not Expired Error")
+                    debugPrint("MakeRequest Not Expired Error")
                     return Fail(error: error).eraseToAnyPublisher()
                 }
                 // Attempt refresh once, then retry
                 return try self.refreshToken()
                     .flatMap { _ in
-                        print("MakeRequest Doing")
+                        debugPrint("MakeRequest Doing")
                         return makeRequest()
                     }
                     .catch { refreshError -> AnyPublisher<T, Error> in
                         // If refresh token is invalid/expired → force logout
-                        print("MakeRequest Catching Error")
+                        debugPrint("MakeRequest Catching Error")
                         if let authErr = refreshError as? AuthErrorResponse, authErr.code == .Unauthorized {
                             NotificationCenter.default.post(name: NSNotification.Name(NotificationKeys.UNAUTHENTICATED_TOKEN_KEY), object: nil)
                         }
@@ -352,24 +352,24 @@ struct DefaultAuthAPIClient: AuthAPIClient, SDKInfo, DeviceIdentifiable, APIAnal
     ) -> AnyPublisher<T, Error> {
         let request = buildRequest(endpoint: endpoint, method: method, queryParameters: queryParameters, requestHeader: header, body: body)
         
-        print("🚀 [REQUEST] \(request.httpMethod ?? "") \(request.url?.absoluteString ?? "")")
+        debugPrint("🚀 [REQUEST] \(request.httpMethod ?? "") \(request.url?.absoluteString ?? "")")
 
         var properties: Properties = [:]
         
         if let header = request.allHTTPHeaderFields {
-            print("📦 [HEADER]: \(header)")
+            debugPrint("📦 [HEADER]: \(header)")
             properties["header"] = header
         }
         
         if let body = request.httpBody, let json = String(data: body, encoding: .utf8) {
-            print("📦 [BODY]: \(json)")
+            debugPrint("📦 [BODY]: \(json)")
             properties["body"] = json
         }
         
         return session.dataTaskPublisher(for: request)
             .tryMap { data, response in
-                print("✅ [RESPONSE] \(response)")
-                print("📨 [DATA]: \(String(data: data, encoding: .utf8) ?? "nil")")
+                debugPrint("✅ [RESPONSE] \(response)")
+                debugPrint("📨 [DATA]: \(String(data: data, encoding: .utf8) ?? "nil")")
                 
                 properties["response"] = String(data: data, encoding: .utf8) ?? "nil"
 

@@ -17,7 +17,7 @@ final class ApplePaymentGateway: PaymentGateway, IAPAnalytics {
             Task {
                 do {
                     let products = try await Product.products(for: productIDs)
-                    print("fetch products with apple payment gate way: \(products)")
+                    debugPrint("fetch products with apple payment gate way: \(products)")
                     
                     promise(.success(products))
                 } catch {
@@ -44,26 +44,26 @@ final class ApplePaymentGateway: PaymentGateway, IAPAnalytics {
                             await transaction.finish()
                             let appleVerifiedTransk = AppleVerifiedTranskModel(appleTransk: transaction, purchasedToken: verification.jwsRepresentation)
                             promise(.success(appleVerifiedTransk))
-                            print("[PackageListViewModel] verified: \(verification.jwsRepresentation)")
+                            debugPrint("[PackageListViewModel] verified: \(verification.jwsRepresentation)")
                            
                             
                             BaseAnalytics.track(event: self.applePurchase, properties: ["verified": properties.toMixpanelType()])
                         case .unverified(_, let error):
-                            print("[PackageListViewModel] unverified: \(verification.jwsRepresentation)")
+                            debugPrint("[PackageListViewModel] unverified: \(verification.jwsRepresentation)")
                             BaseAnalytics.track(event: self.applePurchase, properties: ["unverified": properties.toMixpanelType()])
                             promise(.failure(.purchaseFailed(reason: error.localizedDescription)))
                         }
                     case .userCancelled:
-                        print("[PackageListViewModel] userCancelled")
+                        debugPrint("[PackageListViewModel] userCancelled")
                         BaseAnalytics.track(event: self.applePurchase, properties: ["userCanceled": properties.toMixpanelType()])
                         promise(.failure(.purchaseCancelled()))
                     default:
                         BaseAnalytics.track(event: self.applePurchase, properties: ["failed": properties.toMixpanelType()])
-                        print("[PackageListViewModel] default")
+                        debugPrint("[PackageListViewModel] default")
                         promise(.failure(.purchaseFailed(reason: "Unknown purchase result")))
                     }
                 } catch {
-                    print("[PackageListViewModel] error: \(error.localizedDescription)")
+                    debugPrint("[PackageListViewModel] error: \(error.localizedDescription)")
                     let errorData = ["message": error.localizedDescription]
                     BaseAnalytics.track(event: self.applePurchase, properties: ["error": errorData.toDictionary().toMixpanelType()])
                     promise(.failure(.purchaseFailed(reason: error.localizedDescription)))

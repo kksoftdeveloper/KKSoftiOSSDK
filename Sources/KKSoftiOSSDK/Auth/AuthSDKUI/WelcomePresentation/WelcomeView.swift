@@ -111,7 +111,7 @@ public struct WelcomeView: View {
             }
             .onReceive(NotificationCenter.default.publisher(for: NSNotification.Name(DefaultAuthManager.REFERSH_TOKEN_KEY))) { notification in
                 if let authResponse = notification.object as? AuthSessionResponse {
-                    print("Received AuthSessionResponse: \(authResponse)")
+                    debugPrint("Received AuthSessionResponse: \(authResponse)")
                     onRefreshedToken(authResponse)
                 }
             }
@@ -132,6 +132,7 @@ public struct WelcomeView: View {
             wid: width,
             hei: height,
             shouldShowCross: false,
+            // shouldShowLogo: false,
             onCloseClick: {
                 onClose()
             },
@@ -141,15 +142,15 @@ public struct WelcomeView: View {
                     showIDFVDialog = true
                     tapCount = 0
                 }
-                print("on-logo-taps: \(tapCount)")
+                debugPrint("on-logo-taps: \(tapCount)")
             }
         ) {
-                VStack {
+                VStack(spacing: isPortrait ? 10 : 6) {
                     Text(.sdkAsset("login"))
-                        .font(AppFont.fsClanNarrowUltra.of(size: 20))
+                        .font(AppFont.fsClanNarrowUltra.of(size: 22))
                         .foregroundColor(.primaryText)
-                        .padding(.top, isPortrait ? 5 : 0)
-                        .padding(.bottom, (!isPortrait || (viewModel.isLoading == false && viewModel.errorMessage != nil)) ? 3 : 10)
+                        .padding(.top, isPortrait ? 16 : 0)
+                        .padding(.bottom, isPortrait ? 2 : 0)
                     
                     // Bindings for formState
                     let phoneBinding = Binding(
@@ -161,17 +162,16 @@ public struct WelcomeView: View {
                         set: { viewModel.formState.password = $0 }
                     )
                     
-                    VStack (alignment: .leading ,spacing: 2) {
-                        Text(.sdkAsset("phone_number"))
-                            .font(AppFont.poppinsRegular.of(size: 12))
-                            .foregroundColor(.black)
-                            .padding(.bottom, 2)
+                    VStack(alignment: .leading, spacing: 6) {
+                        requiredFieldLabel(.sdkAsset("phone_number"))
                         
                         PhoneNumberInputText(
                             phoneNumber: phoneBinding,
                             onSubmit: {
                                 viewModel.handleSubmit(from: .phone)
-                            }
+                            },
+                            placeholder: "+(84)",
+                            height: 40
                         )
                         .onSubmit {
                             focusedField = .password
@@ -180,17 +180,13 @@ public struct WelcomeView: View {
                             viewModel.formState.phoneNumber = newValue.trimmedVietnamPhoneNumber()
                         }
                         .focused($focusedField, equals: .phone)
-
                         .submitLabel(.next)
                     }
                     
-                    VStack (alignment: .leading ,spacing: 2) {
-                        Text(.sdkAsset("password"))
-                            .font(AppFont.poppinsRegular.of(size: 12))
-                            .foregroundColor(.black)
-                            .padding(.bottom, 2)
+                    VStack(alignment: .leading, spacing: 6) {
+                        requiredFieldLabel(.sdkAsset("password"))
                         
-                        SecureInputView(.sdkAsset("enter_your_password"), text: passBinding)
+                        SecureInputView("6–20 kí tự", text: passBinding, height: 40)
                             .focused($focusedField, equals: .password)
                             .submitLabel(.done)
                             .onSubmit {
@@ -198,7 +194,7 @@ public struct WelcomeView: View {
                                 viewModel.handleSubmit(from: .password)
                             }
                     }
-                    .padding(.top, 2)
+                    .padding(.top, 4)
                     
                     CheckedBoxText(
                         lineLimit: 2,
@@ -207,89 +203,76 @@ public struct WelcomeView: View {
                             set: { viewModel.formState.isAcceptedTerm = $0 }
                         ),
                         text: "",
+                        attributedText: loginTermsText,
                         highlight: viewModel.shouldHighlightTerms,
                         onToggle: {
                             viewModel.formState.isAcceptedTerm = $0
                         }
                     )
-                    .padding(.top, isPortrait ? 4 : 2)
+                    .padding(.top, isPortrait ? 2 : 0)
                     
-                    HStack {
+                    HStack(spacing: 12) {
                         Rectangle()
                             .frame(height: 1)
                             .foregroundColor(Color.gray.opacity(0.5))
                         Text(.sdkAsset("or_continue_with"))
-                            .font(AppFont.poppinsRegular.of(size: 10))
-                            .foregroundColor(.init(sdkAsset: "ColorGrayish"))
+                            .font(AppFont.poppinsRegular.of(size: 11))
+                            .foregroundColor(.black.opacity(0.75))
                             .layoutPriority(1)
                         Rectangle()
                             .frame(height: 1)
                             .foregroundColor(Color.gray.opacity(0.5))
                     }
-                    .padding(.top, isPortrait ? 4 : 3)
+                    .padding(.horizontal, 6)
+                    .padding(.top, isPortrait ? 8 : 3)
 
-                    let iconSize = isPortrait ? 16.0 : 10.0
-                    HStack(spacing: 12) {
-                        SecondaryButton(
+                    let iconSize = isPortrait ? 15.0 : 10.0
+                    HStack(spacing: 8) {
+                        socialLoginButton(
+                            iconName: "IconApple",
+                            title: "Apple",
                             action: {
                                 focusedField = nil
                                 viewModel.loginViaApple()
-                            },
-                            content: {
-                                Image(sdkAsset: "IconApple")
-                                    .resizable()
-                                    .frame(width: iconSize, height: iconSize)
                             }
                         )
-                        .layoutPriority(1)
                         
-                        
-                        SecondaryButton(
+                        socialLoginButton(
+                            iconName: "IconGoogle",
+                            title: "Google",
                             action: {
                                 focusedField = nil
                                 viewModel.loginGoogle()
-                            },
-                            content: {
-                                Image(sdkAsset: "IconGoogle")
-                                    .resizable()
-                                    .frame(width: iconSize, height: iconSize)
                             }
                         )
-                        .layoutPriority(1)
                         
-                        SecondaryButton(
+                        socialLoginButton(
+                            iconName: "IconFacebook",
+                            title: "Facebook",
                             action: {
                                 focusedField = nil
                                 viewModel.loginFacebook()
-                            },
-                            content: {
-                                Image(sdkAsset: "IconFacebook")
-                                    .resizable()
-                                    .frame(width: iconSize, height: iconSize)
                             }
                         )
-                        .layoutPriority(1)
                     }
+                    .environment(\.socialLoginIconSize, iconSize)
                     .padding(.top, isPortrait ? 4 : 2)
                     
-                    HStack(spacing: 16) {
-                        UnderlinedButton(
-                            title: .sdkAsset("sign_up_now"), action: {
+                    HStack {
+                        loginTextButton(title: .sdkAsset("sign_up_now")) {
                                 focusedField = nil
                                 viewModel.presentedScreen = .register(type: .register)
-                            },
-                            font: AppFont.poppinsLight.of(size: isPortrait ? 14 : 10)
-                        ).layoutPriority(1)
+                        }
 
-                        UnderlinedButton(
-                            title: .sdkAsset("forgot_password"), action: {
+                        Spacer()
+
+                        loginTextButton(title: .sdkAsset("forgot_password")) {
                                 focusedField = nil
                                 viewModel.presentedScreen = .register(type: .forgetPassword)
-                            },
-                            font: AppFont.poppinsLight.of(size: isPortrait ? 10 : 8)
-                        ).layoutPriority(1)
-                            .padding(isPortrait ? .top : .top, 4)
-                    }.padding(.top, isPortrait ? 4 : 2)
+                        }
+                    }
+                    .padding(.horizontal, 18)
+                    .padding(.top, isPortrait ? 4 : 2)
 
                     if viewModel.isLoading == false && viewModel.errorMessage != nil {
                         ErrorMessageView(
@@ -297,7 +280,7 @@ public struct WelcomeView: View {
                         )
                     }
                 }
-                .padding(.horizontal, 16)
+                .padding(.horizontal, 12)
 //                .toolbar {
 //                    ToolbarItemGroup(placement: .keyboard) {
 //                        if focusedField != nil {
@@ -359,15 +342,15 @@ public struct WelcomeView: View {
         ATTrackingManager.requestTrackingAuthorization { status in
             switch status {
             case .authorized:
-                print("✅ ATT: Tracking authorized")
+                debugPrint("✅ ATT: Tracking authorized")
             case .denied:
-                print("❌ ATT: Tracking denied")
+                debugPrint("❌ ATT: Tracking denied")
             case .restricted:
-                print("❌ ATT: Tracking restricted")
+                debugPrint("❌ ATT: Tracking restricted")
             case .notDetermined:
-                print("❌ ATT: Tracking not determined")
+                debugPrint("❌ ATT: Tracking not determined")
             @unknown default:
-                print("❌ ATT: Unknown tracking status \(status.rawValue)")
+                debugPrint("❌ ATT: Unknown tracking status \(status.rawValue)")
             }
         }
     }
@@ -408,7 +391,7 @@ public struct WelcomeView: View {
                     }
                 },
                 onFailure: { authError in
-                    print("OTP verification failed with message \(authError)")
+                    debugPrint("OTP verification failed with message \(authError)")
                 }
             )
         case .personalInformation(let phoneNumber, let otpVerifiedToken, let isAtLeast16Confirmed):
@@ -476,7 +459,7 @@ public struct WelcomeView: View {
                     )
                 },
                 onFailure: { authError in
-                    print("Guardian OTP verification failed with message \(authError)")
+                    debugPrint("Guardian OTP verification failed with message \(authError)")
                 }
             )
         case .accountInfoConfirmation:
@@ -519,7 +502,7 @@ public struct WelcomeView: View {
                     )
                 },
                 onFailure: { authError in
-                    print("Post-login phone OTP verification failed with message \(authError)")
+                    debugPrint("Post-login phone OTP verification failed with message \(authError)")
                 }
             )
         case .postLoginPersonalInformation(let session, let phoneNumber, let isAtLeast16Confirmed):
@@ -575,7 +558,7 @@ public struct WelcomeView: View {
                     viewModel.finishProfileCompletion()
                 },
                 onFailure: { authError in
-                    print("Post-login guardian OTP verification failed with message \(authError)")
+                    debugPrint("Post-login guardian OTP verification failed with message \(authError)")
                 }
             )
         case .passwordInput(let flowType, let phoneNumber, let otpVerifiedToken, let accountInformation):
@@ -589,7 +572,7 @@ public struct WelcomeView: View {
                 presentedScreen: $viewModel.presentedScreen,
                 authManager: viewModel.authManager,
                 onSuccess: { flowType, session in
-                    print("set up password success \(flowType) \(session)")
+                    debugPrint("set up password success \(flowType) \(session)")
                     if flowType == .register {
                         if let session = session {
                             completedRegistrationSession = session
@@ -598,7 +581,7 @@ public struct WelcomeView: View {
                     }
                 },
                 onFailure: { authErrorResponse in
-                    print("set up password failure \(authErrorResponse)")
+                    debugPrint("set up password failure \(authErrorResponse)")
                     DispatchQueue.main.async {
                         self.onFailure(authErrorResponse)
                     }
@@ -640,7 +623,7 @@ public struct WelcomeView: View {
             //                authManager: viewModel.authManager,
             //                presentedScreen: $viewModel.presentedScreen,
             //                guestToken: guestToken,
-            //                onSuccess: { authSession in print("link account success \(authSession)")},
+            //                onSuccess: { authSession in debugPrint("link account success \(authSession)")},
             //                onFailure: {authError in },
             //                onClose: {
             //
@@ -939,7 +922,7 @@ struct IDFVDialogView: View {
                         Button(action: {
                             UIPasteboard.general.string = idfv
                             appsFlyerCopied = true
-                            print("✅ AppsFlyer IDFV copied to clipboard: \(idfv)")
+                            debugPrint("✅ AppsFlyer IDFV copied to clipboard: \(idfv)")
                             
                             // Reset copied state after 2 seconds
                             DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
@@ -999,7 +982,7 @@ struct IDFVDialogView: View {
                             Button(action: {
                                 UIPasteboard.general.string = adjustId
                                 adjustCopied = true
-                                print("✅ Adjust Ad ID copied to clipboard: \(adjustId)")
+                                debugPrint("✅ Adjust Ad ID copied to clipboard: \(adjustId)")
                                 
                                 // Reset copied state after 2 seconds
                                 DispatchQueue.main.asyncAfter(deadline: .now() + 2) {

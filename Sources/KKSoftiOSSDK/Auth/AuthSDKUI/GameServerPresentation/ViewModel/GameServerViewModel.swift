@@ -29,7 +29,7 @@ class GameServerViewModel: OpenViewModel {
                 case .failure(let error):
                     self.isLoading = false
                     self.isMaintenance = false
-                    print("❌ get-game-server list failed:", (error as? AuthErrorResponse)?.message ?? error.localizedDescription)
+                    debugPrint("❌ get-game-server list failed:", (error as? AuthErrorResponse)?.message ?? error.localizedDescription)
                     self.errorMessage = (error as? AuthErrorResponse)?.message ?? LocalizedStringKey.sdkAsset("unknown_error_message").toString()
 
                 case .finished:
@@ -39,7 +39,7 @@ class GameServerViewModel: OpenViewModel {
                 self.isLoading = false
                 self.servers = gameServerList
                 self.isMaintenance = gameServerList.isEmpty
-                print("✅ get-game-server list success:", gameServerList)
+                debugPrint("✅ get-game-server list success:", gameServerList)
             })
             .store(in: &cancellables)
     }
@@ -61,7 +61,7 @@ class GameServerViewModel: OpenViewModel {
                     switch completion {
                     case .failure(let error):
                         self.isLoading = false
-                        print("❌ update-game-server list failed:", (error as? AuthErrorResponse)?.message ?? error.localizedDescription)
+                        debugPrint("❌ update-game-server list failed:", (error as? AuthErrorResponse)?.message ?? error.localizedDescription)
                         self.errorMessage = (error as? AuthErrorResponse)?.message ?? LocalizedStringKey.sdkAsset("unknown_error_message").toString()
                         
                     case .finished:
@@ -69,7 +69,7 @@ class GameServerViewModel: OpenViewModel {
                     }
                 }, receiveValue: { gameUUID in
                     self.isLoading = false
-                    print("✅ update-game-server list success:", gameUUID)
+                    debugPrint("✅ update-game-server list success:", gameUUID)
                     self.onUpdatedGameServer(selectedServer.serverId, gameUUID)
                     
                 })

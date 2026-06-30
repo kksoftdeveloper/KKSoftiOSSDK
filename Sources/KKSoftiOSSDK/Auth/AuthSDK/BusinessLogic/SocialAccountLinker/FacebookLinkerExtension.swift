@@ -50,7 +50,7 @@ extension SocialAccountLinker {
                     return
                 }
                 
-                print("access-token: --- \(accessToken)")
+                debugPrint("access-token: --- \(accessToken)")
                 
 //                let header = ["Authorization": "Bearer \(accessToken)"]
                 
@@ -138,23 +138,23 @@ extension SocialAccountLinker {
             self.fbLoginManager.logIn(viewController: presentingVC, configuration: configuration, completion: { result in
                 switch result {
                 case .cancelled:
-                    print("FB Login cancelled")
+                    debugPrint("FB Login cancelled")
                     completion(.failure(AuthErrorResponse.socialUserCancels()))
                     break
                 
                 case .failed:
-                    print("FB Login failed")
+                    debugPrint("FB Login failed")
                     completion(.failure(AuthErrorResponse.facebookUnknownError()))
                     break
                 
                 case .success:
                     // getting id token string
                     if let tokenString = AuthenticationToken.current?.tokenString {
-                        print("FB Login success \(tokenString)")
+                        debugPrint("FB Login success \(tokenString)")
                         completion(.success(tokenString))
                         
                     } else {
-                        print("FB Login unauthenticaed")
+                        debugPrint("FB Login unauthenticaed")
                         completion(.failure(AuthErrorResponse.facebookAuthenticateError()))
                     }
                     break
@@ -165,7 +165,7 @@ extension SocialAccountLinker {
     
     private func logInfo(_ token: AccessToken) {
 #if DEBUG
-        print("✅ Login with facebook success!" +
+        debugPrint("✅ Login with facebook success!" +
               "\nGranted permission: \(token.permissions)" +
               "\nDeclined permission: \(token.declinedPermissions)" +
               "\nUserID: \(token.userID)" +

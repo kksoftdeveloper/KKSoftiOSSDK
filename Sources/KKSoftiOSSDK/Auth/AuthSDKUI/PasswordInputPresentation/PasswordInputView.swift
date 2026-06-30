@@ -288,9 +288,9 @@ private extension FlowType {
                       presentedScreen: .constant(nil),
                       authManager: DefaultAuthManager.Builder().build(),
                       onSuccess: { _,_ in
-                            print("Success")
+                            debugPrint("Success")
                       },
                       onFailure: { error in
-                            print("Failure")
+                            debugPrint("Failure")
                       })
 }

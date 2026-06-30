@@ -14,19 +14,19 @@ final class DeviceInfoKeychainStorage: DeviceInfoStorage {
     private let osVersion = "OSVersion"
     
     func saveDeviceId(_ deviceId: String) throws {
-        print("device-info saving \(deviceId)")
+        debugPrint("device-info saving \(deviceId)")
         // Store under a stable account key so we can read it back later
         try KeychainHelper.shared.save(deviceId.data(using: .utf8)!, service: service, account: self.deviceId)
-        print("device-info saved \(deviceId)")
+        debugPrint("device-info saved \(deviceId)")
     }
     
     func getDeviceId() throws -> String? {
-        print("device-info getting")
+        debugPrint("device-info getting")
         guard let data = try KeychainHelper.shared.load(service: service, account: deviceId) else {
-            print("device-info getted: deviceId = nil")
+            debugPrint("device-info getted: deviceId = nil")
             return nil
         }
-        print("device-info getted \(String(describing: String(data: data, encoding: .utf8)))")
+        debugPrint("device-info getted \(String(describing: String(data: data, encoding: .utf8)))")
         return String(data: data, encoding: .utf8)
     }
     

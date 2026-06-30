@@ -13,7 +13,7 @@ public final class FirebaseCrashlyticsProvider: CrashlyticsProvider {
     
     public func initialize() {
         guard !isInitialized else {
-            print("[FirebaseCrashlyticsProvider] Already initialized")
+            debugPrint("[FirebaseCrashlyticsProvider] Already initialized")
             return
         }
         
@@ -25,32 +25,32 @@ public final class FirebaseCrashlyticsProvider: CrashlyticsProvider {
         crashlytics.setCrashlyticsCollectionEnabled(true)
         
         isInitialized = true
-        print("[FirebaseCrashlyticsProvider] Initialized and crash reporting enabled")
+        debugPrint("[FirebaseCrashlyticsProvider] Initialized and crash reporting enabled")
     }
     
     public func log(_ message: String) {
         guard let crashlytics = resolveCrashlytics() else { return }
         crashlytics.log(message)
-        print("[FirebaseCrashlyticsProvider] Logged message: \(message)")
+        debugPrint("[FirebaseCrashlyticsProvider] Logged message: \(message)")
     }
     
     public func setCustomValue(_ value: Any, forKey key: String) {
         guard let crashlytics = resolveCrashlytics() else { return }
         let sanitizedValue = sanitize(value)
         crashlytics.setCustomValue(sanitizedValue, forKey: key)
-        print("[FirebaseCrashlyticsProvider] Set custom value for key \(key): \(sanitizedValue)")
+        debugPrint("[FirebaseCrashlyticsProvider] Set custom value for key \(key): \(sanitizedValue)")
     }
     
     public func setUserID(_ userID: String) {
         guard let crashlytics = resolveCrashlytics() else { return }
         crashlytics.setUserID(userID)
-        print("[FirebaseCrashlyticsProvider] Set user ID: \(userID)")
+        debugPrint("[FirebaseCrashlyticsProvider] Set user ID: \(userID)")
     }
     
     public func recordError(_ error: Error) {
         guard let crashlytics = resolveCrashlytics() else { return }
         crashlytics.record(error: error)
-        print("[FirebaseCrashlyticsProvider] Recorded error: \(error)")
+        debugPrint("[FirebaseCrashlyticsProvider] Recorded error: \(error)")
     }
     
     public func recordException(name: String, reason: String, userInfo: [String: Any]?) {
@@ -63,14 +63,14 @@ public final class FirebaseCrashlyticsProvider: CrashlyticsProvider {
             }
         }
         crashlytics.record(exceptionModel: exceptionModel)
-        print("[FirebaseCrashlyticsProvider] Recorded exception: \(name) reason: \(reason)")
+        debugPrint("[FirebaseCrashlyticsProvider] Recorded exception: \(name) reason: \(reason)")
     }
     
     // MARK: - Helpers
     
     private func resolveCrashlytics() -> Crashlytics? {
         guard isInitialized else {
-            print("[FirebaseCrashlyticsProvider] Not initialized. Call initialize() first.")
+            debugPrint("[FirebaseCrashlyticsProvider] Not initialized. Call initialize() first.")
             return nil
         }
         return Crashlytics.crashlytics()

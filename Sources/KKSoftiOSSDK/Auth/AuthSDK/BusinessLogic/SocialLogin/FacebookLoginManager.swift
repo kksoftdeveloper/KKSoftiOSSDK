@@ -181,7 +181,7 @@ final class FacebookLoginManager: SocialLoginManager, DeviceIdentifiable, SDKInf
                 .eraseToAnyPublisher()
 
         } catch {
-            print("GetAuthSession: early throw -> \(error)")
+            debugPrint("GetAuthSession: early throw -> \(error)")
             BaseAnalytics.track(event: self.getLatestAuthSession, properties: [self.failure: AuthErrorResponse.unauthenticated().message])
             return Fail(error: AuthErrorResponse.unauthenticated()).eraseToAnyPublisher()
         }
@@ -189,7 +189,7 @@ final class FacebookLoginManager: SocialLoginManager, DeviceIdentifiable, SDKInf
     
     func getAuthSesssion() -> AnyPublisher<AuthSessionResponse, Error> {
         do {
-            print("GetAuthSession: entering")
+            debugPrint("GetAuthSession: entering")
             guard let authSessionResponse = try? sessionManager.getSession()?.toResponse() else {
                 BaseAnalytics.track(event: self.getLatestAuthSession, properties: [self.failure: AuthErrorResponse.unauthenticated().message])
                 throw AuthErrorResponse.unauthenticated()
@@ -208,22 +208,22 @@ final class FacebookLoginManager: SocialLoginManager, DeviceIdentifiable, SDKInf
             return authAPIClient
                 .getCharacter(header: [:], gameId: gameId, serverId: serverId)
                 .handleEvents(
-                    receiveSubscription: { _ in print("GetAuthSession: getCharacter subscribed") },
-                    receiveOutput: { resp in print("GetAuthSession: getCharacter value -> \(resp)") },
-                    receiveCompletion: { print("GetAuthSession: getCharacter completion = \($0)") },
-                    receiveCancel: { print("GetAuthSession: getCharacter cancelled") }
+                    receiveSubscription: { _ in debugPrint("GetAuthSession: getCharacter subscribed") },
+                    receiveOutput: { resp in debugPrint("GetAuthSession: getCharacter value -> \(resp)") },
+                    receiveCompletion: { debugPrint("GetAuthSession: getCharacter completion = \($0)") },
+                    receiveCancel: { debugPrint("GetAuthSession: getCharacter cancelled") }
                 )
                 .flatMap { gameUidResponse in
-                    print("GetAuthSession: gameUidResponse -> \(gameUidResponse)")
-                    print("GetAuthSession: gameInfoStorage -> \(String(describing: self.gameInfoStorage.gameUUID))")
-                    print("GetAuthSession: gameInfoStorage -> \(String(describing: gameUidResponse.data.characterId))")
+                    debugPrint("GetAuthSession: gameUidResponse -> \(gameUidResponse)")
+                    debugPrint("GetAuthSession: gameInfoStorage -> \(String(describing: self.gameInfoStorage.gameUUID))")
+                    debugPrint("GetAuthSession: gameInfoStorage -> \(String(describing: gameUidResponse.data.characterId))")
                     if let characterId = gameUidResponse.data.characterId {
-                        print("GetAuthSession: success, returning session with characterId \(characterId)")
+                        debugPrint("GetAuthSession: success, returning session with characterId \(characterId)")
                         self.gameInfoStorage.characterId = characterId
                     }
                     if let gameUUID = gameUidResponse.data.gameUUID, self.gameInfoStorage.gameUUID?.contains(gameUUID) == true {
                         BaseAnalytics.track(event: self.getLatestAuthSession, properties: [self.success: "Get Auth Session Successfully"])
-                        print("GetAuthSession: success, returning session with gameUUID \(gameUUID)")
+                        debugPrint("GetAuthSession: success, returning session with gameUUID \(gameUUID)")
                         return Just(authSessionResponse.copy(gameUUID: gameUUID))
                             .handleEvents(receiveOutput: { session in
                                 AuthTracking.handleRetentionD1IfNeeded(session: session)
@@ -233,20 +233,20 @@ final class FacebookLoginManager: SocialLoginManager, DeviceIdentifiable, SDKInf
                     } else {
                         let err = AuthErrorResponse.unauthenticated()
                         BaseAnalytics.track(event: self.getLatestAuthSession, properties: [self.failure: err.message])
-                        print("GetAuthSession: gameUUID mismatch or nil -> failing unauthenticated")
+                        debugPrint("GetAuthSession: gameUUID mismatch or nil -> failing unauthenticated")
                         return Fail(error: err).eraseToAnyPublisher()
                     }
                 }
                 .handleEvents(
-                    receiveSubscription: { _ in print("GetAuthSession: flatten subscribed") },
-                    receiveOutput: { _ in print("GetAuthSession: output session") },
-                    receiveCompletion: { print("GetAuthSession: completion = \($0)") },
-                    receiveCancel: { print("GetAuthSession: cancelled") }
+                    receiveSubscription: { _ in debugPrint("GetAuthSession: flatten subscribed") },
+                    receiveOutput: { _ in debugPrint("GetAuthSession: output session") },
+                    receiveCompletion: { debugPrint("GetAuthSession: completion = \($0)") },
+                    receiveCancel: { debugPrint("GetAuthSession: cancelled") }
                 )
                 .eraseToAnyPublisher()
 
         } catch {
-            print("GetAuthSession: early throw -> \(error)")
+            debugPrint("GetAuthSession: early throw -> \(error)")
             BaseAnalytics.track(event: self.getLatestAuthSession, properties: [self.failure: AuthErrorResponse.unauthenticated().message])
             return Fail(error: AuthErrorResponse.unauthenticated()).eraseToAnyPublisher()
         }
@@ -320,12 +320,12 @@ final class FacebookLoginManager: SocialLoginManager, DeviceIdentifiable, SDKInf
             self.fbLoginManager.logIn(viewController: presentingVC, configuration: configuration, completion: { result in
                 switch result {
                 case .cancelled:
-                    print("FB Login cancelled")
+                    debugPrint("FB Login cancelled")
                     completion(.failure(AuthErrorResponse.socialUserCancels()))
                     break
                 
                 case .failed:
-                    print("FB Login failed")
+                    debugPrint("FB Login failed")
                     completion(.failure(AuthErrorResponse.facebookUnknownError()))
                     break
                 
@@ -333,11 +333,11 @@ final class FacebookLoginManager: SocialLoginManager, DeviceIdentifiable, SDKInf
                     // getting id token string
                     
                     if let tokenString = AuthenticationToken.current?.tokenString {
-                        print("FB Login success \(tokenString)")
+                        debugPrint("FB Login success \(tokenString)")
                         completion(.success(tokenString))
                         
                     } else {
-                        print("FB Login unauthenticaed")
+                        debugPrint("FB Login unauthenticaed")
                         completion(.failure(AuthErrorResponse.facebookAuthenticateError()))
                     }
                     break
@@ -368,7 +368,7 @@ final class FacebookLoginManager: SocialLoginManager, DeviceIdentifiable, SDKInf
     }
     
     private func logInfo(_ token: AccessToken) {
-        print("✅ Login with facebook success!" +
+        debugPrint("✅ Login with facebook success!" +
               "\nGranted permission: \(token.permissions)" +
               "\nDeclined permission: \(token.declinedPermissions)" +
               "\nUserID: \(token.userID)" +
@@ -379,7 +379,7 @@ final class FacebookLoginManager: SocialLoginManager, DeviceIdentifiable, SDKInf
 //        return await withCheckedContinuation { continuation in
 //            GraphRequest(graphPath: "me", parameters: ["fields": "id, name, first_name"]).start { GraphRequestConnection, result, error in
 //                if error == nil, let fbDetails = result as? NSDictionary {
-//                    print("✅ Login with facebook info: \(fbDetails)")
+//                    debugPrint("✅ Login with facebook info: \(fbDetails)")
 //                    continuation.resume(returning: fbDetails)
 //                } else {
 //                    continuation.resume(returning: error)

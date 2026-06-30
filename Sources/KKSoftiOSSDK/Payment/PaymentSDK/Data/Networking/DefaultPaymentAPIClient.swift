@@ -91,23 +91,23 @@ struct DefaultPaymentAPIClient : PaymentAPIClient, SDKInfo {
         
         return makeRequest()
             .tryCatch { error -> AnyPublisher<T, Error> in
-                print("MakeRequest Error: \(error)")
+                debugPrint("MakeRequest Error: \(error)")
                 // Only refresh on clear expiry signals
                 guard isAccessExpired(error) else {
-                    print("MakeRequest Not Expired Error")
+                    debugPrint("MakeRequest Not Expired Error")
                     return Fail(error: error).eraseToAnyPublisher()
                 }
-                print("MakeRequest Expired Error")
+                debugPrint("MakeRequest Expired Error")
                 // Attempt refresh once, then retry
                 return self.refreshToken()
                     .map { $0.data }
                     .flatMap { dto in
-                        print("MakeRequest Doing")
+                        debugPrint("MakeRequest Doing")
                         return makeRequest(using: dto.accessToken)
                     }
                     .catch { refreshError -> AnyPublisher<T, Error> in
                         // If refresh token is invalid/expired → force logout
-                        print("MakeRequest Catching Error \(refreshError)")
+                        debugPrint("MakeRequest Catching Error \(refreshError)")
                         if let authErr = refreshError as? PaymentError, authErr.code == .Unauthorized {
                             NotificationCenter.default.post(name: NSNotification.Name(NotificationKeys.UNAUTHENTICATED_TOKEN_KEY), object: nil)
                         }
@@ -157,16 +157,16 @@ struct DefaultPaymentAPIClient : PaymentAPIClient, SDKInfo {
     }
     
     private func refreshToken() -> AnyPublisher<PaymentSessionServerResponse, any Error> {
-        print("[PaymentSDK] refreshToken: enter")
+        debugPrint("[PaymentSDK] refreshToken: enter")
         let refreshToken: String
         do {
             guard let tk = try sessionManager.getSession()?.refreshToken else {
-                print("[PaymentSDK] refreshToken: missing refresh token")
+                debugPrint("[PaymentSDK] refreshToken: missing refresh token")
                 return Fail(error: PaymentError.unauthenticated()).eraseToAnyPublisher()
             }
             refreshToken = tk
         } catch {
-            print("[PaymentSDK] refreshToken: session read error -> \(error)")
+            debugPrint("[PaymentSDK] refreshToken: session read error -> \(error)")
             return Fail(error: PaymentError.unauthenticated()).eraseToAnyPublisher()
         }
         
@@ -176,22 +176,22 @@ struct DefaultPaymentAPIClient : PaymentAPIClient, SDKInfo {
               let appVersion = gameStorage.appVersion,
               let gameId = gameStorage.gameID
         else {
-            print("[PaymentSDK] refreshToken: app/game not configured")
+            debugPrint("[PaymentSDK] refreshToken: app/game not configured")
             return Fail(error: PaymentError.appNotConfigured()).eraseToAnyPublisher()
         }
         
         let deviceInfo: DeviceInfoStorage = DeviceInfoKeychainStorage()
         
         guard let deviceID = try? deviceInfo.getDeviceId() else {
-            print("[PaymentSDK] refreshToken: missing device id")
+            debugPrint("[PaymentSDK] refreshToken: missing device id")
             return Fail(error: PaymentError.sdkNotInitialized()).eraseToAnyPublisher()
         }
         
-        print("refresh-token: device id: \(deviceID)")
-        print("refresh-token: refresh token: \(refreshToken)")
+        debugPrint("refresh-token: device id: \(deviceID)")
+        debugPrint("refresh-token: refresh token: \(refreshToken)")
         
         guard let sign = try? SHA256Signature().sign(refreshToken: refreshToken) else {
-            print("[PaymentSDK] refreshToken: signature error")
+            debugPrint("[PaymentSDK] refreshToken: signature error")
             return Fail(error: PaymentError.sdkSignatureError()).eraseToAnyPublisher()
         }
         
@@ -213,9 +213,9 @@ struct DefaultPaymentAPIClient : PaymentAPIClient, SDKInfo {
         )
         .handleEvents(receiveOutput: { newSession in
             // Save new tokens into the session manager after successful refresh
-            print("--------- new session: serverResponse = \(newSession) ---------")
+            debugPrint("--------- new session: serverResponse = \(newSession) ---------")
             let dto = newSession.data
-            print("--------- new session: DTO = \(dto) ---------")
+            debugPrint("--------- new session: DTO = \(dto) ---------")
             // Pass DTO to sessionManager so it can sync to AuthSDK with expireDate
             try? sessionManager.saveSession(authSession: dto.toModel(), isRefreshToken: true)
         })
@@ -247,35 +247,35 @@ struct DefaultPaymentAPIClient : PaymentAPIClient, SDKInfo {
     ) -> AnyPublisher<T, Error> {
 //        let request = buildRequest(endpoint: endpoint, method: method, requestHeader: header, body: body)
 //        
-//        print("🚀 [REQUEST] \(request.httpMethod ?? "") \(request.url?.absoluteString ?? "")")
+//        debugPrint("🚀 [REQUEST] \(request.httpMethod ?? "") \(request.url?.absoluteString ?? "")")
 //
 //        if let header = request.allHTTPHeaderFields {
-//            print("📦 [HEADER]: \(header)")
+//            debugPrint("📦 [HEADER]: \(header)")
 //        }
 //        
 //        if let body = request.httpBody, let json = String(data: body, encoding: .utf8) {
-//            print("📦 [BODY]: \(json)")
+//            debugPrint("📦 [BODY]: \(json)")
 //        }
         
         let request = buildRequest(endpoint: endpoint, method: method, queryParameters: queryParameters, requestHeader: header, body: body)
         
-        print("🚀 [REQUEST] \(request.httpMethod ?? "") \(request.url?.absoluteString ?? "")")
+        debugPrint("🚀 [REQUEST] \(request.httpMethod ?? "") \(request.url?.absoluteString ?? "")")
         var properties: Properties = [:]
         
         if let header = request.allHTTPHeaderFields {
-            print("📦 [HEADER]: \(header)")
+            debugPrint("📦 [HEADER]: \(header)")
             properties["header"] = header
         }
         
         if let body = request.httpBody, let json = String(data: body, encoding: .utf8) {
-            print("📦 [BODY]: \(json)")
+            debugPrint("📦 [BODY]: \(json)")
             properties["body"] = json
         }
         
         return session.dataTaskPublisher(for: request)
             .tryMap { data, response in
-                print("✅ [RESPONSE] \(response)")
-                print("📨 [DATA]: \(String(data: data, encoding: .utf8) ?? "nil")")
+                debugPrint("✅ [RESPONSE] \(response)")
+                debugPrint("📨 [DATA]: \(String(data: data, encoding: .utf8) ?? "nil")")
 
                 properties["response"] = String(data: data, encoding: .utf8) ?? "nil"
                 

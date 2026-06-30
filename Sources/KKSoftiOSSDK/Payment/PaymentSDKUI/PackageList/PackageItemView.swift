@@ -117,7 +117,7 @@ struct PackageItemView: View {
             }
 //            else {
 //                let storefront = await Storefront.current
-//                print("Country Code: \(String(describing: storefront?.countryCode))")
+//                debugPrint("Country Code: \(String(describing: storefront?.countryCode))")
 //                if let countryCode = storefront?.countryCode, countryCode == "VNM" {
 //                    self.disabled = false
 //                } else {

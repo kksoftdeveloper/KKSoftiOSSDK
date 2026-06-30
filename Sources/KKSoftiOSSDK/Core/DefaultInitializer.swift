@@ -93,23 +93,23 @@ final class DefaultInitializer : InitializeAnalytics, Initialializer, DeviceIden
                 BaseAnalytics.track(event: self.eventName, properties: [self.success : response.toDictionary().toMixpanelType()])
                 
                 let gameId = response.gameInfo.gameId
-                print("SERVER: given-server = \(serverId)")
-                print("SERVER: set-gameId \(gameId)")
+                debugPrint("SERVER: given-server = \(serverId)")
+                debugPrint("SERVER: set-gameId \(gameId)")
                 return (response, gameId, String(serverId))
             }
             .flatMap { [weak self] pair -> AnyPublisher<AuthInitResponse, Error> in
                 guard let self else {
-                    print("SERVER: self = nil")
+                    debugPrint("SERVER: self = nil")
                     return Fail(error: AuthErrorResponse.unknownError()).eraseToAnyPublisher()
                 }
                 let (response, gameId, serverId) = pair
-                print("SERVER: pair = \(pair)")
+                debugPrint("SERVER: pair = \(pair)")
                 return self.authAPIClient.getGameServers(gameId: gameId)
                     .tryMap { resDTO in
                         let ret = resDTO.data.map { dto in
                             dto.toModel().toResponse()
                         }
-                        print("SERVER: Server List = \(ret)")
+                        debugPrint("SERVER: Server List = \(ret)")
                         return ret
                     }
                     .tryMap { (servers: [GameServerInfoResponse]) -> AuthInitResponse in
@@ -118,7 +118,7 @@ final class DefaultInitializer : InitializeAnalytics, Initialializer, DeviceIden
                             notificationCenter.post(name: NSNotification.Name(NotificationKeys.SERVER_MAINTENANCE_KEY), object: nil)
                             throw AuthErrorResponse.appNotConfiguredGameServer()
                         }
-                        print("SERVER: Selected ServerId = \(serverId)")
+                        debugPrint("SERVER: Selected ServerId = \(serverId)")
                         let selectedServer = servers.first {
                             $0.serverClientId?.lowercased() == serverId.lowercased()
                         } ?? servers.first {
@@ -131,11 +131,11 @@ final class DefaultInitializer : InitializeAnalytics, Initialializer, DeviceIden
                             throw AuthErrorResponse.appNotConfiguredGameServer()
                         }
 
-                        print("SERVER: Selected Server = \(selectedServer.serverId)")
+                        debugPrint("SERVER: Selected Server = \(selectedServer.serverId)")
                         self.gameInfoStorage.serverID = selectedServer.serverId
                         self.gameInfoStorage.serverName = selectedServer.serverName
 //                        guard servers.contains(where: {
-//                            print("Selected compaired to selected server: \($0.serverId) & \(serverId.lowercased())")
+//                            debugPrint("Selected compaired to selected server: \($0.serverId) & \(serverId.lowercased())")
 //                            isGoodGivenServerId = $0.serverId.lowercased() == serverId.lowercased()
 //                            
 //                        }) else {

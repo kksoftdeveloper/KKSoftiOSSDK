@@ -46,7 +46,7 @@ class LinkAccountViewModel: OpenViewModel {
                 self.isLoading = false
                 switch completion {
                 case .failure(let error):
-                    print("❌ Link Facebook Error: \(error)")
+                    debugPrint("❌ Link Facebook Error: \(error)")
                     let errorMessage = (error as? AuthErrorResponse) ?? AuthErrorResponse.unknownError()
                     handleApiError(errorMessage)
                     self.onFailure(errorMessage)
@@ -56,7 +56,7 @@ class LinkAccountViewModel: OpenViewModel {
                 
             }, receiveValue: { [weak self] data in
                 guard let self else { return }
-                print("✅ Link Facebook Success: \(data.accessToken)")
+                debugPrint("✅ Link Facebook Success: \(data.accessToken)")
                 self.onSuccess(data)
             })
             .store(in: &cancellables)
@@ -73,7 +73,7 @@ class LinkAccountViewModel: OpenViewModel {
                 self.isLoading = false
                 switch completion {
                 case .failure(let error):
-                    print("❌ Link Google Error: \(error)")
+                    debugPrint("❌ Link Google Error: \(error)")
                     let errorMessage = (error as? AuthErrorResponse) ?? AuthErrorResponse.unknownError()
                     handleApiError(errorMessage)
                     self.onFailure(errorMessage)
@@ -83,7 +83,7 @@ class LinkAccountViewModel: OpenViewModel {
                 
             }, receiveValue: { [weak self] data in
                 guard let self else { return }
-                print("✅ Link Google Success: \(data.accessToken)")
+                debugPrint("✅ Link Google Success: \(data.accessToken)")
                 self.onSuccess(data)
             })
             .store(in: &cancellables)
@@ -99,7 +99,7 @@ class LinkAccountViewModel: OpenViewModel {
                 self.isLoading = false
                 switch completion {
                 case .failure(let error):
-                    print("❌ Link Google Error: \(error)")
+                    debugPrint("❌ Link Google Error: \(error)")
                     let errorMessage = (error as? AuthErrorResponse) ?? AuthErrorResponse.unknownError()
                     handleApiError(errorMessage)
                     self.onFailure(errorMessage)
@@ -109,7 +109,7 @@ class LinkAccountViewModel: OpenViewModel {
                 
             }, receiveValue: { [weak self] data in
                 guard let self else { return }
-                print("✅ Link Google Success: \(data.accessToken)")
+                debugPrint("✅ Link Google Success: \(data.accessToken)")
                 self.onSuccess(data)
             })
             .store(in: &cancellables)

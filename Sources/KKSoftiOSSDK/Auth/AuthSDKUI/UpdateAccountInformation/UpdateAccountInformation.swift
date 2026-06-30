@@ -325,7 +325,7 @@ private struct DateInputField: View {
     UpdateAccountInformation(
         authManager: DefaultAuthManager.Builder().build(),
         onSuccess: { isSuccess in
-            print("Success: \(isSuccess)")
+            debugPrint("Success: \(isSuccess)")
         }
     )
 }

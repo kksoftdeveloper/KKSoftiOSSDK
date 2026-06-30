@@ -8,21 +8,21 @@ public class FontLoader {
         let resolvedBundle = bundle ?? .authSDK
         
         guard let url = resolvedBundle.url(forResource: name, withExtension: nil) else {
-            print("⚠️ Could not find font \(name)")
+            debugPrint("⚠️ Could not find font \(name)")
             return
         }
         
         guard let dataProvider = CGDataProvider(url: url as CFURL),
               let font = CGFont(dataProvider) else {
-            print("⚠️ Could not load font from \(url)")
+            debugPrint("⚠️ Could not load font from \(url)")
             return
         }
         
         var error: Unmanaged<CFError>?
         if !CTFontManagerRegisterGraphicsFont(font, &error) {
-            print("⚠️ Failed to register font: \(error?.takeUnretainedValue().localizedDescription ?? "unknown error")")
+            debugPrint("⚠️ Failed to register font: \(error?.takeUnretainedValue().localizedDescription ?? "unknown error")")
         } else {
-            print("✅ Successfully registered font: \(name)")
+            debugPrint("✅ Successfully registered font: \(name)")
         }
     }
     

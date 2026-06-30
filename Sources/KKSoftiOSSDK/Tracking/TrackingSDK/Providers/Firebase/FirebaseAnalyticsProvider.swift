@@ -30,7 +30,7 @@ public final class FirebaseAnalyticsProvider: TrackingProvider {
     
     public func initialize(appID: String, devKey: String) {
         guard !isInitialized else {
-            print("[FirebaseAnalyticsProvider] Already initialized")
+            debugPrint("[FirebaseAnalyticsProvider] Already initialized")
             return
         }
         
@@ -38,7 +38,7 @@ public final class FirebaseAnalyticsProvider: TrackingProvider {
         // Enable Firebase Analytics debug mode so events stream to DebugView without extra Xcode flags
         setenv("FIRAnalyticsDebugEnabled", "1", 1)
         setenv("FIRDebugEnabled", "1", 1)
-        print("[FirebaseAnalyticsProvider] Debug mode enabled (-FIRDebugEnabled)")
+        debugPrint("[FirebaseAnalyticsProvider] Debug mode enabled (-FIRDebugEnabled)")
 #endif
         
         if FirebaseApp.app() == nil {
@@ -47,24 +47,24 @@ public final class FirebaseAnalyticsProvider: TrackingProvider {
         Analytics.setAnalyticsCollectionEnabled(true)
         
         isInitialized = true
-        print("[FirebaseAnalyticsProvider] Initialized with appID: \(appID)")
+        debugPrint("[FirebaseAnalyticsProvider] Initialized with appID: \(appID)")
     }
     
     public func trackEvent(_ eventName: String, parameters: [String: Any]?) {
         guard isInitialized else {
-            print("[FirebaseAnalyticsProvider] Not initialized. Call initialize() first.")
+            debugPrint("[FirebaseAnalyticsProvider] Not initialized. Call initialize() first.")
             return
         }
         
         let sanitizedName = sanitizeEventName(eventName)
         let cleaned = sanitizeParameters(parameters)
         Analytics.logEvent(sanitizedName, parameters: cleaned)
-        print("[FirebaseAnalyticsProvider] Tracked event: \(eventName) with parameters: \(parameters ?? [:])")
+        debugPrint("[FirebaseAnalyticsProvider] Tracked event: \(eventName) with parameters: \(parameters ?? [:])")
     }
     
     public func trackPurchase(productID: String, price: Double, currency: String, parameters: [String: Any]?) {
         guard isInitialized else {
-            print("[FirebaseAnalyticsProvider] Not initialized. Call initialize() first.")
+            debugPrint("[FirebaseAnalyticsProvider] Not initialized. Call initialize() first.")
             return
         }
         
@@ -74,29 +74,29 @@ public final class FirebaseAnalyticsProvider: TrackingProvider {
         purchaseParams[AnalyticsParameterCurrency] = currency
         Analytics.logEvent(AnalyticsEventPurchase, parameters: purchaseParams)
         
-        print("[FirebaseAnalyticsProvider] Tracked purchase: \(productID), price: \(price) \(currency)")
+        debugPrint("[FirebaseAnalyticsProvider] Tracked purchase: \(productID), price: \(price) \(currency)")
     }
     
     public func setUserProperties(_ properties: [String: Any]) {
         guard isInitialized else {
-            print("[FirebaseAnalyticsProvider] Not initialized. Call initialize() first.")
+            debugPrint("[FirebaseAnalyticsProvider] Not initialized. Call initialize() first.")
             return
         }
         
         properties.forEach { key, value in
             Analytics.setUserProperty(String(describing: value), forName: sanitizeParameterKey(key))
         }
-        print("[FirebaseAnalyticsProvider] Set user properties: \(properties)")
+        debugPrint("[FirebaseAnalyticsProvider] Set user properties: \(properties)")
     }
     
     public func setUserID(_ userID: String) {
         guard isInitialized else {
-            print("[FirebaseAnalyticsProvider] Not initialized. Call initialize() first.")
+            debugPrint("[FirebaseAnalyticsProvider] Not initialized. Call initialize() first.")
             return
         }
         
         Analytics.setUserID(userID)
-        print("[FirebaseAnalyticsProvider] Set user ID: \(userID)")
+        debugPrint("[FirebaseAnalyticsProvider] Set user ID: \(userID)")
     }
 
     // MARK: - Helpers

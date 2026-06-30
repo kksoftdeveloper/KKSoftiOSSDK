@@ -3,12 +3,14 @@ import SwiftUI
 struct PhoneNumberInputText: View {
     @Binding var phoneNumber: String
     var onSubmit: (() -> Void)?
+    var placeholder: String = "(+84) 912 345 6780"
+    var height: CGFloat = 36
     
     var body: some View {
         TextField(
             "",
             text: $phoneNumber,
-            prompt: Text("(+84) 912 345 6780")
+            prompt: Text(placeholder)
                 .foregroundColor(.white.opacity(0.35))
         )
         .foregroundColor(.white)
@@ -21,7 +23,7 @@ struct PhoneNumberInputText: View {
             onSubmit?()
         }
         .cornerRadius(8)
-        .frame(height: 36)
+        .frame(height: height)
     }
 }
 

@@ -27,7 +27,7 @@ public struct PackageListView: View {
         
         serverId: Int,
         gameUUID: String,
-        isGuestUser: Bool,
+        isGuestUser: Bool = false,
         
     ) {
         //        let rawId = authService.authManager.getServerId() ?? 0

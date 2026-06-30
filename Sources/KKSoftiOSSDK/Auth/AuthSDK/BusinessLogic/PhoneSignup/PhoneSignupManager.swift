@@ -113,7 +113,7 @@ final class PhoneSignupManager : SignupManager, DeviceIdentifiable, SDKInfo, Sig
             notificationCenter.post(name: NSNotification.Name(NotificationKeys.UNAUTHENTICATED_TOKEN_KEY), object: nil)
             return Fail(error: AuthErrorResponse.unauthenticated()).eraseToAnyPublisher()
         }
-        print("access-token: --- \(accessToken)")
+        debugPrint("access-token: --- \(accessToken)")
         
 //        let header = ["Authorization": "Bearer \(accessToken)"]
         

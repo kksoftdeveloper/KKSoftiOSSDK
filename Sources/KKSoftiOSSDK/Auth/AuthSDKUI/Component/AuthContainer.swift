@@ -11,6 +11,7 @@ import SwiftUI
 struct AuthContainer<Content: View, Footer: View>: View {
     
     private let shouldShowCross: Bool
+    private let shouldShowLogo: Bool
     private let onCloseClick: () -> Void
     private var onLogoTaps: (() -> Void)? = nil
     private let content: () -> Content
@@ -24,6 +25,7 @@ struct AuthContainer<Content: View, Footer: View>: View {
         wid: CGFloat? = nil,
         hei: CGFloat? = nil,
         shouldShowCross: Bool = true,
+        shouldShowLogo: Bool = true,
         onCloseClick: @escaping () -> Void,
         onLogoTaps: (@escaping () -> Void) = {},
         @ViewBuilder content: @escaping () -> Content,
@@ -32,6 +34,7 @@ struct AuthContainer<Content: View, Footer: View>: View {
         self.wid = wid ?? min(UIScreen.main.bounds.size.width, 375)
         self.hei = hei ?? min(UIScreen.main.bounds.size.width, 375) * 1.25
         self.shouldShowCross = shouldShowCross
+        self.shouldShowLogo = shouldShowLogo
         self.content = content
         self.onCloseClick = onCloseClick
         self.onLogoTaps = onLogoTaps
@@ -47,7 +50,7 @@ struct AuthContainer<Content: View, Footer: View>: View {
             ZStack {
                 Image(sdkAsset: "BackgroundCircle")
                     .resizable()
-                if(verticalSizeClass == .compact) {
+                if shouldShowLogo && verticalSizeClass == .compact {
                     
                     ZStack(alignment: .top) {
                         
@@ -64,7 +67,7 @@ struct AuthContainer<Content: View, Footer: View>: View {
                         Spacer()
                             .layoutPriority(8)
                     }
-                } else {
+                } else if shouldShowLogo {
                     VStack {
                         Image(sdkAsset: "LogoGame")
                             .layoutPriority(1)

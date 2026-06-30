@@ -26,7 +26,7 @@ public final class AppFlyersProvider: NSObject, TrackingProvider {
     
     public func initialize(appID: String, devKey: String) {
         guard !isInitialized else {
-            print("[AppFlyersProvider] Already initialized")
+            debugPrint("[AppFlyersProvider] Already initialized")
             return
         }
         
@@ -38,26 +38,26 @@ public final class AppFlyersProvider: NSObject, TrackingProvider {
         AppsFlyerLib.shared().delegate = self
         
         isInitialized = true
-        print("[AppFlyersProvider] Initialized with appID: \(appID), devKey: \(devKey)")
+        debugPrint("[AppFlyersProvider] Initialized with appID: \(appID), devKey: \(devKey)")
         
         // Log IDFV for testing - this is needed to add device to AppsFlyer dashboard for testing
         let idfv = getIDFV()
-        print("[AppFlyersProvider] 📱 IDFV (Identifier for Vendor): \(idfv)")
-        print("[AppFlyersProvider] 💡 Copy this IDFV and add it to AppsFlyer dashboard for testing")
+        debugPrint("[AppFlyersProvider] 📱 IDFV (Identifier for Vendor): \(idfv)")
+        debugPrint("[AppFlyersProvider] 💡 Copy this IDFV and add it to AppsFlyer dashboard for testing")
         
         // IMPORTANT: Start AppsFlyer SDK - this is required for tracking to work
         // Note: This should be called from the app delegate's didFinishLaunchingWithOptions
         // or after the app is fully initialized
         DispatchQueue.main.async {
             AppsFlyerLib.shared().start()
-            print("[AppFlyersProvider] AppsFlyer SDK started")
+            debugPrint("[AppFlyersProvider] AppsFlyer SDK started")
             
             // Request ATT permission after app is fully loaded
             // Delay to ensure the app UI is ready before showing the permission dialog
             // This delay is important - the permission dialog must be shown from the main thread
             // and after the app's UI is fully presented
             DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
-                print("[AppFlyersProvider] ⏰ Requesting ATT permission now...")
+                debugPrint("[AppFlyersProvider] ⏰ Requesting ATT permission now...")
                 self.requestATTrackingPermission()
             }
         }
@@ -65,7 +65,7 @@ public final class AppFlyersProvider: NSObject, TrackingProvider {
     
     public func trackEvent(_ eventName: String, parameters: [String: Any]?) {
         guard isInitialized else {
-            print("[AppFlyersProvider] Not initialized. Call initialize() first.")
+            debugPrint("[AppFlyersProvider] Not initialized. Call initialize() first.")
             return
         }
         
@@ -98,19 +98,19 @@ public final class AppFlyersProvider: NSObject, TrackingProvider {
         // They are available in Raw Data reports (CSV download) and via AppsFlyer API
         AppsFlyerLib.shared().logEvent(eventName, withValues: nsParams as! [AnyHashable : Any])
         
-        print("[AppFlyersProvider] ✅ Tracked event: \(eventName)")
-        print("[AppFlyersProvider] 📊 Parameters sent: \(cleanedParams)")
-        print("[AppFlyersProvider] 💡 Parameters are sent to AppsFlyer successfully")
-        print("[AppFlyersProvider] 💡 To view parameters in AppsFlyer dashboard:")
-        print("[AppFlyersProvider]    1. Go to Dashboard > Raw Data Reports")
-        print("[AppFlyersProvider]    2. Download CSV file for your app")
-        print("[AppFlyersProvider]    3. Look for event_name = '\(eventName)' and check event_parameters column")
-        print("[AppFlyersProvider]    4. Or use AppsFlyer API: https://hq1.appsflyer.com/api/export/app/{app_id}/in_app_events_report/v5")
+        debugPrint("[AppFlyersProvider] ✅ Tracked event: \(eventName)")
+        debugPrint("[AppFlyersProvider] 📊 Parameters sent: \(cleanedParams)")
+        debugPrint("[AppFlyersProvider] 💡 Parameters are sent to AppsFlyer successfully")
+        debugPrint("[AppFlyersProvider] 💡 To view parameters in AppsFlyer dashboard:")
+        debugPrint("[AppFlyersProvider]    1. Go to Dashboard > Raw Data Reports")
+        debugPrint("[AppFlyersProvider]    2. Download CSV file for your app")
+        debugPrint("[AppFlyersProvider]    3. Look for event_name = '\(eventName)' and check event_parameters column")
+        debugPrint("[AppFlyersProvider]    4. Or use AppsFlyer API: https://hq1.appsflyer.com/api/export/app/{app_id}/in_app_events_report/v5")
     }
     
     public func trackPurchase(productID: String, price: Double, currency: String, parameters: [String: Any]?) {
         guard isInitialized else {
-            print("[AppFlyersProvider] Not initialized. Call initialize() first.")
+            debugPrint("[AppFlyersProvider] Not initialized. Call initialize() first.")
             return
         }
         
@@ -121,12 +121,12 @@ public final class AppFlyersProvider: NSObject, TrackingProvider {
         
         // Use AFEventPurchase for purchase tracking
         AppsFlyerLib.shared().logEvent(AFEventPurchase, withValues: purchaseParams)
-        print("[AppFlyersProvider] Tracked purchase: \(productID), price: \(price) \(currency)")
+        debugPrint("[AppFlyersProvider] Tracked purchase: \(productID), price: \(price) \(currency)")
     }
     
     public func setUserProperties(_ properties: [String: Any]) {
         guard isInitialized else {
-            print("[AppFlyersProvider] Not initialized. Call initialize() first.")
+            debugPrint("[AppFlyersProvider] Not initialized. Call initialize() first.")
             return
         }
         
@@ -137,18 +137,18 @@ public final class AppFlyersProvider: NSObject, TrackingProvider {
             existingData[key] = value
         }
         AppsFlyerLib.shared().customData = existingData
-        print("[AppFlyersProvider] Set user properties: \(properties)")
+        debugPrint("[AppFlyersProvider] Set user properties: \(properties)")
     }
     
     public func setUserID(_ userID: String) {
         guard isInitialized else {
-            print("[AppFlyersProvider] Not initialized. Call initialize() first.")
+            debugPrint("[AppFlyersProvider] Not initialized. Call initialize() first.")
             return
         }
         
         // AppFlyers uses setCustomerUserID
         AppsFlyerLib.shared().customerUserID = userID
-        print("[AppFlyersProvider] Set user ID: \(userID)")
+        debugPrint("[AppFlyersProvider] Set user ID: \(userID)")
     }
     
     // MARK: - Helper Methods
@@ -192,24 +192,24 @@ public final class AppFlyersProvider: NSObject, TrackingProvider {
                 statusString = "unknown (\(status.rawValue))"
             }
             
-            print("[AppFlyersProvider] 📊 Current ATT status: \(statusString)")
-            print("[AppFlyersProvider] 📱 Thread: \(Thread.isMainThread ? "Main" : "Background")")
+            debugPrint("[AppFlyersProvider] 📊 Current ATT status: \(statusString)")
+            debugPrint("[AppFlyersProvider] 📱 Thread: \(Thread.isMainThread ? "Main" : "Background")")
             
             // Verify Info.plist has NSUserTrackingUsageDescription
             if let infoPlist = Bundle.main.infoDictionary,
                let trackingDescription = infoPlist["NSUserTrackingUsageDescription"] as? String {
-                print("[AppFlyersProvider] ✅ Info.plist has NSUserTrackingUsageDescription: \"\(trackingDescription)\"")
+                debugPrint("[AppFlyersProvider] ✅ Info.plist has NSUserTrackingUsageDescription: \"\(trackingDescription)\"")
             } else {
-                print("[AppFlyersProvider] ⚠️ WARNING: Info.plist missing NSUserTrackingUsageDescription!")
-                print("[AppFlyersProvider] 💡 Add this key to Info.plist for ATT to work")
+                debugPrint("[AppFlyersProvider] ⚠️ WARNING: Info.plist missing NSUserTrackingUsageDescription!")
+                debugPrint("[AppFlyersProvider] 💡 Add this key to Info.plist for ATT to work")
             }
             
             switch status {
             case .notDetermined:
                 // Request permission if not determined
-                print("[AppFlyersProvider] 📱 Requesting ATT permission...")
-                print("[AppFlyersProvider] 💡 User will see permission dialog now")
-                print("[AppFlyersProvider] 💡 After user responds, app will appear in Settings > Privacy & Security > Tracking")
+                debugPrint("[AppFlyersProvider] 📱 Requesting ATT permission...")
+                debugPrint("[AppFlyersProvider] 💡 User will see permission dialog now")
+                debugPrint("[AppFlyersProvider] 💡 After user responds, app will appear in Settings > Privacy & Security > Tracking")
                 
                 ATTrackingManager.requestTrackingAuthorization { authorizationStatus in
                     DispatchQueue.main.async {
@@ -227,45 +227,45 @@ public final class AppFlyersProvider: NSObject, TrackingProvider {
                             resultString = "unknown (\(authorizationStatus.rawValue))"
                         }
                         
-                        print("[AppFlyersProvider] 📊 User responded with status: \(resultString)")
+                        debugPrint("[AppFlyersProvider] 📊 User responded with status: \(resultString)")
                         
                         switch authorizationStatus {
                         case .authorized:
-                            print("[AppFlyersProvider] ✅ ATT: Tracking authorized - IDFA available")
-                            print("[AppFlyersProvider] ✅ App should now appear in Settings > Privacy & Security > Tracking")
+                            debugPrint("[AppFlyersProvider] ✅ ATT: Tracking authorized - IDFA available")
+                            debugPrint("[AppFlyersProvider] ✅ App should now appear in Settings > Privacy & Security > Tracking")
                         case .denied:
-                            print("[AppFlyersProvider] ❌ ATT: Tracking denied - IDFA not available")
-                            print("[AppFlyersProvider] ✅ App should now appear in Settings > Privacy & Security > Tracking")
-                            print("[AppFlyersProvider] 💡 To enable: Settings > Privacy & Security > Tracking > [App Name]")
+                            debugPrint("[AppFlyersProvider] ❌ ATT: Tracking denied - IDFA not available")
+                            debugPrint("[AppFlyersProvider] ✅ App should now appear in Settings > Privacy & Security > Tracking")
+                            debugPrint("[AppFlyersProvider] 💡 To enable: Settings > Privacy & Security > Tracking > [App Name]")
                         case .restricted:
-                            print("[AppFlyersProvider] ⚠️ ATT: Tracking restricted - IDFA not available")
-                            print("[AppFlyersProvider] 💡 Tracking is restricted by device settings (e.g., Screen Time)")
+                            debugPrint("[AppFlyersProvider] ⚠️ ATT: Tracking restricted - IDFA not available")
+                            debugPrint("[AppFlyersProvider] 💡 Tracking is restricted by device settings (e.g., Screen Time)")
                         case .notDetermined:
-                            print("[AppFlyersProvider] ⚠️ ATT: Tracking not determined (unexpected)")
+                            debugPrint("[AppFlyersProvider] ⚠️ ATT: Tracking not determined (unexpected)")
                         @unknown default:
-                            print("[AppFlyersProvider] ⚠️ ATT: Unknown status")
+                            debugPrint("[AppFlyersProvider] ⚠️ ATT: Unknown status")
                         }
                     }
                 }
             case .authorized:
-                print("[AppFlyersProvider] ✅ ATT: Already authorized - IDFA available")
-                print("[AppFlyersProvider] ✅ App should appear in Settings > Privacy & Security > Tracking")
+                debugPrint("[AppFlyersProvider] ✅ ATT: Already authorized - IDFA available")
+                debugPrint("[AppFlyersProvider] ✅ App should appear in Settings > Privacy & Security > Tracking")
             case .denied:
-                print("[AppFlyersProvider] ❌ ATT: Permission denied - IDFA not available")
-                print("[AppFlyersProvider] ✅ App should appear in Settings > Privacy & Security > Tracking")
-                print("[AppFlyersProvider] 💡 Permission was previously denied. To enable:")
-                print("[AppFlyersProvider]    1. Go to Settings > Privacy & Security > Tracking")
-                print("[AppFlyersProvider]    2. Find your app (com.kksoft.vn.ts3) and enable tracking")
-                print("[AppFlyersProvider]    3. Restart the app")
-                print("[AppFlyersProvider] 💡 If app doesn't appear in Settings, delete and reinstall the app")
+                debugPrint("[AppFlyersProvider] ❌ ATT: Permission denied - IDFA not available")
+                debugPrint("[AppFlyersProvider] ✅ App should appear in Settings > Privacy & Security > Tracking")
+                debugPrint("[AppFlyersProvider] 💡 Permission was previously denied. To enable:")
+                debugPrint("[AppFlyersProvider]    1. Go to Settings > Privacy & Security > Tracking")
+                debugPrint("[AppFlyersProvider]    2. Find your app (com.kksoft.vn.ts3) and enable tracking")
+                debugPrint("[AppFlyersProvider]    3. Restart the app")
+                debugPrint("[AppFlyersProvider] 💡 If app doesn't appear in Settings, delete and reinstall the app")
             case .restricted:
-                print("[AppFlyersProvider] ⚠️ ATT: Permission restricted - IDFA not available")
-                print("[AppFlyersProvider] 💡 Tracking is restricted by device settings (e.g., Screen Time)")
+                debugPrint("[AppFlyersProvider] ⚠️ ATT: Permission restricted - IDFA not available")
+                debugPrint("[AppFlyersProvider] 💡 Tracking is restricted by device settings (e.g., Screen Time)")
             @unknown default:
-                print("[AppFlyersProvider] ⚠️ ATT: Unknown status")
+                debugPrint("[AppFlyersProvider] ⚠️ ATT: Unknown status")
             }
         } else {
-            print("[AppFlyersProvider] ⚠️ ATT: Not available on iOS < 14")
+            debugPrint("[AppFlyersProvider] ⚠️ ATT: Not available on iOS < 14")
         }
     }
 }
@@ -273,19 +273,19 @@ public final class AppFlyersProvider: NSObject, TrackingProvider {
 // MARK: - AppsFlyerLibDelegate (Optional - for deep linking)
 extension AppFlyersProvider: AppsFlyerLibDelegate {
     public func onConversionDataSuccess(_ conversionInfo: [AnyHashable : Any]) {
-        print("[AppFlyersProvider] Conversion data: \(conversionInfo)")
+        debugPrint("[AppFlyersProvider] Conversion data: \(conversionInfo)")
     }
     
     public func onConversionDataFail(_ error: Error) {
-        print("[AppFlyersProvider] Conversion data error: \(error)")
+        debugPrint("[AppFlyersProvider] Conversion data error: \(error)")
     }
     
     public func onAppOpenAttribution(_ attributionData: [AnyHashable : Any]) {
-        print("[AppFlyersProvider] App open attribution: \(attributionData)")
+        debugPrint("[AppFlyersProvider] App open attribution: \(attributionData)")
     }
     
     public func onAppOpenAttributionFailure(_ error: Error) {
-        print("[AppFlyersProvider] App open attribution error: \(error)")
+        debugPrint("[AppFlyersProvider] App open attribution error: \(error)")
     }
 }
 

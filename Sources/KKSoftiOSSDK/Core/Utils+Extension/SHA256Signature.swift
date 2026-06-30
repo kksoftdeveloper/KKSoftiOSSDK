@@ -148,7 +148,7 @@ final class SHA256Signature: Signature, DeviceIdentifiable, SDKInfo {
     }
     
     private func sha256Base64Safe(_ combined: String) -> String {
-        print("combined: \(combined)")
+        debugPrint("combined: \(combined)")
 
         let inputData = Data(combined.utf8)
         let hash = SHA256.hash(data: inputData)

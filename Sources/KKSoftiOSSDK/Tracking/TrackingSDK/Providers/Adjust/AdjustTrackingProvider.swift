@@ -28,7 +28,7 @@ public final class AdjustTrackingProvider: NSObject, TrackingProvider {
     
     public func initialize(appID: String, devKey: String) {
         guard !isInitialized else {
-            print("[AdjustTrackingProvider] Already initialized")
+            debugPrint("[AdjustTrackingProvider] Already initialized")
             return
         }
         
@@ -50,19 +50,19 @@ public final class AdjustTrackingProvider: NSObject, TrackingProvider {
         Adjust.initSdk(adjustConfig)
         
         isInitialized = true
-        print("[AdjustTrackingProvider] Initialized with appID: \(appID), appToken: \(appToken)")
+        debugPrint("[AdjustTrackingProvider] Initialized with appID: \(appID), appToken: \(appToken)")
         
         // Log IDFV for testing - similar to AppsFlyer
         let idfv = getIDFV()
-        print("[AdjustTrackingProvider] 📱 IDFV (Identifier for Vendor): \(idfv)")
+        debugPrint("[AdjustTrackingProvider] 📱 IDFV (Identifier for Vendor): \(idfv)")
         
         // Retrieve and log Adjust ID asynchronously
         getAdjustId { [weak self] adid in
             guard let _ = self else { return }
             if let adid = adid {
-                print("[AdjustTrackingProvider] 📱 Adjust ID (ADID): \(adid)")
+                debugPrint("[AdjustTrackingProvider] 📱 Adjust ID (ADID): \(adid)")
             } else {
-                print("[AdjustTrackingProvider] ⚠️ Adjust ID not available yet. It may take a moment to initialize.")
+                debugPrint("[AdjustTrackingProvider] ⚠️ Adjust ID not available yet. It may take a moment to initialize.")
             }
         }
       
@@ -70,12 +70,12 @@ public final class AdjustTrackingProvider: NSObject, TrackingProvider {
     
     public func trackEvent(_ eventToken: String, parameters: [String: Any]?) {
         guard isInitialized else {
-            print("[AdjustTrackingProvider] Not initialized. Call initialize() first.")
+            debugPrint("[AdjustTrackingProvider] Not initialized. Call initialize() first.")
             return
         }
 
         guard let event = ADJEvent(eventToken: eventToken) else {
-            print("[AdjustTrackingProvider] ❌ Invalid Adjust event token: \(eventToken)")
+            debugPrint("[AdjustTrackingProvider] ❌ Invalid Adjust event token: \(eventToken)")
             return
         }
 
@@ -96,15 +96,15 @@ public final class AdjustTrackingProvider: NSObject, TrackingProvider {
         }
 
         Adjust.trackEvent(event)
-        print("[AdjustTrackingProvider] ✅ Tracked event token: \(eventToken)")
+        debugPrint("[AdjustTrackingProvider] ✅ Tracked event token: \(eventToken)")
         if let params = parameters {
-            print("[AdjustTrackingProvider] 📊 Parameters sent: \(params)")
+            debugPrint("[AdjustTrackingProvider] 📊 Parameters sent: \(params)")
         }
     }
     
     public func trackPurchase(productID: String, price: Double, currency: String, parameters: [String: Any]?) {
         guard isInitialized else {
-            print("[AdjustTrackingProvider] Not initialized. Call initialize() first.")
+            debugPrint("[AdjustTrackingProvider] Not initialized. Call initialize() first.")
             return
         }
         
@@ -136,32 +136,32 @@ public final class AdjustTrackingProvider: NSObject, TrackingProvider {
         }
         
         Adjust.trackEvent(event)
-        print("[AdjustTrackingProvider] Tracked purchase: \(productID), price: \(price) \(currency)")
+        debugPrint("[AdjustTrackingProvider] Tracked purchase: \(productID), price: \(price) \(currency)")
     }
     
     public func setUserProperties(_ properties: [String: Any]) {
         guard isInitialized else {
-            print("[AdjustTrackingProvider] Not initialized. Call initialize() first.")
+            debugPrint("[AdjustTrackingProvider] Not initialized. Call initialize() first.")
             return
         }
         
         // Adjust doesn't have a direct equivalent to user properties
         // We can track them as callback parameters on events
         // Store them for use in future events
-        print("[AdjustTrackingProvider] User properties stored: \(properties)")
-        print("[AdjustTrackingProvider] Note: Adjust doesn't have persistent user properties. They should be sent as callback parameters with events.")
+        debugPrint("[AdjustTrackingProvider] User properties stored: \(properties)")
+        debugPrint("[AdjustTrackingProvider] Note: Adjust doesn't have persistent user properties. They should be sent as callback parameters with events.")
     }
     
     public func setUserID(_ userID: String) {
         guard isInitialized else {
-            print("[AdjustTrackingProvider] Not initialized. Call initialize() first.")
+            debugPrint("[AdjustTrackingProvider] Not initialized. Call initialize() first.")
             return
         }
         
         // Adjust SDK v5 uses addGlobalCallbackParameter (renamed from addSessionCallbackParameter)
         // This will be attached to all future events
         Adjust.addGlobalCallbackParameter(userID, forKey: "adj_uid")
-        print("[AdjustTrackingProvider] Set user ID: \(userID)")
+        debugPrint("[AdjustTrackingProvider] Set user ID: \(userID)")
     }
     
     // MARK: - Helper Methods
@@ -177,18 +177,18 @@ public final class AdjustTrackingProvider: NSObject, TrackingProvider {
     /// - Parameter completion: Callback with Adjust ID or nil if not available
     public func getAdjustId(completion: @escaping (String?) -> Void) {
         guard isInitialized else {
-            print("[AdjustTrackingProvider] ⚠️ Cannot get Ad ID: Provider not initialized")
+            debugPrint("[AdjustTrackingProvider] ⚠️ Cannot get Ad ID: Provider not initialized")
             completion(nil)
             return
         }
         
-        print("[AdjustTrackingProvider] Requesting Adjust Ad ID from SDK...")
+        debugPrint("[AdjustTrackingProvider] Requesting Adjust Ad ID from SDK...")
         Adjust.adid { adid in
             DispatchQueue.main.async {
                 if let adid = adid {
-                    print("[AdjustTrackingProvider] ✅ Adjust Ad ID retrieved: \(adid)")
+                    debugPrint("[AdjustTrackingProvider] ✅ Adjust Ad ID retrieved: \(adid)")
                 } else {
-                    print("[AdjustTrackingProvider] ⚠️ Adjust Ad ID is nil - SDK may not be fully initialized yet")
+                    debugPrint("[AdjustTrackingProvider] ⚠️ Adjust Ad ID is nil - SDK may not be fully initialized yet")
                 }
                 completion(adid)
             }

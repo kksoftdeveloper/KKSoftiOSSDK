@@ -190,7 +190,7 @@ public struct LinkAccountView: View {
                     )
                 },
                 onFailure: { authError in
-                    print("OTP verification failed with message \(authError)")
+                    debugPrint("OTP verification failed with message \(authError)")
                 }
             )
         case .passwordInput(let flowType, let phoneNumber, let otpVerifiedToken, let accountInformation):
@@ -202,13 +202,13 @@ public struct LinkAccountView: View {
                 presentedScreen: $viewModel.presentedScreen,
                 authManager: viewModel.authManager,
                 onSuccess: { flowType, session in
-                    print("set up password success \(flowType) \(String(describing: session))")
+                    debugPrint("set up password success \(flowType) \(String(describing: session))")
                     if let session = session {
                         self.onSuccess(session)
                     }
                 },
                 onFailure: { authErrorResponse in
-                    print("set up password failure \(authErrorResponse)")
+                    debugPrint("set up password failure \(authErrorResponse)")
                     self.onFailure(authErrorResponse)
                 }
             )
@@ -221,7 +221,7 @@ public struct LinkAccountView: View {
             //                authManager: viewModel.authManager,
             //                presentedScreen: $viewModel.presentedScreen,
             //                guestToken: guestToken,
-            //                onSuccess: { authSession in print("link account success \(authSession)")},
+            //                onSuccess: { authSession in debugPrint("link account success \(authSession)")},
             //                onFailure: {authError in },
             //                onClose: {
             //
@@ -237,8 +237,8 @@ public struct LinkAccountView: View {
         authManager: DefaultAuthManager.Builder().build(),
         //        presentedScreen:.constant(nil),
         guestToken: "",
-        onSuccess: { session in print("Success") },
-        onFailure: { authError in print("Failure") },
+        onSuccess: { session in debugPrint("Success") },
+        onFailure: { authError in debugPrint("Failure") },
         onClose: {
             
         }

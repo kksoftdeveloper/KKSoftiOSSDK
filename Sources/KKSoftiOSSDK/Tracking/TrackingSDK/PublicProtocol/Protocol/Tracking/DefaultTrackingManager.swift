@@ -31,7 +31,7 @@ public final class DefaultTrackingManager: TrackingManager {
     
     public func initialize() {
         guard !isInitialized else {
-            print("[DefaultTrackingManager] Already initialized")
+            debugPrint("[DefaultTrackingManager] Already initialized")
             return
         }
         
@@ -39,12 +39,12 @@ public final class DefaultTrackingManager: TrackingManager {
         crashlyticsProvider?.initialize()
         
         isInitialized = true
-        print("[DefaultTrackingManager] Initialized with \(trackingProviders.count) tracking providers")
+        debugPrint("[DefaultTrackingManager] Initialized with \(trackingProviders.count) tracking providers")
     }
     
     public func trackEvent(_ eventName: String, parameters: [String: Any]?, overrides: TrackingEventOverrides?) {
 //        guard isInitialized else {
-//            print("[DefaultTrackingManager] Not initialized. Call initialize() first.")
+//            debugPrint("[DefaultTrackingManager] Not initialized. Call initialize() first.")
 //            return
 //        }
         if !isInitialized {
@@ -55,14 +55,14 @@ public final class DefaultTrackingManager: TrackingManager {
             let override = overrides?[provider.kind]
             let resolvedName = override?.resolvedEventName(defaultName: eventName) ?? eventName
             let resolvedParams = override?.resolvedParameters(base: parameters) ?? parameters
-            print("[DefaultTrackingManager] provider: \(type(of: provider)) -> \(resolvedName)")
+            debugPrint("[DefaultTrackingManager] provider: \(type(of: provider)) -> \(resolvedName)")
             provider.trackEvent(resolvedName, parameters: resolvedParams)
         }
     }
     
     public func trackPurchase(productID: String, price: Double, currency: String, parameters: [String: Any]?) {
         guard isInitialized else {
-            print("[DefaultTrackingManager] Not initialized. Call initialize() first.")
+            debugPrint("[DefaultTrackingManager] Not initialized. Call initialize() first.")
             return
         }
         
@@ -74,7 +74,7 @@ public final class DefaultTrackingManager: TrackingManager {
     
     public func setUserProperties(_ properties: [String: Any]) {
         guard isInitialized else {
-            print("[DefaultTrackingManager] Not initialized. Call initialize() first.")
+            debugPrint("[DefaultTrackingManager] Not initialized. Call initialize() first.")
             return
         }
         
@@ -86,7 +86,7 @@ public final class DefaultTrackingManager: TrackingManager {
     
     public func setUserID(_ userID: String) {
         guard isInitialized else {
-            print("[DefaultTrackingManager] Not initialized. Call initialize() first.")
+            debugPrint("[DefaultTrackingManager] Not initialized. Call initialize() first.")
             return
         }
         
@@ -126,17 +126,17 @@ public final class DefaultTrackingManager: TrackingManager {
     /// Get Adjust ID (ADID) asynchronously
     /// - Parameter completion: Callback with Adjust ID or nil if not available
     public func getAdjustId(completion: @escaping (String?) -> Void) {
-        print("[DefaultTrackingManager] Looking for Adjust provider among \(trackingProviders.count) providers")
+        debugPrint("[DefaultTrackingManager] Looking for Adjust provider among \(trackingProviders.count) providers")
         for provider in trackingProviders {
-            print("[DefaultTrackingManager] Checking provider: \(type(of: provider))")
+            debugPrint("[DefaultTrackingManager] Checking provider: \(type(of: provider))")
             if let adjustProvider = provider as? AdjustTrackingProvider {
-                print("[DefaultTrackingManager] ✅ Found AdjustTrackingProvider, requesting Ad ID...")
+                debugPrint("[DefaultTrackingManager] ✅ Found AdjustTrackingProvider, requesting Ad ID...")
                 adjustProvider.getAdjustId(completion: completion)
                 return
             }
         }
         // If no Adjust provider found, return nil
-        print("[DefaultTrackingManager] ⚠️ No AdjustTrackingProvider found in tracking providers")
+        debugPrint("[DefaultTrackingManager] ⚠️ No AdjustTrackingProvider found in tracking providers")
         completion(nil)
     }
     
@@ -171,7 +171,7 @@ public final class DefaultTrackingManager: TrackingManager {
             let override = overrides?[provider.kind]
             let resolvedName = override?.resolvedEventName(defaultName: screenName) ?? screenName
             let resolvedParams = override?.resolvedParameters(base: screenParams) ?? screenParams
-            print("[DefaultTrackingManager] Tracking screen: \(resolvedName) with provider: \(type(of: provider))")
+            debugPrint("[DefaultTrackingManager] Tracking screen: \(resolvedName) with provider: \(type(of: provider))")
             provider.trackEvent(resolvedName, parameters: resolvedParams)
         }
     }

@@ -9,10 +9,12 @@ struct SecureInputView: View {
     @Binding var text: String
     @State private var isSecured = true
     private let title: LocalizedStringKey
+    private let height: CGFloat
 
-    init(_ title: LocalizedStringKey, text: Binding<String>) {
+    init(_ title: LocalizedStringKey, text: Binding<String>, height: CGFloat = 35) {
         self.title = title
         self._text = text
+        self.height = height
     }
 
     var body: some View {
@@ -40,7 +42,7 @@ struct SecureInputView: View {
             .font(AppFont.poppinsMedium.of(size: 12))
             .padding(.vertical, 8)
             .padding(.leading)
-            .frame(height: 35)
+            .frame(height: height)
 
             Button {
                 isSecured.toggle()
@@ -52,6 +54,7 @@ struct SecureInputView: View {
         }
         .background(Color.darkCocoa)
         .cornerRadius(8)
+        .frame(height: height)
     }
 }
 

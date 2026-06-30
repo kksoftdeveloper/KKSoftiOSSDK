@@ -141,7 +141,7 @@ class PasswordInputViewModel: OpenViewModel {
                 .map { [weak self] DatalessServerResponse in
                     guard let self else { return }
                     self.presentedScreen = nil
-                    print("forget password success \(DatalessServerResponse)")
+                    debugPrint("forget password success \(DatalessServerResponse)")
                     self.onSuccess(.forgetPassword, nil)
                 }.eraseToAnyPublisher()
         }

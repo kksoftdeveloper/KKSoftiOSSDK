@@ -13,16 +13,16 @@ public struct KeyChainSessionManager: SessionManager {
     public init() {}
     
     public func saveSession(authSession: AuthSessionModel, isRefreshToken: Bool) throws {
-        print("----> Saving session")
+        debugPrint("----> Saving session")
         let sessionData = try JSONEncoder().encode(authSession.toResponse())
-        print("----> Saving session 2")
+        debugPrint("----> Saving session 2")
         print(String(data: sessionData, encoding: .utf8) ?? "Error converting to Data")
         try KeychainHelper.shared.save(sessionData, service: service, account: self.account)
-        print("----> Saving session saved")
+        debugPrint("----> Saving session saved")
         if isRefreshToken {
             let notificationCenter = NotificationCenter.default
             notificationCenter.post(name: NSNotification.Name(DefaultAuthManager.REFERSH_TOKEN_KEY), object: authSession.toResponse())
-            print("----> Saving session refresh token posted")
+            debugPrint("----> Saving session refresh token posted")
         }
     }
     

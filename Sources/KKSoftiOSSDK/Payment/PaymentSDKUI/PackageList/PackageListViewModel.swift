@@ -82,7 +82,7 @@ public class PackageListViewModel: ObservableObject, IAPAnalytics {
                 self.isLoadingPage = false
                 
                 if case .failure(let error) = completion {
-                    print("❌ Failed to fetch packages: \(error.message)")
+                    debugPrint("❌ Failed to fetch packages: \(error.message)")
                     // Only hide loading if this was initial load
                     if reset || self.products.isEmpty {
                         self.isLoading = false
@@ -111,14 +111,14 @@ public class PackageListViewModel: ObservableObject, IAPAnalytics {
     
     private func loadProducts(packages: [GamePackageStatusOutput], append: Bool = false, isInitialLoad: Bool = false) {
         let skus = packages.map { $0.sku }
-        print("fetch products: \(skus)")
+        debugPrint("fetch products: \(skus)")
         isLoadingPage = true
         paymentManager?.fetchProducts(productIDs: skus)
             .receive(on: DispatchQueue.main)
             .sink { [weak self] completion in
                 guard let self else { return }
                 if case .failure(let error) = completion {
-                    print("[PackageListViewModel] Failed to fetch products: \(error.message)")
+                    debugPrint("[PackageListViewModel] Failed to fetch products: \(error.message)")
                     self.updateProducts(storeProducts: [], packages: packages, append: append)
                 }
                 self.isLoadingPage = false
@@ -127,7 +127,7 @@ public class PackageListViewModel: ObservableObject, IAPAnalytics {
                     self.isLoading = false
                 }
             } receiveValue: { [weak self] newProducts in
-                print("[PackageListViewModel] fetch products with new products: \(newProducts)")
+                debugPrint("[PackageListViewModel] fetch products with new products: \(newProducts)")
                 guard let self else { return }
 
                 self.updateProducts(storeProducts: newProducts, packages: packages, append: append)
@@ -166,12 +166,12 @@ public class PackageListViewModel: ObservableObject, IAPAnalytics {
 //        return
         
         guard item.isActive, let product = item.product else {
-            print("[PackageListViewModel] Package is not purchasable for SKU: \(item.id), status: \(item.package.status)")
+            debugPrint("[PackageListViewModel] Package is not purchasable for SKU: \(item.id), status: \(item.package.status)")
             return
         }
         isLoading = true
         let price = priceValue(for: item)
-        print("[PackageListViewModel] IAP: product-id: \(product.id), price: \(price)")
+        debugPrint("[PackageListViewModel] IAP: product-id: \(product.id), price: \(price)")
         paymentManager?
             .validateGamePackage(gamePackage: GamePackageInput(sku: product.id, price: price))
             .catch({ error in
@@ -181,15 +181,15 @@ public class PackageListViewModel: ObservableObject, IAPAnalytics {
                 guard let self = self, let paymentManager = paymentManager else {
                     return Fail(error: PaymentError.unknownError()).eraseToAnyPublisher()
                 }
-                print("[PackageListViewModel] IAP: game-package-status: \(gamePackageStatus.status)")
+                debugPrint("[PackageListViewModel] IAP: game-package-status: \(gamePackageStatus.status)")
                 if gamePackageStatus.status != "ACTIVE" {
                     return Fail(error: PaymentError.inactivedSKU()).eraseToAnyPublisher()
                 }
                 return paymentManager.purchase(product: product)
             }
             .flatMap { [weak self] appleVerifiedTranskModel -> AnyPublisher<PurchaseVerificationOutput, PaymentError> in
-                print("[PackageListViewModel] IAP: transaction-purchasedToken \(appleVerifiedTranskModel.purchasedToken)")
-                print("[PackageListViewModel] IAP: transactionId \(String(appleVerifiedTranskModel.appleTransk.id))")
+                debugPrint("[PackageListViewModel] IAP: transaction-purchasedToken \(appleVerifiedTranskModel.purchasedToken)")
+                debugPrint("[PackageListViewModel] IAP: transactionId \(String(appleVerifiedTranskModel.appleTransk.id))")
                 guard let self = self, let paymentManager = paymentManager else {
                     return Fail(error: PaymentError.unknownError()).eraseToAnyPublisher()
                 }
@@ -212,7 +212,7 @@ public class PackageListViewModel: ObservableObject, IAPAnalytics {
                     self.pendingTransactionId = nil
                 case .failure(let error):
                     self.pendingTransactionId = nil
-                    print("[PackageListViewModel] Purchase flow failed: \(error)")
+                    debugPrint("[PackageListViewModel] Purchase flow failed: \(error)")
                     switch error.code {
                     case .InvalidSKU:
 //                        PaymentTracking.logIAPFailure(product: product, reason: "invalid_sku", error: error)
@@ -319,7 +319,7 @@ public class PackageListViewModel: ObservableObject, IAPAnalytics {
                         "transaction_id": orderId
                     ]
                 )
-                print("[PackageListViewModel] Purchase flow completed successfully.")
+                debugPrint("[PackageListViewModel] Purchase flow completed successfully.")
                 self.paymentPopUp = PaymentPopUp(
                     title: LocalizedStringKey.sdkAsset("payment_success").toString().uppercased(),
                     description: String(format: LocalizedStringKey.sdkAsset("payment_success_desc").toString(), product.displayName),
@@ -341,7 +341,7 @@ public class PackageListViewModel: ObservableObject, IAPAnalytics {
         
     func handleApplePurchaseProduct(product: Product) {
         let price = NSDecimalNumber(decimal: product.price).intValue
-        print("[PackageListViewModel] IAP: product-id: \(product.id), price: \(price)")
+        debugPrint("[PackageListViewModel] IAP: product-id: \(product.id), price: \(price)")
         paymentManager?.purchase(product: product)
             .receive(on: DispatchQueue.main)
             .sink { [weak self] completion in
@@ -352,12 +352,12 @@ public class PackageListViewModel: ObservableObject, IAPAnalytics {
                 case .finished:
                     break
                 case .failure(let error):
-                    print("[PackageListViewModel] Purchase failed: \(error.message)")
+                    debugPrint("[PackageListViewModel] Purchase failed: \(error.message)")
                 }
             } receiveValue: { [weak self] transaction in
                 guard let _ = self else { return }
-                print("[PackageListViewModel] Purchase successful: \(transaction.appleTransk.productID)")
-                print("[PackageListViewModel] IAP: transactionId \(String(transaction.appleTransk.id))")
+                debugPrint("[PackageListViewModel] Purchase successful: \(transaction.appleTransk.productID)")
+                debugPrint("[PackageListViewModel] IAP: transactionId \(String(transaction.appleTransk.id))")
                 
                 print(transaction)
             }

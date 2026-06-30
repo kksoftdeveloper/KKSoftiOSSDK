@@ -172,7 +172,7 @@ final class GoogleLoginManager: SocialLoginManager, DeviceIdentifiable, SDKInfo,
     /*
     func getAuthSesssion() -> AnyPublisher<AuthSessionResponse, Error> {
         do {
-            print("GetAuthSession-GoogleManager")
+            debugPrint("GetAuthSession-GoogleManager")
             guard let authSessionResponse = try sessionManager.getSession()?.toResponse() else {
                 BaseAnalytics.track(event: self.getLatestAuthSession, properties: [self.failure: AuthErrorResponse.unauthenticated().message])
                 let notificationCenter = NotificationCenter.default
@@ -207,7 +207,7 @@ final class GoogleLoginManager: SocialLoginManager, DeviceIdentifiable, SDKInfo,
                             .setFailureType(to: Error.self)
                             .eraseToAnyPublisher()
                     } else {
-                        print("GetAuthSession-GoogleManager with gameUUID mismatch")
+                        debugPrint("GetAuthSession-GoogleManager with gameUUID mismatch")
                         BaseAnalytics.track(event: self.getLatestAuthSession, properties: [self.failure: AuthErrorResponse.unauthenticated().message])
                         return Fail(error: AuthErrorResponse.unauthenticated())
                             .eraseToAnyPublisher()
@@ -215,16 +215,16 @@ final class GoogleLoginManager: SocialLoginManager, DeviceIdentifiable, SDKInfo,
                 }
 //                .mapError { error -> Error in
 //                    if let authError = error as? AuthErrorResponse {
-//                        print("❌ GetAuthSession: \(authError.code) - \(authError.message)")
+//                        debugPrint("❌ GetAuthSession: \(authError.code) - \(authError.message)")
 //                        return authError
 //                    } else {
-//                        print("❌ GetAuthSession Unknown error: \(error.localizedDescription)")
+//                        debugPrint("❌ GetAuthSession Unknown error: \(error.localizedDescription)")
 //                        return error
 //                    }
 //                }
                 .eraseToAnyPublisher()
         } catch {
-            print("GetAuthSession-GoogleManager with something wrong")
+            debugPrint("GetAuthSession-GoogleManager with something wrong")
             BaseAnalytics.track(event: self.getLatestAuthSession, properties: [self.failure: AuthErrorResponse.unauthenticated().message])
             let notificationCenter = NotificationCenter.default
             notificationCenter.post(name: NSNotification.Name(NotificationKeys.UNAUTHENTICATED_TOKEN_KEY), object: nil)
@@ -261,7 +261,7 @@ final class GoogleLoginManager: SocialLoginManager, DeviceIdentifiable, SDKInfo,
                 .eraseToAnyPublisher()
 
         } catch {
-            print("GetAuthSession: early throw -> \(error)")
+            debugPrint("GetAuthSession: early throw -> \(error)")
             BaseAnalytics.track(event: self.getLatestAuthSession, properties: [self.failure: AuthErrorResponse.unauthenticated().message])
             return Fail(error: AuthErrorResponse.unauthenticated()).eraseToAnyPublisher()
         }
@@ -269,7 +269,7 @@ final class GoogleLoginManager: SocialLoginManager, DeviceIdentifiable, SDKInfo,
     
     func getAuthSesssion() -> AnyPublisher<AuthSessionResponse, Error> {
         do {
-            print("GetAuthSession: entering")
+            debugPrint("GetAuthSession: entering")
             guard let authSessionResponse = try? sessionManager.getSession()?.toResponse() else {
                 BaseAnalytics.track(event: self.getLatestAuthSession, properties: [self.failure: AuthErrorResponse.unauthenticated().message])
                 throw AuthErrorResponse.unauthenticated()
@@ -288,22 +288,22 @@ final class GoogleLoginManager: SocialLoginManager, DeviceIdentifiable, SDKInfo,
             return authAPIClient
                 .getCharacter(header: [:], gameId: gameId, serverId: serverId)
                 .handleEvents(
-                    receiveSubscription: { _ in print("GetAuthSession: getCharacter subscribed") },
-                    receiveOutput: { resp in print("GetAuthSession: getCharacter value -> \(resp)") },
-                    receiveCompletion: { print("GetAuthSession: getCharacter completion = \($0)") },
-                    receiveCancel: { print("GetAuthSession: getCharacter cancelled") }
+                    receiveSubscription: { _ in debugPrint("GetAuthSession: getCharacter subscribed") },
+                    receiveOutput: { resp in debugPrint("GetAuthSession: getCharacter value -> \(resp)") },
+                    receiveCompletion: { debugPrint("GetAuthSession: getCharacter completion = \($0)") },
+                    receiveCancel: { debugPrint("GetAuthSession: getCharacter cancelled") }
                 )
                 .flatMap { gameUidResponse in
-                    print("GetAuthSession: gameUidResponse -> \(gameUidResponse)")
-                    print("GetAuthSession: gameInfoStorage -> \(String(describing: self.gameInfoStorage.gameUUID))")
-                    print("GetAuthSession: gameInfoStorage -> \(String(describing: gameUidResponse.data.characterId))")
+                    debugPrint("GetAuthSession: gameUidResponse -> \(gameUidResponse)")
+                    debugPrint("GetAuthSession: gameInfoStorage -> \(String(describing: self.gameInfoStorage.gameUUID))")
+                    debugPrint("GetAuthSession: gameInfoStorage -> \(String(describing: gameUidResponse.data.characterId))")
                     if let characterId = gameUidResponse.data.characterId {
-                        print("GetAuthSession: success, returning session with characterId \(characterId)")
+                        debugPrint("GetAuthSession: success, returning session with characterId \(characterId)")
                         self.gameInfoStorage.characterId = characterId
                     }
                     if let gameUUID = gameUidResponse.data.gameUUID, self.gameInfoStorage.gameUUID?.contains(gameUUID) == true {
                         BaseAnalytics.track(event: self.getLatestAuthSession, properties: [self.success: "Get Auth Session Successfully"])
-                        print("GetAuthSession: success, returning session with gameUUID \(gameUUID)")
+                        debugPrint("GetAuthSession: success, returning session with gameUUID \(gameUUID)")
                         return Just(authSessionResponse.copy(gameUUID: gameUUID))
                             .handleEvents(receiveOutput: { session in
                                 AuthTracking.handleRetentionD1IfNeeded(session: session)
@@ -313,20 +313,20 @@ final class GoogleLoginManager: SocialLoginManager, DeviceIdentifiable, SDKInfo,
                     } else {
                         let err = AuthErrorResponse.unauthenticated()
                         BaseAnalytics.track(event: self.getLatestAuthSession, properties: [self.failure: err.message])
-                        print("GetAuthSession: gameUUID mismatch or nil -> failing unauthenticated")
+                        debugPrint("GetAuthSession: gameUUID mismatch or nil -> failing unauthenticated")
                         return Fail(error: err).eraseToAnyPublisher()
                     }
                 }
                 .handleEvents(
-                    receiveSubscription: { _ in print("GetAuthSession: flatten subscribed") },
-                    receiveOutput: { _ in print("GetAuthSession: output session") },
-                    receiveCompletion: { print("GetAuthSession: completion = \($0)") },
-                    receiveCancel: { print("GetAuthSession: cancelled") }
+                    receiveSubscription: { _ in debugPrint("GetAuthSession: flatten subscribed") },
+                    receiveOutput: { _ in debugPrint("GetAuthSession: output session") },
+                    receiveCompletion: { debugPrint("GetAuthSession: completion = \($0)") },
+                    receiveCancel: { debugPrint("GetAuthSession: cancelled") }
                 )
                 .eraseToAnyPublisher()
 
         } catch {
-            print("GetAuthSession: early throw -> \(error)")
+            debugPrint("GetAuthSession: early throw -> \(error)")
             BaseAnalytics.track(event: self.getLatestAuthSession, properties: [self.failure: AuthErrorResponse.unauthenticated().message])
             return Fail(error: AuthErrorResponse.unauthenticated()).eraseToAnyPublisher()
         }

@@ -141,7 +141,7 @@ public class WelcomeViewModel: OpenViewModel, AnalyticsProperties {
             .sink(receiveCompletion: { completion in
                 switch completion {
                 case .failure(let error):
-                    print("❌ initSDK failed:", (error as? AuthErrorResponse)?.message ?? error.localizedDescription)
+                    debugPrint("❌ initSDK failed:", (error as? AuthErrorResponse)?.message ?? error.localizedDescription)
                     let errorMessage = (error as? AuthErrorResponse)?.message ?? LocalizedStringKey.sdkAsset("unknown_error_message").toString()
 //                    let err = error as? AuthErrorResponse ?? .unknownError()
 //                    self.onLoginFailure(err)
@@ -151,7 +151,7 @@ public class WelcomeViewModel: OpenViewModel, AnalyticsProperties {
                 }
             }, receiveValue: { gameInfo in
                 
-                print("✅ initSDK success:", gameInfo)
+                debugPrint("✅ initSDK success:", gameInfo)
             })
             .store(in: &cancellables)
     }
@@ -166,7 +166,7 @@ public class WelcomeViewModel: OpenViewModel, AnalyticsProperties {
                 self.isLoading = false
                 switch completion {
                 case .failure(let error):
-                    print("❌ Login Error: \(error)")
+                    debugPrint("❌ Login Error: \(error)")
                     let err = (error as? AuthErrorResponse) ?? .unknownError()
                     if err.code == AuthErrorCodeResponse.InvalidPhoneOrPassword {
                         errorMessage = LocalizedStringKey.sdkAsset("invalid_phone_or_password").toString()
@@ -182,7 +182,7 @@ public class WelcomeViewModel: OpenViewModel, AnalyticsProperties {
             }, receiveValue: { [weak self] data in
                 guard let self else { return }
                 self.isLoading = false
-                print("✅ Login Success: \(data)")
+                debugPrint("✅ Login Success: \(data)")
                 self.completeLoginIfProfileReady(data)
             })
             .store(in: &cancellables)
@@ -197,7 +197,7 @@ public class WelcomeViewModel: OpenViewModel, AnalyticsProperties {
                 self.isLoading = false
                 switch completion {
                 case .failure(let error):
-                    print("❌ Login Facebook Error: \(error)")
+                    debugPrint("❌ Login Facebook Error: \(error)")
                     let err = (error as? AuthErrorResponse) ?? .unknownError()
                     if err.code == AuthErrorCodeResponse.InvalidPhoneOrPassword {
                         errorMessage = LocalizedStringKey.sdkAsset("invalid_phone_or_password").toString()
@@ -213,7 +213,7 @@ public class WelcomeViewModel: OpenViewModel, AnalyticsProperties {
                 
             }, receiveValue: { [weak self] data in
                 guard let self else { return }
-                print("✅ Login Facebook Success: \(data.accessToken)")
+                debugPrint("✅ Login Facebook Success: \(data.accessToken)")
                 self.completeLoginIfProfileReady(data)
             })
             .store(in: &cancellables)
@@ -229,7 +229,7 @@ public class WelcomeViewModel: OpenViewModel, AnalyticsProperties {
             
                 switch completion {
                 case .failure(let error):
-                    print("❌ Google Error: \(error)")
+                    debugPrint("❌ Google Error: \(error)")
                     let err = (error as? AuthErrorResponse) ?? .unknownError()
                     if err.code == AuthErrorCodeResponse.InvalidPhoneOrPassword {
                         errorMessage = LocalizedStringKey.sdkAsset("invalid_phone_or_password").toString()
@@ -245,7 +245,7 @@ public class WelcomeViewModel: OpenViewModel, AnalyticsProperties {
                 
             }, receiveValue: { [weak self] data in
                 guard let self else { return }
-                print("✅ Login Google Success: \(data)")
+                debugPrint("✅ Login Google Success: \(data)")
                 self.completeLoginIfProfileReady(data)
             })
             .store(in: &cancellables)
@@ -261,7 +261,7 @@ public class WelcomeViewModel: OpenViewModel, AnalyticsProperties {
             
                 switch completion {
                 case .failure(let error):
-                    print("❌ Apple Error: \(error)")
+                    debugPrint("❌ Apple Error: \(error)")
                     let err = (error as? AuthErrorResponse) ?? .unknownError()
                     if err.code == AuthErrorCodeResponse.InvalidPhoneOrPassword {
                         errorMessage = LocalizedStringKey.sdkAsset("invalid_phone_or_password").toString()
@@ -277,7 +277,7 @@ public class WelcomeViewModel: OpenViewModel, AnalyticsProperties {
                 
             }, receiveValue: { [weak self] data in
                 guard let self else { return }
-                print("✅ Apple Google Success: \(data.accessToken)")
+                debugPrint("✅ Apple Google Success: \(data.accessToken)")
                 self.completeLoginIfProfileReady(data)
             })
             .store(in: &cancellables)
@@ -334,7 +334,7 @@ public class WelcomeViewModel: OpenViewModel, AnalyticsProperties {
             
                 switch completion {
                 case .failure(let error):
-                    print("❌ Login with Guest Error: \(error)")
+                    debugPrint("❌ Login with Guest Error: \(error)")
                     let err = (error as? AuthErrorResponse) ?? .unknownError()
                     if err.code == AuthErrorCodeResponse.InvalidPhoneOrPassword {
                         errorMessage = LocalizedStringKey.sdkAsset("invalid_phone_or_password").toString()
@@ -350,7 +350,7 @@ public class WelcomeViewModel: OpenViewModel, AnalyticsProperties {
                 
             }, receiveValue: { [weak self] data in
                 guard let self else { return }
-                print("✅ Login with Guest Success: \(data)")
+                debugPrint("✅ Login with Guest Success: \(data)")
                 self.authSession = data
 //                startAutoLinkAccountLoop()
                 self.onLoginSuccess(data)
@@ -369,7 +369,7 @@ public class WelcomeViewModel: OpenViewModel, AnalyticsProperties {
 //            
 //                switch completion {
 //                case .failure(let error):
-//                    print("❌ Refresh Token Error: \(error)")
+//                    debugPrint("❌ Refresh Token Error: \(error)")
 ////                    let description = getErrorDescription(from: error) ?? "Unknown error"
 //                    let errorMessage = (error as? AuthErrorResponse)?.message ?? LocalizedStringKey.sdkAsset("unknown_error_message").toString()
 //                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
@@ -381,7 +381,7 @@ public class WelcomeViewModel: OpenViewModel, AnalyticsProperties {
 //                
 //            }, receiveValue: { [weak self] data in
 //                guard let self else { return }
-//                print("✅ Refresh Token Success: \(data.accessToken)")
+//                debugPrint("✅ Refresh Token Success: \(data.accessToken)")
 //                DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
 //                    let description: String = "GameUUID: \(data.gameUUID ?? "")\n AccessToken: \(data.accessToken) \n Refresh token: \(data.refreshToken) \n Expires: \(data.expireDate.toString(format: "yyyy-MM-dd'T'HH:mm:ss.SSSXXXXX"))"
 //                    
@@ -414,10 +414,10 @@ public class WelcomeViewModel: OpenViewModel, AnalyticsProperties {
 //                
 //                if self.remainingSeconds > 0 {
 //                    self.remainingSeconds -= 1
-//                    print("⏳ Link popup in \(self.remainingSeconds)s")
+//                    debugPrint("⏳ Link popup in \(self.remainingSeconds)s")
 //                } else {
 //                    // time’s up → show the popup
-//                    print("🔔 Showing LinkAccountView now")
+//                    debugPrint("🔔 Showing LinkAccountView now")
 //                    self.presentedScreen = .linkAccount(guestToken: info.accessToken)
 //                    // reset for next round
 //                    self.remainingSeconds = self.popupInterval

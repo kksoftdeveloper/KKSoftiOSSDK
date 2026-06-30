@@ -135,8 +135,8 @@ public final class DefaultPaymentManager: PaymentManager, SDKInfo, IAPAnalytics 
             self.gameInfo?.characterId = self.characterId
             
             
-            print("[DefaultPaymentManager] gameServerName = \(gameServerName)")
-            print("[DefaultPaymentManager] characterId = \(characterId)")
+            debugPrint("[DefaultPaymentManager] gameServerName = \(gameServerName)")
+            debugPrint("[DefaultPaymentManager] characterId = \(characterId)")
         }
         
         private var sessionManager: SessionManager?
@@ -162,13 +162,13 @@ public final class DefaultPaymentManager: PaymentManager, SDKInfo, IAPAnalytics 
         
         public func setAccessToken(_ accessToken: String) -> Builder {
 //            self.accessToken = accessToken
-            print("[DefaultPaymentManager] set access token by auth-sdk")
+            debugPrint("[DefaultPaymentManager] set access token by auth-sdk")
             do {
                 let session = try authSDKSessionManager.getSession()
                 self.accessToken = session?.accessToken ?? accessToken
             } catch {
                 self.accessToken = accessToken
-                print("[DefaultPaymentManager] set access token by client")
+                debugPrint("[DefaultPaymentManager] set access token by client")
             }
             return self
         }
@@ -176,12 +176,12 @@ public final class DefaultPaymentManager: PaymentManager, SDKInfo, IAPAnalytics 
         public func setRefreshToken(_ refreshToken: String) -> Builder {
 //            self.refreshToken = refreshToken
             do {
-                print("[DefaultPaymentManager] set refresh token by auth-sdk")
+                debugPrint("[DefaultPaymentManager] set refresh token by auth-sdk")
                 let session = try authSDKSessionManager.getSession()
                 self.refreshToken = session?.refreshToken ?? refreshToken
             } catch {
                 self.refreshToken = refreshToken
-                print("[DefaultPaymentManager] set refresh token by clients")
+                debugPrint("[DefaultPaymentManager] set refresh token by clients")
             }
             return self
         }
@@ -202,36 +202,36 @@ public final class DefaultPaymentManager: PaymentManager, SDKInfo, IAPAnalytics 
         }
         
         public func setServerId(_ serverId: Int) -> Builder {
-            print("[DefaultPaymentManager] set server id by auth-sdk")
+            debugPrint("[DefaultPaymentManager] set server id by auth-sdk")
             // Try to get serverId from AuthSDK's GameInfoStorage
             if let serverId = authSDKGameInfo.serverID {
                 self.serverId = serverId
-                print("[DefaultPaymentManager] set server id by auth-sdk: \(self.serverId)")
+                debugPrint("[DefaultPaymentManager] set server id by auth-sdk: \(self.serverId)")
             } else if serverId > 0 {
                 // Use provided serverId if AuthSDK doesn't have one
                 self.serverId = serverId
-                print("[DefaultPaymentManager] set server id by client: \(self.serverId)")
+                debugPrint("[DefaultPaymentManager] set server id by client: \(self.serverId)")
             } else {
                 self.serverId = serverId
-                print("[DefaultPaymentManager] server id is empty")
+                debugPrint("[DefaultPaymentManager] server id is empty")
             }
             self.gameInfo?.serverName = authSDKGameInfo.serverName
             return self
         }
         
         public func setServerGameId(_ serverId: String) -> Builder {
-            print("[DefaultPaymentManager] set server id by auth-sdk")
+            debugPrint("[DefaultPaymentManager] set server id by auth-sdk")
             // Try to get serverId from AuthSDK's GameInfoStorage
             if let serverId = authSDKGameInfo.serverGameId {
                 self.gameServerId = serverId
-                print("[DefaultPaymentManager] set server id by auth-sdk: \(self.gameServerId)")
+                debugPrint("[DefaultPaymentManager] set server id by auth-sdk: \(self.gameServerId)")
             } else if !gameServerId.isEmpty {
                 // Use provided serverId if AuthSDK doesn't have one
                 self.gameServerId = serverId
-                print("[DefaultPaymentManager] set server id by client: \(self.gameServerId)")
+                debugPrint("[DefaultPaymentManager] set server id by client: \(self.gameServerId)")
             } else {
                 self.gameServerId = serverId
-                print("[DefaultPaymentManager] server id is empty")
+                debugPrint("[DefaultPaymentManager] server id is empty")
             }
             self.gameInfo?.serverGameName = authSDKGameInfo.serverGameName
             return self
@@ -239,13 +239,13 @@ public final class DefaultPaymentManager: PaymentManager, SDKInfo, IAPAnalytics 
         
         public func setGameUUID(_ gameUUID: String) -> Builder {
 //            self.gameUUID = gameUUID
-            print("[DefaultPaymentManager] set game uuid by auth-sdk")
+            debugPrint("[DefaultPaymentManager] set game uuid by auth-sdk")
             do {
                 let session = try authSDKSessionManager.getSession()
                 self.gameUUID = session?.gameUUID ?? gameUUID
             } catch {
                 self.gameUUID = gameUUID
-                print("[DefaultPaymentManager] set game uuid by client")
+                debugPrint("[DefaultPaymentManager] set game uuid by client")
             }
             return self
         }
@@ -263,9 +263,9 @@ public final class DefaultPaymentManager: PaymentManager, SDKInfo, IAPAnalytics 
         public func build() -> DefaultPaymentManager {
             do {
                 // Session
-                print("init-payment-manager: refreshtoken: \(refreshToken)")
-                print("init-payment-manager: accessToken: \(accessToken)")
-                print("init-payment-manager: gameUUID: \(gameUUID)")
+                debugPrint("init-payment-manager: refreshtoken: \(refreshToken)")
+                debugPrint("init-payment-manager: accessToken: \(accessToken)")
+                debugPrint("init-payment-manager: gameUUID: \(gameUUID)")
                 
                 try sessionManager?.saveSession(
                     authSession: .init(
@@ -352,11 +352,11 @@ public final class DefaultPaymentManager: PaymentManager, SDKInfo, IAPAnalytics 
     
     public func purchase(product: Product) -> AnyPublisher<AppleVerifiedTranskModel, PaymentError> {
         guard let paymentGateway = self.paymentGateway else {
-            print("[PackageListViewModel] paymentGateway is nil")
+            debugPrint("[PackageListViewModel] paymentGateway is nil")
             return Fail(error: PaymentError.unknownError())
                 .eraseToAnyPublisher()
         }
-        print("[PackageListViewModel] paymentGateway is Ok")
+        debugPrint("[PackageListViewModel] paymentGateway is Ok")
         return paymentGateway.purchase(product: product)
     }
     

@@ -25,7 +25,7 @@ public final class TikTokTrackingProvider: TrackingProvider {
     
     public func initialize(appID: String, devKey: String) {
         guard !isInitialized else {
-            print("[TikTokTrackingProvider] Already initialized")
+            debugPrint("[TikTokTrackingProvider] Already initialized")
             return
         }
         
@@ -34,7 +34,7 @@ public final class TikTokTrackingProvider: TrackingProvider {
             appId: appID,
             tiktokAppId: tiktokAppID
         ) else {
-            print("[TikTokTrackingProvider] Invalid TikTok configuration")
+            debugPrint("[TikTokTrackingProvider] Invalid TikTok configuration")
             return
         }
         
@@ -48,7 +48,7 @@ public final class TikTokTrackingProvider: TrackingProvider {
             guard let self else { return }
             guard success else {
                 self.pendingActions.removeAll()
-                print("[TikTokTrackingProvider] Initialization failed: \(error?.localizedDescription ?? "Unknown error")")
+                debugPrint("[TikTokTrackingProvider] Initialization failed: \(error?.localizedDescription ?? "Unknown error")")
                 return
             }
             
@@ -56,7 +56,7 @@ public final class TikTokTrackingProvider: TrackingProvider {
             let actions = self.pendingActions
             self.pendingActions.removeAll()
             actions.forEach { $0() }
-            print("[TikTokTrackingProvider] Initialized with appID: \(appID), tiktokAppID: \(self.tiktokAppID)")
+            debugPrint("[TikTokTrackingProvider] Initialized with appID: \(appID), tiktokAppID: \(self.tiktokAppID)")
         }
     }
     
@@ -70,7 +70,7 @@ public final class TikTokTrackingProvider: TrackingProvider {
                 eventId: nil
             )
             TikTokBusiness.trackTTEvent(event)
-            print("[TikTokTrackingProvider] Tracked event: \(eventName)")
+            debugPrint("[TikTokTrackingProvider] Tracked event: \(eventName)")
         }
     }
     
@@ -88,13 +88,13 @@ public final class TikTokTrackingProvider: TrackingProvider {
             }
             
             TikTokBusiness.trackTTEvent(event)
-            print("[TikTokTrackingProvider] Tracked purchase: \(productID), price: \(price) \(currency)")
+            debugPrint("[TikTokTrackingProvider] Tracked purchase: \(productID), price: \(price) \(currency)")
         }
     }
     
     public func setUserProperties(_ properties: [String: Any]) {
         userProperties.merge(sanitizeParameters(properties)) { _, newValue in newValue }
-        print("[TikTokTrackingProvider] Stored user properties for future events: \(properties.keys.sorted())")
+        debugPrint("[TikTokTrackingProvider] Stored user properties for future events: \(properties.keys.sorted())")
     }
     
     public func setUserID(_ userID: String) {
@@ -105,7 +105,7 @@ public final class TikTokTrackingProvider: TrackingProvider {
                 phoneNumber: nil,
                 email: nil
             )
-            print("[TikTokTrackingProvider] Set external user ID")
+            debugPrint("[TikTokTrackingProvider] Set external user ID")
         }
     }
     
@@ -114,7 +114,7 @@ public final class TikTokTrackingProvider: TrackingProvider {
     private func performWhenInitialized(_ action: @escaping () -> Void) {
         guard isInitialized else {
             pendingActions.append(action)
-            print("[TikTokTrackingProvider] Queued action until initialization completes")
+            debugPrint("[TikTokTrackingProvider] Queued action until initialization completes")
             return
         }
         

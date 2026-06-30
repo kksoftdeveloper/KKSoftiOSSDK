@@ -38,7 +38,7 @@ class DeactivateAccountViewModel: OpenViewModel {
                 switch completion {
                 case .failure(let error):
                     self.isLoading = false
-                    print("✅ Deactivate Account Failure")
+                    debugPrint("✅ Deactivate Account Failure")
                     self.onFailure()
                 case .finished:
                     break
@@ -46,7 +46,7 @@ class DeactivateAccountViewModel: OpenViewModel {
             }, receiveValue: { _ in
                 self.isLoading = false
                 self.onSuccess()
-                print("✅ Deactivate Account Success")
+                debugPrint("✅ Deactivate Account Success")
             })
             .store(in: &cancellables)
     }

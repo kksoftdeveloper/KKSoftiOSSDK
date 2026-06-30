@@ -65,7 +65,7 @@ enum PaymentTracking {
                 }
             )
         )
-        print("[PaymentTracking] Tracked iap_start with params: \(params)")
+        debugPrint("[PaymentTracking] Tracked iap_start with params: \(params)")
     }
     
     static func logIAPSuccess(product: Product, orderId: String, gameUUID: String?, characterId: String?, serverId: Int?, serverName: String?) {
@@ -78,7 +78,7 @@ enum PaymentTracking {
         params["order_id"] = orderId
         manager?.log("[PaymentTracking] IAP success sku=\(product.id) orderId=\(orderId)")
         guard manager != nil else {
-            print("[PaymentTracking] manager is nil")
+            debugPrint("[PaymentTracking] manager is nil")
             return
         }
         manager?.trackEvent(
@@ -123,7 +123,7 @@ enum PaymentTracking {
                 }
             )
         )
-        print("[PaymentTracking] Tracked pay_success with params: \(params)")
+        debugPrint("[PaymentTracking] Tracked pay_success with params: \(params)")
         print(String(describing: PaymentTrackingConfigurator.currentManager))
     }
     
@@ -138,7 +138,7 @@ enum PaymentTracking {
         
         manager?.log("[PaymentTracking] IAP failure sku=\(product.id) reason=\(reason)")
         guard let manager else {
-            print("[PaymentTracking] manager is nil")
+            debugPrint("[PaymentTracking] manager is nil")
             return
         }
         manager.trackEvent(
@@ -196,7 +196,7 @@ enum PaymentTracking {
             )
             manager.recordError(wrappedError)
         }
-        print("[PaymentTracking] Tracked pay_notyet_success with params: \(params)")
+        debugPrint("[PaymentTracking] Tracked pay_notyet_success with params: \(params)")
     }
     
     private static func productParameters(for product: Product) -> [String: Any] {

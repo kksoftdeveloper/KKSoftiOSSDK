@@ -22,24 +22,24 @@ public final class MetaTrackingProvider: TrackingProvider {
     
     public func initialize(appID: String, devKey: String) {
         guard !isInitialized else {
-            print("[MetaTrackingProvider] Already initialized")
+            debugPrint("[MetaTrackingProvider] Already initialized")
             return
         }
         
         guard !appID.isEmpty, !devKey.isEmpty else {
-            print("[MetaTrackingProvider] Invalid Meta configuration")
+            debugPrint("[MetaTrackingProvider] Invalid Meta configuration")
             return
         }
         
         Settings.shared.appID = appID
         Settings.shared.clientToken = devKey
         isInitialized = true
-        print("[MetaTrackingProvider] Initialized with appID: \(appID)")
+        debugPrint("[MetaTrackingProvider] Initialized with appID: \(appID)")
     }
     
     public func trackEvent(_ eventName: String, parameters: [String: Any]?) {
         guard isInitialized else {
-            print("[MetaTrackingProvider] Not initialized. Call initialize() first.")
+            debugPrint("[MetaTrackingProvider] Not initialized. Call initialize() first.")
             return
         }
         
@@ -47,12 +47,12 @@ public final class MetaTrackingProvider: TrackingProvider {
             AppEvents.Name(eventName),
             parameters: mergedParameters(parameters)
         )
-        print("[MetaTrackingProvider] Tracked event: \(eventName)")
+        debugPrint("[MetaTrackingProvider] Tracked event: \(eventName)")
     }
     
     public func trackPurchase(productID: String, price: Double, currency: String, parameters: [String: Any]?) {
         guard isInitialized else {
-            print("[MetaTrackingProvider] Not initialized. Call initialize() first.")
+            debugPrint("[MetaTrackingProvider] Not initialized. Call initialize() first.")
             return
         }
         
@@ -63,22 +63,22 @@ public final class MetaTrackingProvider: TrackingProvider {
             currency: currency,
             parameters: purchaseParameters
         )
-        print("[MetaTrackingProvider] Tracked purchase: \(productID), price: \(price) \(currency)")
+        debugPrint("[MetaTrackingProvider] Tracked purchase: \(productID), price: \(price) \(currency)")
     }
     
     public func setUserProperties(_ properties: [String: Any]) {
         userProperties.merge(sanitizeParameters(properties)) { _, newValue in newValue }
-        print("[MetaTrackingProvider] Stored user properties for future events: \(properties.keys.sorted())")
+        debugPrint("[MetaTrackingProvider] Stored user properties for future events: \(properties.keys.sorted())")
     }
     
     public func setUserID(_ userID: String) {
         guard isInitialized else {
-            print("[MetaTrackingProvider] Not initialized. Call initialize() first.")
+            debugPrint("[MetaTrackingProvider] Not initialized. Call initialize() first.")
             return
         }
         
         AppEvents.shared.userID = userID
-        print("[MetaTrackingProvider] Set user ID")
+        debugPrint("[MetaTrackingProvider] Set user ID")
     }
     
     // MARK: - Helpers

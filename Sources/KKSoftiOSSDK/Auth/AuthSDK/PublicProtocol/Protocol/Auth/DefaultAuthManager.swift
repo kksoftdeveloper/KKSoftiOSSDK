@@ -243,7 +243,7 @@ public struct DefaultAuthManager: AuthManager, AnalyticsProperties {
             try validatedPhoneLoginParameters.validate()
             
             guard let manager = self.phonePasswordLoginManager else {
-                print(">>>>>> Error: PhonePasswordLoginManager is nil")
+                debugPrint(">>>>>> Error: PhonePasswordLoginManager is nil")
                 throw AuthErrorResponse.unknownError()
             }
             
@@ -262,7 +262,7 @@ public struct DefaultAuthManager: AuthManager, AnalyticsProperties {
                 .eraseToAnyPublisher()
             
         } catch {
-            print(">>>>>> Error in catch")
+            debugPrint(">>>>>> Error in catch")
             AuthTracking.logLoginFailure(method: "phone", error: error)
             return Fail(error: error).eraseToAnyPublisher()
         }
@@ -672,27 +672,27 @@ public struct DefaultAuthManager: AuthManager, AnalyticsProperties {
     
     public func getAuthSesssion() -> AnyPublisher<AuthSessionResponse, Error> {
         if let manager = googleLoginManager {
-            print("GetAuthSession-Google")
+            debugPrint("GetAuthSession-Google")
             return manager.getAuthSesssion()
         }
         if let manager = facebookLoginManager {
-            print("GetAuthSession-Facebook")
+            debugPrint("GetAuthSession-Facebook")
             return manager.getAuthSesssion()
         }
         if let manager = appleLoginManager {
-            print("GetAuthSession-Apple")
+            debugPrint("GetAuthSession-Apple")
             return manager.getAuthSesssion()
         }
         if let manager = emailPasswordLoginManager {
-            print("GetAuthSession-Email/Password")
+            debugPrint("GetAuthSession-Email/Password")
             return manager.getAuthSesssion()
         }
         if let manager = phonePasswordLoginManager {
-            print("GetAuthSession-Phone/Password")
+            debugPrint("GetAuthSession-Phone/Password")
             return manager.getAuthSesssion()
         }
         if let manager = guestLoginManager {
-            print("GetAuthSession-Guest/Password")
+            debugPrint("GetAuthSession-Guest/Password")
             return manager.getAuthSesssion()
         }
         return Fail(error: AuthErrorResponse.unknownError())
