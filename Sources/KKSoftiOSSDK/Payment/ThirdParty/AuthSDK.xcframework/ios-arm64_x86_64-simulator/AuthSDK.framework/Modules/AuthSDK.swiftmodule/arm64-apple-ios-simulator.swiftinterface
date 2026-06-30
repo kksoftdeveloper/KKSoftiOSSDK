@@ -1,0 +1,295 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 6.0.3 effective-5.10 (swiftlang-6.0.3.1.10 clang-1600.0.30.1)
+// swift-module-flags: -target arm64-apple-ios17.0-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -Onone -enable-bare-slash-regex -module-name AuthSDK
+// swift-module-flags-ignorable: -no-verify-emitted-module-interface
+import AppTrackingTransparency
+import Combine
+import CryptoKit
+import Foundation
+import Foundation/*.NSLock*/
+import Security
+import Swift
+import SwiftUI
+import _Concurrency
+import _StringProcessing
+import _SwiftConcurrencyShims
+public struct AuthErrorResponse : Swift.Error, Swift.Decodable {
+  public let message: Swift.String
+  public let code: AuthSDK.AuthErrorCodeResponse
+  public static func success() -> AuthSDK.AuthErrorResponse
+  public static func matchError() -> AuthSDK.AuthErrorResponse
+  public static func otpError() -> AuthSDK.AuthErrorResponse
+  public static func otpRequestManyTime() -> AuthSDK.AuthErrorResponse
+  public static func duplicatedPhoneError() -> AuthSDK.AuthErrorResponse
+  public static func invalidPhoneError() -> AuthSDK.AuthErrorResponse
+  public static func tokenExpired() -> AuthSDK.AuthErrorResponse
+  public static func unsupportedRequest() -> AuthSDK.AuthErrorResponse
+  public static func appNotFound() -> AuthSDK.AuthErrorResponse
+  public static func appNotConfigured() -> AuthSDK.AuthErrorResponse
+  public static func appNotConfiguredGame() -> AuthSDK.AuthErrorResponse
+  public static func appNotConfiguredGameServer() -> AuthSDK.AuthErrorResponse
+  public static func appNotConfiguredFacebook() -> AuthSDK.AuthErrorResponse
+  public static func appNotConfiguredGoogle() -> AuthSDK.AuthErrorResponse
+  public static func unknownError() -> AuthSDK.AuthErrorResponse
+  public static func socialUserCancels() -> AuthSDK.AuthErrorResponse
+  public static func facebookUnknownError() -> AuthSDK.AuthErrorResponse
+  public static func googleUnknownError() -> AuthSDK.AuthErrorResponse
+  public static func sdkNotInitialized() -> AuthSDK.AuthErrorResponse
+  public static func sdkSignatureError() -> AuthSDK.AuthErrorResponse
+  public init(from decoder: any Swift.Decoder) throws
+}
+public enum AuthErrorCodeResponse : Swift.Int, Swift.Decodable, Swift.Identifiable {
+  case Success
+  case MatchError
+  case OTPError
+  case OTPRequestManyTime
+  case DulicatedPhoneError
+  case InvalidPhoneError
+  case TokenExpired
+  case UnknownSupported
+  case AppNotFound
+  case AppNotConfigured
+  case AppNotConfiguredGame
+  case AppNotConfiguredGameServer
+  case AppNotConfiguredFacebook
+  case AppNotConfiguredGoogle
+  case FacebookUnknownError
+  case GoogleUnknownError
+  case SocialUserCancels
+  case SDKNotInitialized
+  case SDKSignatureError
+  case UnknownError
+  public var id: Swift.Int {
+    get
+  }
+  public init?(rawValue: Swift.Int)
+  public typealias ID = Swift.Int
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+extension AuthSDK.AuthErrorCodeResponse {
+  public var localizedDescription: Swift.String {
+    get
+  }
+}
+public struct AuthInitResponse : Swift.Codable {
+  public let gameInfo: AuthSDK.GameInfoResponse
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+}
+public protocol AuthManager {
+  var appVersion: Swift.String { get }
+  var osVersion: Swift.String { get }
+  func initSDK(packageName: Swift.String, appVersion: Swift.String) -> Combine.AnyPublisher<AuthSDK.AuthInitResponse, any Swift.Error>
+  func login(provider: Swift.String, email: Swift.String, password: Swift.String) -> Combine.AnyPublisher<AuthSDK.AuthSessionResponse, any Swift.Error>
+  func login(provider: Swift.String, phoneNumber: Swift.String, password: Swift.String) -> Combine.AnyPublisher<AuthSDK.AuthSessionResponse, any Swift.Error>
+  func loginWithSocial(provider: Swift.String) -> Combine.AnyPublisher<AuthSDK.AuthSessionResponse, any Swift.Error>
+  func loginWithGuest(provider: Swift.String, accessToken: Swift.String?) -> Combine.AnyPublisher<AuthSDK.AuthSessionResponse, any Swift.Error>
+  func getGameInfo() -> Combine.AnyPublisher<AuthSDK.GameInfoResponse, any Swift.Error>
+  func getGameServerLists() -> Combine.AnyPublisher<[AuthSDK.GameServerInfoResponse], any Swift.Error>
+  func requestOTP(phone: Swift.String) -> Combine.AnyPublisher<AuthSDK.OTPSendableResponse, any Swift.Error>
+  func verifyOTP(code: Swift.String) -> Combine.AnyPublisher<AuthSDK.OTPVerifiableResponse, any Swift.Error>
+}
+public struct AuthServiceProvider {
+  public var authManager: any AuthSDK.AuthManager
+  public class Builder {
+    public init()
+    public func setAppVersion(_ appVersion: Swift.String) -> AuthSDK.AuthServiceProvider.Builder
+    public func setOSVersion(_ osVersion: Swift.String) -> AuthSDK.AuthServiceProvider.Builder
+    public func setAuthAPIURL(_ apiURL: Swift.String) -> AuthSDK.AuthServiceProvider.Builder
+    public func setGoogleLoginManager(_ manager: any AuthSDK.SocialLoginManager) -> AuthSDK.AuthServiceProvider.Builder
+    public func setFacebookLoginManager(_ manager: any AuthSDK.SocialLoginManager) -> AuthSDK.AuthServiceProvider.Builder
+    public func setEmailPasswordLoginManager(_ manager: any AuthSDK.UsernamePasswordLoginManager) -> AuthSDK.AuthServiceProvider.Builder
+    public func setPhonePasswordLoginManager(_ manager: any AuthSDK.UsernamePasswordLoginManager) -> AuthSDK.AuthServiceProvider.Builder
+    public func setGuestLoginManager(_ manager: any AuthSDK.GuestLoginManager) -> AuthSDK.AuthServiceProvider.Builder
+    public func setOTPAuthManager(_ manager: any AuthSDK.OTPAuthManager) -> AuthSDK.AuthServiceProvider.Builder
+    public func setInitializer(_ initializer: any AuthSDK.Initialializer) -> AuthSDK.AuthServiceProvider.Builder
+    public func setGameServerInfoManager(_ gameServerInfoManager: any AuthSDK.GameServerInfoManager) -> AuthSDK.AuthServiceProvider.Builder
+    public func setSignupManager(_ signupManager: any AuthSDK.SignupManager) -> AuthSDK.AuthServiceProvider.Builder
+    public func build() -> AuthSDK.AuthServiceProvider
+    @objc deinit
+  }
+}
+public struct AuthSessionResponse : Swift.Codable {
+  public let gameUUID: Swift.Int?
+  public let gameId: Swift.Int?
+  public let serverId: Swift.String?
+  public let accessToken: Swift.String
+  public let refreshToken: Swift.String
+  public let expireDate: Foundation.Date
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+}
+@available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+final public class CancelBag : Combine.Cancellable {
+  public init()
+  final public func cancel()
+  @objc deinit
+}
+@available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
+extension Combine.Cancellable {
+  public func cancel(with cancellable: AuthSDK.CancelBag)
+}
+public typealias Driver<T> = Combine.AnyPublisher<T, Swift.Never>
+public typealias Observable<T> = Combine.AnyPublisher<T, any Swift.Error>
+public typealias PublishRelay<T> = Combine.PassthroughSubject<T, Swift.Never>
+public typealias BehaviorRelay<T> = Combine.CurrentValueSubject<T, Swift.Never>
+extension Combine.Publisher {
+  public func asDriver() -> AuthSDK.Driver<Self.Output>
+  public static func just(_ output: Self.Output) -> AuthSDK.Driver<Self.Output>
+  public static func empty() -> AuthSDK.Driver<Self.Output>
+}
+extension Combine.Publisher {
+  public func asObservable() -> AuthSDK.Observable<Self.Output>
+  public static func just(_ output: Self.Output) -> AuthSDK.Observable<Self.Output>
+  public static func empty() -> AuthSDK.Observable<Self.Output>
+}
+public struct DefaultAuthManager : AuthSDK.AuthManager {
+  public var appVersion: Swift.String
+  public var osVersion: Swift.String
+  public class Builder {
+    public init()
+    public func setAppVersion(_ appVersion: Swift.String) -> AuthSDK.DefaultAuthManager.Builder
+    public func setOSVersion(_ osVersion: Swift.String) -> AuthSDK.DefaultAuthManager.Builder
+    public func setGoogleLoginManager(_ googleLoginManager: any AuthSDK.SocialLoginManager) -> AuthSDK.DefaultAuthManager.Builder
+    public func setAppleLoginManager(_ appleLoginManager: any AuthSDK.SocialLoginManager) -> AuthSDK.DefaultAuthManager.Builder
+    public func setFacebookLoginManager(_ facebookLoginManager: any AuthSDK.SocialLoginManager) -> AuthSDK.DefaultAuthManager.Builder
+    public func setOTPAuthManager(_ otpAuthManager: any AuthSDK.OTPAuthManager) -> AuthSDK.DefaultAuthManager.Builder
+    public func setPhonePasswordLoginManager(_ phonePasswordLoginManager: any AuthSDK.UsernamePasswordLoginManager) -> AuthSDK.DefaultAuthManager.Builder
+    public func setEmailPasswordLoginManager(_ emailPasswordLoginManager: any AuthSDK.UsernamePasswordLoginManager) -> AuthSDK.DefaultAuthManager.Builder
+    public func setGuestLoginManager(_ guestLoginManager: any AuthSDK.GuestLoginManager) -> AuthSDK.DefaultAuthManager.Builder
+    public func setInitializer(_ initializer: any AuthSDK.Initialializer) -> AuthSDK.DefaultAuthManager.Builder
+    public func setGameServerInfoManager(_ gameServerInfoManager: any AuthSDK.GameServerInfoManager) -> AuthSDK.DefaultAuthManager.Builder
+    public func setSignupManager(_ signupManager: any AuthSDK.SignupManager) -> AuthSDK.DefaultAuthManager.Builder
+    public func build() -> AuthSDK.DefaultAuthManager
+    @objc deinit
+  }
+  public func initSDK(packageName: Swift.String, appVersion: Swift.String) -> Combine.AnyPublisher<AuthSDK.AuthInitResponse, any Swift.Error>
+  public func login(provider: Swift.String, email: Swift.String, password: Swift.String) -> Combine.AnyPublisher<AuthSDK.AuthSessionResponse, any Swift.Error>
+  public func login(provider: Swift.String, phoneNumber: Swift.String, password: Swift.String) -> Combine.AnyPublisher<AuthSDK.AuthSessionResponse, any Swift.Error>
+  public func loginWithSocial(provider: Swift.String) -> Combine.AnyPublisher<AuthSDK.AuthSessionResponse, any Swift.Error>
+  public func loginWithGuest(provider: Swift.String, accessToken: Swift.String?) -> Combine.AnyPublisher<AuthSDK.AuthSessionResponse, any Swift.Error>
+  public func getGameInfo() -> Combine.AnyPublisher<AuthSDK.GameInfoResponse, any Swift.Error>
+  public func getGameServerLists() -> Combine.AnyPublisher<[AuthSDK.GameServerInfoResponse], any Swift.Error>
+  public func requestOTP(phone: Swift.String) -> Combine.AnyPublisher<AuthSDK.OTPSendableResponse, any Swift.Error>
+  public func verifyOTP(code: Swift.String) -> Combine.AnyPublisher<AuthSDK.OTPVerifiableResponse, any Swift.Error>
+}
+public enum Environment {
+  case dev
+  case staging
+  case production
+  public static var current: AuthSDK.Environment {
+    get
+  }
+  public var endpoint: Swift.String {
+    get
+  }
+  public var baseURL: Foundation.URL {
+    get
+  }
+  public static func == (a: AuthSDK.Environment, b: AuthSDK.Environment) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public typealias ErrorTracker = Combine.PassthroughSubject<(any Swift.Error)?, Swift.Never>
+extension Combine.Publisher {
+  public func trackError(_ errorTracker: AuthSDK.ErrorTracker) -> Combine.AnyPublisher<Self.Output, Self.Failure>
+}
+public struct GameInfoResponse : Swift.Codable {
+  public let gameId: Swift.Int
+  public let gameName: Swift.String
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+}
+public protocol GameServerInfoManager {
+  func getGameInfo() -> Combine.AnyPublisher<AuthSDK.GameInfoResponse, any Swift.Error>
+  func getGameServers() -> Combine.AnyPublisher<[AuthSDK.GameServerInfoResponse], any Swift.Error>
+}
+public struct GameServerInfoResponse : Swift.Codable {
+  public let serverId: Swift.Int
+  public let serverName: Swift.String
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+}
+public protocol GuestLoginManager {
+  func login(provider: Swift.String, accessToken: Swift.String?) -> Combine.AnyPublisher<AuthSDK.AuthSessionResponse, any Swift.Error>
+  func logout() async throws
+  func isAuthenticated() -> Swift.Bool
+}
+public protocol Initialializer {
+  func initSDK(packageName: Swift.String, appVersion: Swift.String) -> Combine.AnyPublisher<AuthSDK.AuthInitResponse, any Swift.Error>
+}
+public protocol OTPAuthManager {
+  func requestOTP(phone: Swift.String) -> Combine.AnyPublisher<AuthSDK.OTPSendableResponse, any Swift.Error>
+  func resendOTP(phone: Swift.String) -> Combine.AnyPublisher<AuthSDK.OTPSendableResponse, any Swift.Error>
+  func verifyOTP(code: Swift.String) -> Combine.AnyPublisher<AuthSDK.OTPVerifiableResponse, any Swift.Error>
+  func logout() async throws
+  func isAuthenticated() -> Swift.Bool
+}
+@_Concurrency.MainActor @preconcurrency public struct OTPInputView : SwiftUICore.View {
+  @_Concurrency.MainActor @preconcurrency public init()
+  @_Concurrency.MainActor @preconcurrency public var body: some SwiftUICore.View {
+    get
+  }
+  public typealias Body = @_opaqueReturnTypeOf("$s7AuthSDK12OTPInputViewV4bodyQrvp", 0) __
+}
+public struct OTPResendableResponse : Swift.Codable {
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+}
+public struct OTPSendableResponse : Swift.Codable {
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+}
+@_Concurrency.MainActor @preconcurrency public struct OTPTextField : SwiftUICore.View {
+  @_Concurrency.MainActor @preconcurrency public init(numberOfFields: Swift.Int = 6, otpText: SwiftUICore.Binding<Swift.String>)
+  @_Concurrency.MainActor @preconcurrency public var body: some SwiftUICore.View {
+    get
+  }
+  public typealias Body = @_opaqueReturnTypeOf("$s7AuthSDK12OTPTextFieldV4bodyQrvp", 0) __
+}
+public struct OTPVerifiableResponse : Swift.Codable {
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+}
+public protocol OptionalType {
+  associatedtype Wrapped
+  var value: Self.Wrapped? { get }
+}
+#if compiler(>=5.3) && $NoncopyableGenerics
+extension Swift.Optional : AuthSDK.OptionalType {
+  public var value: Wrapped? {
+    get
+  }
+}
+#else
+extension Swift.Optional : AuthSDK.OptionalType {
+  public var value: Wrapped? {
+    get
+  }
+}
+#endif
+public protocol SignupManager {
+  func signup(phone: Swift.String, password: Swift.String, otpVerifiedToken: Swift.String?) -> Combine.AnyPublisher<AuthSDK.AuthSessionResponse, any Swift.Error>
+}
+public protocol SocialLoginManager {
+  func login() -> Combine.AnyPublisher<AuthSDK.AuthSessionResponse, any Swift.Error>
+  func logout() async throws
+  func isAuthenticated() -> Swift.Bool
+}
+public protocol UsernamePasswordLoginManager {
+  func login(username: Swift.String, password: Swift.String) -> Combine.AnyPublisher<AuthSDK.AuthSessionResponse, any Swift.Error>
+  func logout() async throws
+  func isAuthenticated() -> Swift.Bool
+}
+extension AuthSDK.AuthErrorCodeResponse : Swift.Equatable {}
+extension AuthSDK.AuthErrorCodeResponse : Swift.Hashable {}
+extension AuthSDK.AuthErrorCodeResponse : Swift.RawRepresentable {}
+extension AuthSDK.Environment : Swift.Equatable {}
+extension AuthSDK.Environment : Swift.Hashable {}
+extension AuthSDK.OTPInputView : Swift.Sendable {}
+extension AuthSDK.OTPTextField : Swift.Sendable {}

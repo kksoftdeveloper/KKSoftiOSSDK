@@ -1,0 +1,1723 @@
+{
+  "sourceLanguage" : "vi",
+  "strings" : {
+    "account_existed" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "SĐT đã được đăng ký."
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "SĐT đã được đăng ký."
+          }
+        }
+      }
+    },
+    "account_info" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Thông tin tài khoản"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Thông tin tài khoản"
+          }
+        }
+      }
+    },
+    "account_is_deleted" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Tài khoản của bạn đã yêu cầu xóa nên không đăng nhập được. Liên hệ CSKH: support@kksoft.vn"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tài khoản của bạn đã yêu cầu xóa nên không đăng nhập được. Liên hệ CSKH: support@kksoft.vn"
+          }
+        }
+      }
+    },
+    "account_isnot_registered" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Thông tin đăng nhập không hợp lệ"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Thông tin đăng nhập không hợp lệ"
+          }
+        }
+      }
+    },
+    "account_linked_already" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tài khoản đã được liên kết."
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tài khoản đã được liên kết."
+          }
+        }
+      }
+    },
+    "can_not_play_now" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Oops! Bạn chưa thể chơi ngay trên thiết bị này. Vui lòng thử lại sau!"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Oops! Bạn chưa thể chơi ngay trên thiết bị này. Vui lòng thử lại sau!"
+          }
+        }
+      }
+    },
+    "close" : {
+      "extractionState" : "pasted",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Đóng"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Đóng"
+          }
+        }
+      }
+    },
+    "confirm" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Xác nhận"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Xác nhận"
+          }
+        }
+      }
+    },
+    "continue" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tiếp tục"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tiếp tục"
+          }
+        }
+      }
+    },
+    "cskh" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CSKH"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CSKH"
+          }
+        }
+      }
+    },
+    "deactivate_account_answer_1_1" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "• Sau khi xóa tài khoản, bạn sẽ không thể truy cập vào trang web, trò chơi và các dịch vụ cho thành viên của chúng tôi. "
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "• Sau khi xóa tài khoản, bạn sẽ không thể truy cập vào trang web, trò chơi và các dịch vụ cho thành viên của chúng tôi. "
+          }
+        }
+      }
+    },
+    "deactivate_account_answer_1_2" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "• Tài khoản sau khi hoàn thành việc xóa tài khoản sẽ không thể được khôi phục. Cần lưu ý các nhân vật trong trò chơi, đồ vật, kim cương, vật phẩm liên quan... sẽ bị xóa bỏ, các sản phẩm đã mua qua hệ thống Google Play / Appstore ... sẽ không được hoàn tiền. "
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "• Tài khoản sau khi hoàn thành việc xóa tài khoản sẽ không thể được khôi phục. Cần lưu ý các nhân vật trong trò chơi, đồ vật, kim cương, vật phẩm liên quan... sẽ bị xóa bỏ, các sản phẩm đã mua qua hệ thống Google Play / Appstore ... sẽ không được hoàn tiền. "
+          }
+        }
+      }
+    },
+    "deactivate_account_answer_1_3" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "• Bạn sẽ không có quyền truy cập vào tài khoản đã xóa ở bất kỳ dịch vụ nào của hệ thống KKSoft."
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "• Bạn sẽ không có quyền truy cập vào tài khoản đã xóa ở bất kỳ dịch vụ nào của hệ thống KKSoft."
+          }
+        }
+      }
+    },
+    "deactivate_account_answer_1_4" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "• Việc xóa tài khoản theo quy định của Nhà nước Việt Nam sẽ tuân thủ các điều khoản liên quan đến quyền riêng tư, bảo vệ dữ liệu cá nhân và quản lý dịch vụ trực tuyến. \n"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "• Việc xóa tài khoản theo quy định của Nhà nước Việt Nam sẽ tuân thủ các điều khoản liên quan đến quyền riêng tư, bảo vệ dữ liệu cá nhân và quản lý dịch vụ trực tuyến. \n\n"
+          }
+        }
+      }
+    },
+    "deactivate_account_answer_2_1" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "• Bạn có thể gửi yêu cầu xem xét huỷ yêu cầu xoá tài khoản trong vòng 7 ngày. "
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "• Bạn có thể gửi yêu cầu xem xét huỷ yêu cầu xoá tài khoản trong vòng 7 ngày. "
+          }
+        }
+      }
+    },
+    "deactivate_account_answer_2_2" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "• Nếu vượt quá thời gian quy định, tài khoản sẽ không thể được khôi phục. "
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "• Nếu vượt quá thời gian quy định, tài khoản sẽ không thể được khôi phục. "
+          }
+        }
+      }
+    },
+    "deactivate_account_question_1" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "— Thông báo về việc xoá tài khoản, vui lòng đọc kỹ chi tiết trước khi tiến hành xoá — "
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "— Thông báo về việc xoá tài khoản, vui lòng đọc kỹ chi tiết trước khi tiến hành xoá — "
+          }
+        }
+      }
+    },
+    "deactivate_account_question_2" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "— Có thể yêu cầu hủy xóa tài khoản trong vòng 7 ngày  —"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "— Có thể yêu cầu hủy xóa tài khoản trong vòng 7 ngày  —"
+          }
+        }
+      }
+    },
+    "deactivate_account_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Xoá Tài Khoản"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Xoá Tài Khoản"
+          }
+        }
+      }
+    },
+    "donot_have_an_account" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Không có tài khoản?"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Chưa có tài khoản?"
+          }
+        }
+      }
+    },
+    "enter_game" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Chọn"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Chọn"
+          }
+        }
+      }
+    },
+    "enter_otp" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nhập mã xác thực"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nhập mã xác thực"
+          }
+        }
+      }
+    },
+    "enter_otp_subtitle" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Chúng tôi vừa gửi mã xác thực gồm 6 chữ số đến SĐT %1$@. Vui lòng nhập để tiếp tục."
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Chúng tôi vừa gửi mã xác thực gồm 6 chữ số đến SĐT %1$@. Vui lòng nhập để tiếp tục."
+          }
+        }
+      }
+    },
+    "enter_your_password" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nhập mật khẩu"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nhập mật khẩu"
+          }
+        }
+      }
+    },
+    "error" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lỗi"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lỗi"
+          }
+        }
+      }
+    },
+    "facebook" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Facebook"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Facebook"
+          }
+        }
+      }
+    },
+    "fanpage" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fanpage"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fanpage"
+          }
+        }
+      }
+    },
+    "force_update_subtitle" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Đại hiệp vui lòng cập nhật để có được trải nghiệm tốt nhất"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Đại hiệp vui lòng cập nhật để có được trải nghiệm tốt nhất"
+          }
+        }
+      }
+    },
+    "force_update_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Đã có phiên bản cập nhật mới"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Đã có phiên bản cập nhật mới"
+          }
+        }
+      }
+    },
+    "forget_password_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CÀI ĐẶT LẠI MẬT KHẨU"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CÀI ĐẶT LẠI MẬT KHẨU"
+          }
+        }
+      }
+    },
+    "forgot_password" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Quên mật khẩu?"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Quên mật khẩu?"
+          }
+        }
+      }
+    },
+    "general_error" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Oops! Vui lòng thử lại."
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Oops! Vui lòng thử lại."
+          }
+        }
+      }
+    },
+    "google" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Google"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Google"
+          }
+        }
+      }
+    },
+    "incorrect_otp" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mã xác thực sai. Vui lòng thử lại"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mã xác thực sai. Vui lòng thử lại"
+          }
+        }
+      }
+    },
+    "input_your_phone_number" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nhập SĐT của bạn."
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nhập SĐT của bạn."
+          }
+        }
+      }
+    },
+    "invalid_phone_or_password" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tên đăng nhập hoặc mật khẩu không đúng."
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tên đăng nhập hoặc mật khẩu không đúng."
+          }
+        }
+      }
+    },
+    "invalid_sku" : {
+      "extractionState" : "pasted",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Sản phẩm chưa sẵn sàng để mua."
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sản phẩm chưa sẵn sàng để mua."
+          }
+        }
+      }
+    },
+    "link_to_accounts_subtitle" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Liên kết tài khoản của bạn với những phương thức bên dưới."
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Liên kết tài khoản của bạn với những phương thức bên dưới."
+          }
+        }
+      }
+    },
+    "link_to_accounts_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Liên kết tài khoản"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Liên kết tài khoản"
+          }
+        }
+      }
+    },
+    "loading" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Đang tải…"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Đang tải…"
+          }
+        }
+      }
+    },
+    "login" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Đăng nhập"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Đăng nhập"
+          }
+        }
+      }
+    },
+    "login_button" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Đăng nhập"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Đăng nhập"
+          }
+        }
+      }
+    },
+    "login_success" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Đăng nhập thành công!"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Đăng nhập thành công!"
+          }
+        }
+      }
+    },
+    "logout_confirm_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bạn có muốn đăng xuất?"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bạn có muốn đăng xuất?"
+          }
+        }
+      }
+    },
+    "logout_confirm_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "XÁC NHẬN ĐĂNG XUẤT"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "XÁC NHẬN ĐĂNG XUẤT"
+          }
+        }
+      }
+    },
+    "maintenance_subtitle" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hiện tại tất cả Server đang tiến hành bảo trì. Quý đại hiệp vui lòng thử lại sau. Thông tin chi tiết vui lòng theo dõi %@ hoặc liên hệ %@. Chân thành xin lỗi vì sự bất tiện này."
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hiện tại tất cả Server đang tiến hành bảo trì. Quý đại hiệp vui lòng thử lại sau. Thông tin chi tiết vui lòng theo dõi %@ hoặc liên hệ %@. Chân thành xin lỗi vì sự bất tiện này."
+          }
+        }
+      }
+    },
+    "maintenance_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Đang bảo trì"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Đang bảo trì"
+          }
+        }
+      }
+    },
+    "ok" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ok"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ok"
+          }
+        }
+      }
+    },
+    "or_continue_with" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hoặc đăng nhập bằng"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hoặc đăng nhập bằng"
+          }
+        }
+      }
+    },
+    "otp_account_not_exist" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tài khoản không tồn tại."
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tài khoản không tồn tại."
+          }
+        }
+      }
+    },
+    "otp_expired" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "OTP code hết hạn. Vui lòng nhập mã mới."
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "OTP code hết hạn. Vui lòng nhập mã mới."
+          }
+        }
+      }
+    },
+    "otp_expired_then_try_again" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "OTP code hết hạn. Vui lòng thử lại."
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "OTP code hết hạn. Vui lòng thử lại."
+          }
+        }
+      }
+    },
+    "otp_invalid" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mã xác thực sai. Vui lòng thử lại"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mã xác thực sai. Vui lòng thử lại"
+          }
+        }
+      }
+    },
+    "otp_request_many_times" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bạn đã yêu cầu mã quá nhiều lần. Vui lòng thử lại sau."
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bạn đã yêu cầu mã quá nhiều lần. Vui lòng thử lại sau."
+          }
+        }
+      }
+    },
+    "package_item_guest_disable" : {
+      "extractionState" : "pasted",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bạn chưa thể mua vật phẩm này. Xin lỗi vì sự bất tiện này."
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bạn chưa thể mua vật phẩm này. Xin lỗi vì sự bất tiện này."
+          }
+        }
+      }
+    },
+    "package_item_notvn_disable" : {
+      "extractionState" : "pasted",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vật phẩm chưa hỗ trợ mua tại quốc gia này"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vật phẩm chưa hỗ trợ mua tại quốc gia này"
+          }
+        }
+      }
+    },
+    "package_list_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CỬA HÀNG KIM NGUYÊN BẢO"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CỬA HÀNG KIM NGUYÊN BẢO"
+          }
+        }
+      }
+    },
+    "package_name_empty" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ID ứng dụng không được để trống."
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ID ứng dụng không được để trống."
+          }
+        }
+      }
+    },
+    "password" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mật khẩu"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mật khẩu"
+          }
+        }
+      }
+    },
+    "password_eight_characters" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Không được bé hơn 8 kí tự"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Không được bé hơn 8 kí tự"
+          }
+        }
+      }
+    },
+    "password_one_digit" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Có chứa ít nhất 1 chữ số"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Có chứa ít nhất 1 chữ số"
+          }
+        }
+      }
+    },
+    "password_repeadted" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mật khẩu mới không được\\ngiống với mật khẩu cũ."
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mật khẩu mới không được\\ngiống với mật khẩu cũ."
+          }
+        }
+      }
+    },
+    "password_same" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Phải giống nhau"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Phải giống nhau"
+          }
+        }
+      }
+    },
+    "password_special_characters" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Có chưa ít nhất 1 kí tự đặc biệt"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Có chưa ít nhất 1 kí tự đặc biệt"
+          }
+        }
+      }
+    },
+    "password_validation_error" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mật khẩu phải khớp và đáp ứng tiêu chí."
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mật khẩu phải khớp và đáp ứng tiêu chí."
+          }
+        }
+      }
+    },
+    "payment_fail" : {
+      "extractionState" : "pasted",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Thanh toán thất bại"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Thanh toán thất bại"
+          }
+        }
+      }
+    },
+    "payment_fail_desc" : {
+      "extractionState" : "pasted",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Thanh toán thất bại. Vui lòng kiểm tra lại phương thức thanh toán hoặc tiến hành thanh toán lại"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Thanh toán thất bại. Vui lòng kiểm tra lại phương thức thanh toán hoặc tiến hành thanh toán lại"
+          }
+        }
+      }
+    },
+    "payment_success" : {
+      "extractionState" : "pasted",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Thanh toán thành công!"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Thanh toán thành công!"
+          }
+        }
+      }
+    },
+    "payment_success_desc" : {
+      "extractionState" : "pasted",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Chúc mừng đại hiệp đã mua thành công %@ và đã được gởi vào túi hành lí"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Chúc mừng đại hiệp đã mua thành công %@ và đã được gởi vào túi hành lí"
+          }
+        }
+      }
+    },
+    "phone_number" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Số điện thoại"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Số điện thoại"
+          }
+        }
+      }
+    },
+    "phone_number_hint" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "0909 225 335"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "0909 225 335"
+          }
+        }
+      }
+    },
+    "play_now" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Chơi ngay"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Chơi ngay"
+          }
+        }
+      }
+    },
+    "please_login_to_continue" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vui lòng đăng nhập"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vui lòng đăng nhập"
+          }
+        }
+      }
+    },
+    "point" : {
+      "extractionState" : "pasted",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "P"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "P"
+          }
+        }
+      }
+    },
+    "re_enter_password" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nhập lại mật khẩu"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nhập lại mật khẩu"
+          }
+        }
+      }
+    },
+    "receive_otp" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nhận mã OTP"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nhận mã OTP"
+          }
+        }
+      }
+    },
+    "reenter_your_password" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nhập lại mật khẩu"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nhập lại mật khẩu"
+          }
+        }
+      }
+    },
+    "register_success" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bạn đã đăng ký thành công!"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bạn đã đăng ký thành công!"
+          }
+        }
+      }
+    },
+    "resend_in_x_seconds" : {
+      "extractionState" : "pasted",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Gửi lại OTP trong "
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gửi lại OTP trong"
+          }
+        }
+      }
+    },
+    "resend_otp" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nhận lại mã"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nhận lại mã"
+          }
+        }
+      }
+    },
+    "reset_password_success" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bạn đã cài đặt mật khẩu thành công!"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bạn đã cài đặt mật khẩu thành công!"
+          }
+        }
+      }
+    },
+    "seconds" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "S"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "S"
+          }
+        }
+      }
+    },
+    "select_server" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CHỌN SERVER"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CHỌN SERVER"
+          }
+        }
+      }
+    },
+    "server_error" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hệ thống đang gặp sự cố. Vui lòng thử lại sau"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hệ thống đang gặp sự cố. Vui lòng thử lại sau"
+          }
+        }
+      }
+    },
+    "set_password_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CÀI ĐẶT MẬT KHẨU"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CÀI ĐẶT MẬT KHẨU"
+          }
+        }
+      }
+    },
+    "sign_up" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Đăng ký"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Đăng ký"
+          }
+        }
+      }
+    },
+    "sign_up_now" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Đăng ký ngay"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Đăng ký ngay"
+          }
+        }
+      }
+    },
+    "step" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bước"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bước"
+          }
+        }
+      }
+    },
+    "step_x_of_y" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bước %1$d / %2$d"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bước %1$d / %2$d"
+          }
+        }
+      }
+    },
+    "terms_and_condition_delete_account" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tôi đã đọc và đồng ý với toàn bộ nội dung, xác nhận xoá tài khoản."
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tôi đã đọc và đồng ý với toàn bộ nội dung, xác nhận xoá tài khoản."
+          }
+        }
+      }
+    },
+    "terms_and_conditions" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tôi đã đọc và đồng ý Điều khoản và Điều Kiện"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tôi đã đọc và đồng ý Điều khoản và Điều Kiện"
+          }
+        }
+      }
+    },
+    "token_expiration_confirm_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Phiên đăng nhập đã hết hạn"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Phiên đăng nhập đã hết hạn"
+          }
+        }
+      }
+    },
+    "token_expiration_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vui lòng đăng nhập lại để tiếp tục sử dụng."
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vui lòng đăng nhập lại để tiếp tục sử dụng."
+          }
+        }
+      }
+    },
+    "try_again" : {
+      "extractionState" : "pasted",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Thử lại"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Thử lại"
+          }
+        }
+      }
+    },
+    "unknown_error_message" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Oops! Vui lòng thử lại."
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Oops! Vui lòng thử lại."
+          }
+        }
+      }
+    },
+    "update" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cập nhật"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cập nhật"
+          }
+        }
+      }
+    },
+    "user_blocked_subtitle" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hiện tại, tài khoản của bạn bị khoá vì vi phạm điều khoản và chính sách bảo mật. Quý đại hiệp vui lòng thông tin chi tiết đến %@ hoặc liên hệ %@."
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hiện tại, tài khoản của bạn bị khoá vì vi phạm điều khoản và chính sách bảo mật. Quý đại hiệp vui lòng thông tin chi tiết đến %@ hoặc liên hệ %@."
+          }
+        }
+      }
+    },
+    "user_blocked_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Tài khoản bị khoá."
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tài khoản bị khoá."
+          }
+        }
+      }
+    },
+    "version_empty" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Phiên bản ứng dụng không được để trống."
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Phiên bản ứng dụng không được để trống."
+          }
+        }
+      }
+    },
+    "we_will_send_you_verify_code" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Chúng tôi sẽ gửi cho bạn mã xác thực"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Chúng tôi sẽ gửi cho bạn mã xác thực"
+          }
+        }
+      }
+    },
+    "welcome_message" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Chào mừng trở lại!"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Chào mừng trở lại!"
+          }
+        }
+      }
+    }
+  },
+  "version" : "1.2"
+}

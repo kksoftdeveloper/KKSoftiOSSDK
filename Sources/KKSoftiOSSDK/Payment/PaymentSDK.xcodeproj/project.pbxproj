@@ -1,0 +1,1344 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0806F4C21007617FC974181B /* GamePlayerInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8A0D15BA695E9B72267458F /* GamePlayerInput.swift */; };
+		08EA1126FCC23BE60FA3EA81 /* PurchasedSuccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1849E16C47A3AAC782FCD84 /* PurchasedSuccess.swift */; };
+		0B38955F78908A713ADC1538 /* PurchasedError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB0C9A95712D201D3FAA6A1 /* PurchasedError.swift */; };
+		0D252CF5F9C3F0CF92F9EF73 /* DatalessOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1142E1D4542286CF1A3EF2DE /* DatalessOutput.swift */; };
+		11DF87BD15E85855689226ED /* DeviceInfoStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 446769FD34E08B6239DCAA9D /* DeviceInfoStorage.swift */; };
+		1312AB1FD46459CFD1CCB9F1 /* Analytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFDD41E61C4D17C67B98B64E /* Analytics.swift */; };
+		1A70315373CF1E7AB4BEE604 /* TransactionStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3505B66E752A562ACB9F346 /* TransactionStatus.swift */; };
+		1FC4FEE1DA326AF7B9093BB7 /* AuthSessionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 865E063B926A64622ACBD185 /* AuthSessionModel.swift */; };
+		20DCDAC25C263A3E0A27DEAC /* ApplePaymentGateway.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F9E7CED12C74060F1BF4AD1 /* ApplePaymentGateway.swift */; };
+		211266A3D62D520B7AF32113 /* PaymentGateway.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27437C775E4110CB9EBC61A8 /* PaymentGateway.swift */; };
+		21BA41BE4060475AE4412D40 /* PackageListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32E35E2A34FF169ED15ECADF /* PackageListViewModel.swift */; };
+		22BAF6ABE4DA3939AF47EED3 /* GameInfoInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38FE84D5C80DDA08BB0A247B /* GameInfoInput.swift */; };
+		22DA7CA4376E2AA9D5827131 /* PrimaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E13DECE2C8C99C21CAAFC30 /* PrimaryButton.swift */; };
+		237CE7DCC0F76F712E92EFB7 /* DataEmptynessOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4B77E7265DBFF0B52501F81 /* DataEmptynessOutput.swift */; };
+		2587FF8377DE3F0F82614C6A /* PaymentSDKInitResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9425015929CB4B515E384B14 /* PaymentSDKInitResponseDTO.swift */; };
+		281EF839F5BA702BD5DA41B9 /* PurchasedInvalidSKU.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08AE32AA06FAA00C35962E31 /* PurchasedInvalidSKU.swift */; };
+		2947C1751E81AA4B66C1AB77 /* IAPAnalytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 590E6BD922EDB9CAD8664541 /* IAPAnalytics.swift */; };
+		2EA8A3C69FEA989CD1850941 /* Poppins-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 04A6B06482E742425F4A2E8A /* Poppins-Light.ttf */; };
+		2F0F296EE5F4633DB7AB0A3B /* AlertType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88BC6567A601329CB488E0F7 /* AlertType.swift */; };
+		2FDADFEFD895A7D29F3292C6 /* PackageListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2035E1534637BFDEDCA228BA /* PackageListView.swift */; };
+		2FED5F0193E9593F24476DDA /* GamePlayerKeychainStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 711FB36C5B60E5833DFF1704 /* GamePlayerKeychainStorage.swift */; };
+		323D59AE1E5112CF7A6F400D /* SquareContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 488F92B932517141AA31F3AA /* SquareContainer.swift */; };
+		340B94A992B2516F0E94B1D9 /* GameInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABB7A558385FD7D8913918E1 /* GameInfoModel.swift */; };
+		347A489042CF33640D743AC4 /* GamePackageStatusModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A7AD231E1052D1EEA19BEA0 /* GamePackageStatusModel.swift */; };
+		357D5A4EB40F94A302CCBC66 /* AppInfoStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B540842996EE2CE087A3C58 /* AppInfoStorage.swift */; };
+		3731C1D008973815680E3EEC /* Color+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FD8667F6446CF6C2B574D21 /* Color+.swift */; };
+		39ADC8AFEA864292D61FF730 /* FontLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 921618DAE0962BB43A82150D /* FontLoader.swift */; };
+		3D0D8FD90DDA200C07FBB258 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6A8684B067AA9756C54E99B /* String.swift */; };
+		3D1706E6043F25992751BA12 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9874FA9EC8C6A3811234069 /* Environment.swift */; };
+		3EB7317C4515977249A6BA37 /* DefaultInitializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23842173A61E84132F1FA36E /* DefaultInitializer.swift */; };
+		3FB43891EF6D34A59D2A00E1 /* DefaultGameInfoStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5C20FB3D40F5ADC5827A3AC /* DefaultGameInfoStorage.swift */; };
+		48D40B65F58E2A4088596666 /* Signature.swift in Sources */ = {isa = PBXBuildFile; fileRef = B233B80FFEB66AB5188312D9 /* Signature.swift */; };
+		4CABFD7B1A76960642198D11 /* KeyChainHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F523E1D0477E60D3EEA19F /* KeyChainHelper.swift */; };
+		4CE693AF9980AAA336CE6BBF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AF56E92B816F07CD21C3855F /* Assets.xcassets */; };
+		4D098CF7C4C4CD1F9998E2E0 /* AuthSDK in Frameworks */ = {isa = PBXBuildFile; productRef = 9A30EEFCA07FD1637DD09F2E /* AuthSDK */; };
+		4F15F89011A9421CB0C6ECDF /* DefaultGamePlayerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCE663015DB138F8AC15F2CF /* DefaultGamePlayerManager.swift */; };
+		506589B95B159442DBBF8537 /* DeviceInfoKeychainStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A3C9FD3768062538240174 /* DeviceInfoKeychainStorage.swift */; };
+		522133C809EDD8102340650B /* DefaultAppInfoStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 723A3C481A12603842B85C25 /* DefaultAppInfoStorage.swift */; };
+		5455C3A224DE9F5A1339468C /* PaymentSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DDD34E6D02E039C2185511B4 /* PaymentSDK.framework */; };
+		598793958E0CF455E930111C /* Poppins-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B8F3C564250FABD4BA512C36 /* Poppins-LightItalic.ttf */; };
+		64B5038C026D0BE54C155B7A /* PopupModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F1A108D00DA1A0088D2E80 /* PopupModifier.swift */; };
+		67B092F611DA5D80DDE87B97 /* OrientationObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54496C703C30815C81792033 /* OrientationObserver.swift */; };
+		69DE403D47E1C95BDF7772E6 /* PaymentTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C820269A569CCC5DDC822B3 /* PaymentTracking.swift */; };
+		712D86492E03004AAB7FC189 /* APIResponseError.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5F84136E5B7B333AF5D276 /* APIResponseError.swift */; };
+		714B5F44F1EAE05D29386BEF /* AppleVerifiedTranskModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA7E10C759CBA3CA6CD43CED /* AppleVerifiedTranskModel.swift */; };
+		7B2AD9E1C4907AA8BEF6E15E /* PaymentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B466D652EE41302153346C7 /* PaymentManager.swift */; };
+		7D5D1AAA2C053D77909A6183 /* AuthSessionOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = D26F15927F99A0D3811B846D /* AuthSessionOutput.swift */; };
+		7DF7FD2126BF84C5DC6089F8 /* PaymentError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94A754CAF4574929E8E035D9 /* PaymentError.swift */; };
+		7E6864F4E76EAF0A805BA497 /* GamePlayerStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A403F78AE346AE7370D62695 /* GamePlayerStorage.swift */; };
+		7F1FA32F3201611FA63A88B9 /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AC40A2F429B6928B3EF3A7E /* SessionManager.swift */; };
+		7F788E9C254D2AFA5149C1AB /* AuthSDKBundleToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA8314BF7F5AF4C43A1D537C /* AuthSDKBundleToken.swift */; };
+		81446C508F17F176E7E1D5BC /* SHA256Signature.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCCA91A046D58E9A8F1D786B /* SHA256Signature.swift */; };
+		881535559143447203CAFB15 /* Poppins-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6C617C32B379D411E0A1FCE7 /* Poppins-Medium.ttf */; };
+		900C1CF494C701368422CA7D /* PopUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E7381CADFE5262C64F4033E /* PopUpView.swift */; };
+		943A2F6F837C8F3CF4A2DD65 /* OpenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30167C94DDB920BA164C6005 /* OpenViewModel.swift */; };
+		9579C2CC0E828FD3A3678A80 /* AppFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4903D98AF8975761809C914 /* AppFont.swift */; };
+		96B467606688C7CB8821C4AA /* SDKInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7102817CC1F94D8CBE9EA6DB /* SDKInfo.swift */; };
+		97AC978B5ACB8C031CDFECAD /* Localization.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 8F3ACB8186E69F15540FFF5B /* Localization.xcstrings */; };
+		9DEC96F63B77E17F2145942A /* DefaultPaymentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17943B79F63B431372F2FC9A /* DefaultPaymentManager.swift */; };
+		9E6F1616D2E5F5A518C65A7D /* PurchaseVerificationDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 034D2D18597CF02E78A76F5B /* PurchaseVerificationDTO.swift */; };
+		A1A7F864E5AE7F0B6D18F538 /* AppInfoInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFE2787E7E0C4A2D28DCB49 /* AppInfoInput.swift */; };
+		A462610C50C95077612F1701 /* GamePackageInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40915F2D2A79E4ACF990180D /* GamePackageInput.swift */; };
+		ACB43AA06C2273FD2B1CD416 /* KeyChainSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F60605A217BB454B23B24B1 /* KeyChainSessionManager.swift */; };
+		AD484A355146756EC3710BD3 /* PurchaseVerificationOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27B5A7BACA96F29985580033 /* PurchaseVerificationOutput.swift */; };
+		B01E6439CB6D21236C3F4C61 /* DataEmptynessModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40F3DB90C21807ECF830659F /* DataEmptynessModel.swift */; };
+		B22D06BEAAB25B44053BA264 /* PaymentSDKInitModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EB2033BEF0F026C250931B0 /* PaymentSDKInitModel.swift */; };
+		B30FCC55C7DC04A40DE22D4D /* TransactionDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493ACAFEFD3FD6298CEDCBE4 /* TransactionDTO.swift */; };
+		B396150502B1380BE3111800 /* PurchasedUserCancel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A87B192B40F8401F55A1B48E /* PurchasedUserCancel.swift */; };
+		B4DC8A49DD688707910BA2D2 /* TransactionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1658222E60D34B51E056CFE5 /* TransactionModel.swift */; };
+		BAA29D8449B9B09D42C377FC /* GamePackageStatusDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE1DB195669CEF1DD0B3FC7B /* GamePackageStatusDTO.swift */; };
+		BC377951597E4791C10F0123 /* GamePackagePurchaseInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F5FF52BEEC29701364B291A /* GamePackagePurchaseInput.swift */; };
+		BC959E702C1A5044F2889D5A /* Mixpanel in Frameworks */ = {isa = PBXBuildFile; productRef = 81071C6A9360DDF175B23131 /* Mixpanel */; };
+		BDB90C8A6C867C16A3304718 /* DeviceInfoInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ADD142841DF0E1E5DEEA802 /* DeviceInfoInput.swift */; };
+		BDD7741526668AA52F0B6442 /* GamePackageStatusOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = B12C788A77D1495B922F65B4 /* GamePackageStatusOutput.swift */; };
+		BE7383F079E4B6E7C369EEDD /* APIResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89CCBB3C237EF3C540BFB741 /* APIResponse.swift */; };
+		BF0396C5CEC8487ED348FAB3 /* PaymentSDKInitOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 548D75E8126564B483E773B6 /* PaymentSDKInitOutput.swift */; };
+		C25204FE68B2FF250C000F41 /* Poppins-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4A5B60BDEC9EC5D64A681D2D /* Poppins-Bold.ttf */; };
+		C6E1DD27C56BEBDD9EB448C9 /* GamePlayerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 196B23F46FAD36D3CB83ED18 /* GamePlayerManager.swift */; };
+		C6E32E768D387C6CC19711D8 /* AuthSessionInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0F3F0ADD74E8366FE660075 /* AuthSessionInput.swift */; };
+		C7263570FE14DB33ADE16492 /* Poppins-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 551FE29DB4F379E2630EF1EF /* Poppins-SemiBold.ttf */; };
+		CCCCA8C2082244965698A6AB /* PurchaseVerificationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13688B4B34A3DE5A1406EB12 /* PurchaseVerificationModel.swift */; };
+		CCF2C3A51F95A0292DE0C44E /* GameInfoStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 955E912F03ADE35D59EFC55D /* GameInfoStorage.swift */; };
+		D2354830524AA1799710EA65 /* PaymentSessionServerResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = C798A77B7AB7BD130722C2FD /* PaymentSessionServerResponseDTO.swift */; };
+		D240AA64B3B996A94BCD2DC1 /* PaymentSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DDD34E6D02E039C2185511B4 /* PaymentSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		DC09A6E91E8F3FECBB878896 /* PurchasedFailure.swift in Sources */ = {isa = PBXBuildFile; fileRef = C16AF46D47F708BDACF48B14 /* PurchasedFailure.swift */; };
+		E05020AF29388E1D49325ACA /* GameStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97FDB6824F9368E0FB049E65 /* GameStatus.swift */; };
+		E4F0DC0BCE8EB39F2ECF79D7 /* PaymentAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A1368F0ED2ADDB09C2180E /* PaymentAPIClient.swift */; };
+		E524C0144A00A130066EE82D /* Poppins-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BDFA49F14FA64C58065C4A9C /* Poppins-Thin.ttf */; };
+		E9884360A3978AD88E6A6ABA /* GameInfoResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DE03B36E623786DAF71409E /* GameInfoResponseDTO.swift */; };
+		E98B6F1382F48BF52BC44B83 /* FS-ClanPro-NarrowUltra.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 49BD54FB00770A8851771A80 /* FS-ClanPro-NarrowUltra.ttf */; };
+		E9B14D5250EE61C8AD47DCB5 /* DatalessModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C559588D8BF932887EEF575A /* DatalessModel.swift */; };
+		EA9A06AC73A8A96304D94D8B /* GameInfoOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEECC9123BA7699264FDA062 /* GameInfoOutput.swift */; };
+		EB39AA2116474DE12AA21CDD /* DefaultPaymentAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB9B17335FBFD16B7EEA2E87 /* DefaultPaymentAPIClient.swift */; };
+		EBAA8C8E0A73297F679DF8A4 /* TransactionOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46CAB3592AE954EA85FEE306 /* TransactionOutput.swift */; };
+		EF85AFE3A366551B279CF73A /* EnvironmentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E78CAE3F03939DE6B61253CF /* EnvironmentTests.swift */; };
+		F04F40DA4D293271B434FAF7 /* TrackingSDK in Frameworks */ = {isa = PBXBuildFile; productRef = 3A3F09C06FA402EB9FC80F3E /* TrackingSDK */; };
+		F778C578D9EE24652F304316 /* Encodable+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E37C7DCC899D81C52D8D20F /* Encodable+.swift */; };
+		FBC94220EC3DC987E69FAC2E /* Initialializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 080E73FA847A43CD13A91981 /* Initialializer.swift */; };
+		FE5350C0A9DC06A627E3C0A9 /* PackageItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6A95AE8EF48BA0559D18EC2 /* PackageItemView.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		876F19706F841FF9AE1A5545 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 48A1023C5CC855417DF0AFFB /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0E0226DA07D809EABB2C4D89;
+			remoteInfo = PaymentSDK;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		6037058B8075F170CB83B364 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				D240AA64B3B996A94BCD2DC1 /* PaymentSDK.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		034D2D18597CF02E78A76F5B /* PurchaseVerificationDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseVerificationDTO.swift; sourceTree = "<group>"; };
+		04A6B06482E742425F4A2E8A /* Poppins-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Light.ttf"; sourceTree = "<group>"; };
+		080E73FA847A43CD13A91981 /* Initialializer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Initialializer.swift; sourceTree = "<group>"; };
+		08AE32AA06FAA00C35962E31 /* PurchasedInvalidSKU.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchasedInvalidSKU.swift; sourceTree = "<group>"; };
+		0ADD142841DF0E1E5DEEA802 /* DeviceInfoInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceInfoInput.swift; sourceTree = "<group>"; };
+		0E37C7DCC899D81C52D8D20F /* Encodable+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Encodable+.swift"; sourceTree = "<group>"; };
+		1142E1D4542286CF1A3EF2DE /* DatalessOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatalessOutput.swift; sourceTree = "<group>"; };
+		13688B4B34A3DE5A1406EB12 /* PurchaseVerificationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseVerificationModel.swift; sourceTree = "<group>"; };
+		1658222E60D34B51E056CFE5 /* TransactionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionModel.swift; sourceTree = "<group>"; };
+		17943B79F63B431372F2FC9A /* DefaultPaymentManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultPaymentManager.swift; sourceTree = "<group>"; };
+		196B23F46FAD36D3CB83ED18 /* GamePlayerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamePlayerManager.swift; sourceTree = "<group>"; };
+		1E7381CADFE5262C64F4033E /* PopUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpView.swift; sourceTree = "<group>"; };
+		2035E1534637BFDEDCA228BA /* PackageListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PackageListView.swift; sourceTree = "<group>"; };
+		23842173A61E84132F1FA36E /* DefaultInitializer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultInitializer.swift; sourceTree = "<group>"; };
+		27437C775E4110CB9EBC61A8 /* PaymentGateway.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentGateway.swift; sourceTree = "<group>"; };
+		27B5A7BACA96F29985580033 /* PurchaseVerificationOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseVerificationOutput.swift; sourceTree = "<group>"; };
+		2B540842996EE2CE087A3C58 /* AppInfoStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppInfoStorage.swift; sourceTree = "<group>"; };
+		2F5FF52BEEC29701364B291A /* GamePackagePurchaseInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamePackagePurchaseInput.swift; sourceTree = "<group>"; };
+		30167C94DDB920BA164C6005 /* OpenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenViewModel.swift; sourceTree = "<group>"; };
+		32E35E2A34FF169ED15ECADF /* PackageListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PackageListViewModel.swift; sourceTree = "<group>"; };
+		38FE84D5C80DDA08BB0A247B /* GameInfoInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameInfoInput.swift; sourceTree = "<group>"; };
+		3EB0C9A95712D201D3FAA6A1 /* PurchasedError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchasedError.swift; sourceTree = "<group>"; };
+		3F60605A217BB454B23B24B1 /* KeyChainSessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyChainSessionManager.swift; sourceTree = "<group>"; };
+		40915F2D2A79E4ACF990180D /* GamePackageInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamePackageInput.swift; sourceTree = "<group>"; };
+		40F3DB90C21807ECF830659F /* DataEmptynessModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataEmptynessModel.swift; sourceTree = "<group>"; };
+		446769FD34E08B6239DCAA9D /* DeviceInfoStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceInfoStorage.swift; sourceTree = "<group>"; };
+		46CAB3592AE954EA85FEE306 /* TransactionOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionOutput.swift; sourceTree = "<group>"; };
+		488F92B932517141AA31F3AA /* SquareContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SquareContainer.swift; sourceTree = "<group>"; };
+		493ACAFEFD3FD6298CEDCBE4 /* TransactionDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionDTO.swift; sourceTree = "<group>"; };
+		49BD54FB00770A8851771A80 /* FS-ClanPro-NarrowUltra.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "FS-ClanPro-NarrowUltra.ttf"; sourceTree = "<group>"; };
+		4A5B60BDEC9EC5D64A681D2D /* Poppins-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Bold.ttf"; sourceTree = "<group>"; };
+		4C820269A569CCC5DDC822B3 /* PaymentTracking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentTracking.swift; sourceTree = "<group>"; };
+		4FD8667F6446CF6C2B574D21 /* Color+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+.swift"; sourceTree = "<group>"; };
+		50F523E1D0477E60D3EEA19F /* KeyChainHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyChainHelper.swift; sourceTree = "<group>"; };
+		54496C703C30815C81792033 /* OrientationObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrientationObserver.swift; sourceTree = "<group>"; };
+		548D75E8126564B483E773B6 /* PaymentSDKInitOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentSDKInitOutput.swift; sourceTree = "<group>"; };
+		551FE29DB4F379E2630EF1EF /* Poppins-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-SemiBold.ttf"; sourceTree = "<group>"; };
+		590E6BD922EDB9CAD8664541 /* IAPAnalytics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IAPAnalytics.swift; sourceTree = "<group>"; };
+		5F9E7CED12C74060F1BF4AD1 /* ApplePaymentGateway.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplePaymentGateway.swift; sourceTree = "<group>"; };
+		6C617C32B379D411E0A1FCE7 /* Poppins-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Medium.ttf"; sourceTree = "<group>"; };
+		6DE03B36E623786DAF71409E /* GameInfoResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameInfoResponseDTO.swift; sourceTree = "<group>"; };
+		6EB2033BEF0F026C250931B0 /* PaymentSDKInitModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentSDKInitModel.swift; sourceTree = "<group>"; };
+		7102817CC1F94D8CBE9EA6DB /* SDKInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SDKInfo.swift; sourceTree = "<group>"; };
+		711FB36C5B60E5833DFF1704 /* GamePlayerKeychainStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamePlayerKeychainStorage.swift; sourceTree = "<group>"; };
+		723A3C481A12603842B85C25 /* DefaultAppInfoStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultAppInfoStorage.swift; sourceTree = "<group>"; };
+		7A7AD231E1052D1EEA19BEA0 /* GamePackageStatusModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamePackageStatusModel.swift; sourceTree = "<group>"; };
+		7B466D652EE41302153346C7 /* PaymentManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentManager.swift; sourceTree = "<group>"; };
+		7E13DECE2C8C99C21CAAFC30 /* PrimaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryButton.swift; sourceTree = "<group>"; };
+		80A3C9FD3768062538240174 /* DeviceInfoKeychainStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceInfoKeychainStorage.swift; sourceTree = "<group>"; };
+		865E063B926A64622ACBD185 /* AuthSessionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthSessionModel.swift; sourceTree = "<group>"; };
+		86F1A108D00DA1A0088D2E80 /* PopupModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupModifier.swift; sourceTree = "<group>"; };
+		88BC6567A601329CB488E0F7 /* AlertType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertType.swift; sourceTree = "<group>"; };
+		89CCBB3C237EF3C540BFB741 /* APIResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIResponse.swift; sourceTree = "<group>"; };
+		8AC40A2F429B6928B3EF3A7E /* SessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionManager.swift; sourceTree = "<group>"; };
+		8F3ACB8186E69F15540FFF5B /* Localization.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localization.xcstrings; sourceTree = "<group>"; };
+		921618DAE0962BB43A82150D /* FontLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontLoader.swift; sourceTree = "<group>"; };
+		9425015929CB4B515E384B14 /* PaymentSDKInitResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentSDKInitResponseDTO.swift; sourceTree = "<group>"; };
+		94A754CAF4574929E8E035D9 /* PaymentError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentError.swift; sourceTree = "<group>"; };
+		955E912F03ADE35D59EFC55D /* GameInfoStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameInfoStorage.swift; sourceTree = "<group>"; };
+		97FDB6824F9368E0FB049E65 /* GameStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameStatus.swift; sourceTree = "<group>"; };
+		A403F78AE346AE7370D62695 /* GamePlayerStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamePlayerStorage.swift; sourceTree = "<group>"; };
+		A4B77E7265DBFF0B52501F81 /* DataEmptynessOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataEmptynessOutput.swift; sourceTree = "<group>"; };
+		A6A8684B067AA9756C54E99B /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
+		A87B192B40F8401F55A1B48E /* PurchasedUserCancel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchasedUserCancel.swift; sourceTree = "<group>"; };
+		A9DDFCC24A8656A020F9A06D /* TrackingSDK */ = {isa = PBXFileReference; lastKnownFileType = folder; name = TrackingSDK; path = ../TrackingSDK; sourceTree = SOURCE_ROOT; };
+		ABB7A558385FD7D8913918E1 /* GameInfoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameInfoModel.swift; sourceTree = "<group>"; };
+		AF56E92B816F07CD21C3855F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		B12C788A77D1495B922F65B4 /* GamePackageStatusOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamePackageStatusOutput.swift; sourceTree = "<group>"; };
+		B233B80FFEB66AB5188312D9 /* Signature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Signature.swift; sourceTree = "<group>"; };
+		B8F3C564250FABD4BA512C36 /* Poppins-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-LightItalic.ttf"; sourceTree = "<group>"; };
+		BB5F84136E5B7B333AF5D276 /* APIResponseError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIResponseError.swift; sourceTree = "<group>"; };
+		BDFA49F14FA64C58065C4A9C /* Poppins-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Thin.ttf"; sourceTree = "<group>"; };
+		BFDD41E61C4D17C67B98B64E /* Analytics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Analytics.swift; sourceTree = "<group>"; };
+		C16AF46D47F708BDACF48B14 /* PurchasedFailure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchasedFailure.swift; sourceTree = "<group>"; };
+		C1849E16C47A3AAC782FCD84 /* PurchasedSuccess.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchasedSuccess.swift; sourceTree = "<group>"; };
+		C559588D8BF932887EEF575A /* DatalessModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatalessModel.swift; sourceTree = "<group>"; };
+		C5C20FB3D40F5ADC5827A3AC /* DefaultGameInfoStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultGameInfoStorage.swift; sourceTree = "<group>"; };
+		C6A95AE8EF48BA0559D18EC2 /* PackageItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PackageItemView.swift; sourceTree = "<group>"; };
+		C798A77B7AB7BD130722C2FD /* PaymentSessionServerResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentSessionServerResponseDTO.swift; sourceTree = "<group>"; };
+		C9E95F0DDCB3C65539515F20 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		CB9B17335FBFD16B7EEA2E87 /* DefaultPaymentAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultPaymentAPIClient.swift; sourceTree = "<group>"; };
+		D26F15927F99A0D3811B846D /* AuthSessionOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthSessionOutput.swift; sourceTree = "<group>"; };
+		D3505B66E752A562ACB9F346 /* TransactionStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionStatus.swift; sourceTree = "<group>"; };
+		D3A1368F0ED2ADDB09C2180E /* PaymentAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentAPIClient.swift; sourceTree = "<group>"; };
+		D41784976C9ED97140A4CF3F /* AuthSDK */ = {isa = PBXFileReference; lastKnownFileType = folder; name = AuthSDK; path = ../AuthSDK; sourceTree = SOURCE_ROOT; };
+		D4903D98AF8975761809C914 /* AppFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFont.swift; sourceTree = "<group>"; };
+		D8A0D15BA695E9B72267458F /* GamePlayerInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamePlayerInput.swift; sourceTree = "<group>"; };
+		DDD34E6D02E039C2185511B4 /* PaymentSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PaymentSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E0F3F0ADD74E8366FE660075 /* AuthSessionInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthSessionInput.swift; sourceTree = "<group>"; };
+		E78CAE3F03939DE6B61253CF /* EnvironmentTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnvironmentTests.swift; sourceTree = "<group>"; };
+		EA7E10C759CBA3CA6CD43CED /* AppleVerifiedTranskModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleVerifiedTranskModel.swift; sourceTree = "<group>"; };
+		EAFE2787E7E0C4A2D28DCB49 /* AppInfoInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppInfoInput.swift; sourceTree = "<group>"; };
+		EEECC9123BA7699264FDA062 /* GameInfoOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameInfoOutput.swift; sourceTree = "<group>"; };
+		F9874FA9EC8C6A3811234069 /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
+		FA8314BF7F5AF4C43A1D537C /* AuthSDKBundleToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthSDKBundleToken.swift; sourceTree = "<group>"; };
+		FB7094B9EF122B4CEF2FFD39 /* PaymentSDKTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = PaymentSDKTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		FCCA91A046D58E9A8F1D786B /* SHA256Signature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SHA256Signature.swift; sourceTree = "<group>"; };
+		FCE663015DB138F8AC15F2CF /* DefaultGamePlayerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultGamePlayerManager.swift; sourceTree = "<group>"; };
+		FE1DB195669CEF1DD0B3FC7B /* GamePackageStatusDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamePackageStatusDTO.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		4B39097F5C97FF14CCCD287C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BC959E702C1A5044F2889D5A /* Mixpanel in Frameworks */,
+				4D098CF7C4C4CD1F9998E2E0 /* AuthSDK in Frameworks */,
+				F04F40DA4D293271B434FAF7 /* TrackingSDK in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		880FAA893CC1F6DE4EEC35C9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5455C3A224DE9F5A1339468C /* PaymentSDK.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		0B9552E3FFC02B7691E15563 /* Payment */ = {
+			isa = PBXGroup;
+			children = (
+				17943B79F63B431372F2FC9A /* DefaultPaymentManager.swift */,
+				7B466D652EE41302153346C7 /* PaymentManager.swift */,
+			);
+			path = Payment;
+			sourceTree = "<group>";
+		};
+		140B8E8C65D928EE87FEF6CA /* Analytics */ = {
+			isa = PBXGroup;
+			children = (
+				BFDD41E61C4D17C67B98B64E /* Analytics.swift */,
+				590E6BD922EDB9CAD8664541 /* IAPAnalytics.swift */,
+			);
+			path = Analytics;
+			sourceTree = "<group>";
+		};
+		15FD27CC84A6C8685A80421E /* PaymentSDK */ = {
+			isa = PBXGroup;
+			children = (
+				140B8E8C65D928EE87FEF6CA /* Analytics */,
+				7C43EA4750490A9E25199012 /* BusinessLogic */,
+				BD9E314CDA88DA0CCE24BA1B /* Config */,
+				403083309DC9C19D190C1219 /* Data */,
+				A56C72E0E7CD2628FAE5A41B /* Domain */,
+				5640722894F6950AAE844CA9 /* PublicProtocol */,
+				41685B5B9DF5580AC0C1F86D /* Tracking */,
+				249DA80C9E883169346DE7A3 /* Utils+Extension */,
+			);
+			name = PaymentSDK;
+			path = Sources/PaymentSDK;
+			sourceTree = "<group>";
+		};
+		249DA80C9E883169346DE7A3 /* Utils+Extension */ = {
+			isa = PBXGroup;
+			children = (
+				0E37C7DCC899D81C52D8D20F /* Encodable+.swift */,
+				54496C703C30815C81792033 /* OrientationObserver.swift */,
+				7102817CC1F94D8CBE9EA6DB /* SDKInfo.swift */,
+				98F7A99E34D3ADCB25F76A69 /* Error */,
+			);
+			path = "Utils+Extension";
+			sourceTree = "<group>";
+		};
+		30B2A1A5195750E979757C7E /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				E78CAE3F03939DE6B61253CF /* EnvironmentTests.swift */,
+			);
+			path = Config;
+			sourceTree = "<group>";
+		};
+		3365AA26448EA445161B5CC0 /* Init */ = {
+			isa = PBXGroup;
+			children = (
+				6EB2033BEF0F026C250931B0 /* PaymentSDKInitModel.swift */,
+			);
+			path = Init;
+			sourceTree = "<group>";
+		};
+		3631EE0AA71962FB43D82AEF /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				AF56E92B816F07CD21C3855F /* Assets.xcassets */,
+				8F3ACB8186E69F15540FFF5B /* Localization.xcstrings */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		403083309DC9C19D190C1219 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				FB3D2ADADBD51F9CA1468EBD /* DTO */,
+				A1971AAE840F828798E27D22 /* Networking */,
+				E08F3CBD6669936FF4B27B7F /* Signature */,
+				A82D3D5396DF284BA6D3F40D /* Storage */,
+				5377068B63954D1AD2372126 /* Utils */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		4163D35F6EAA9373B2B59045 /* Transaction */ = {
+			isa = PBXGroup;
+			children = (
+				7A7AD231E1052D1EEA19BEA0 /* GamePackageStatusModel.swift */,
+				13688B4B34A3DE5A1406EB12 /* PurchaseVerificationModel.swift */,
+				1658222E60D34B51E056CFE5 /* TransactionModel.swift */,
+				D3505B66E752A562ACB9F346 /* TransactionStatus.swift */,
+			);
+			path = Transaction;
+			sourceTree = "<group>";
+		};
+		41685B5B9DF5580AC0C1F86D /* Tracking */ = {
+			isa = PBXGroup;
+			children = (
+				4C820269A569CCC5DDC822B3 /* PaymentTracking.swift */,
+			);
+			path = Tracking;
+			sourceTree = "<group>";
+		};
+		42FEECE3A7CCD34FFB2B7435 /* Transaction */ = {
+			isa = PBXGroup;
+			children = (
+				FE1DB195669CEF1DD0B3FC7B /* GamePackageStatusDTO.swift */,
+				034D2D18597CF02E78A76F5B /* PurchaseVerificationDTO.swift */,
+				493ACAFEFD3FD6298CEDCBE4 /* TransactionDTO.swift */,
+			);
+			path = Transaction;
+			sourceTree = "<group>";
+		};
+		469256CB7CFF350AF452BDE8 /* Model+Input */ = {
+			isa = PBXGroup;
+			children = (
+				EAFE2787E7E0C4A2D28DCB49 /* AppInfoInput.swift */,
+				E0F3F0ADD74E8366FE660075 /* AuthSessionInput.swift */,
+				0ADD142841DF0E1E5DEEA802 /* DeviceInfoInput.swift */,
+				38FE84D5C80DDA08BB0A247B /* GameInfoInput.swift */,
+				40915F2D2A79E4ACF990180D /* GamePackageInput.swift */,
+				2F5FF52BEEC29701364B291A /* GamePackagePurchaseInput.swift */,
+				D8A0D15BA695E9B72267458F /* GamePlayerInput.swift */,
+			);
+			path = "Model+Input";
+			sourceTree = "<group>";
+		};
+		4B148045205843256E6636D5 /* PaymentSDKTests */ = {
+			isa = PBXGroup;
+			children = (
+				30B2A1A5195750E979757C7E /* Config */,
+				5B5120052672B0E8AEB41F38 /* Supporting Files */,
+			);
+			name = PaymentSDKTests;
+			path = Sources/PaymentSDKTests;
+			sourceTree = "<group>";
+		};
+		5377068B63954D1AD2372126 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				50F523E1D0477E60D3EEA19F /* KeyChainHelper.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		5640722894F6950AAE844CA9 /* PublicProtocol */ = {
+			isa = PBXGroup;
+			children = (
+				469256CB7CFF350AF452BDE8 /* Model+Input */,
+				FC1529706180109D929B3A38 /* Model+Output */,
+				FC21046580745C0434F63CE4 /* Protocol */,
+			);
+			path = PublicProtocol;
+			sourceTree = "<group>";
+		};
+		59CDDE0B984CC63E4B155896 /* PackageList */ = {
+			isa = PBXGroup;
+			children = (
+				C6A95AE8EF48BA0559D18EC2 /* PackageItemView.swift */,
+				2035E1534637BFDEDCA228BA /* PackageListView.swift */,
+				32E35E2A34FF169ED15ECADF /* PackageListViewModel.swift */,
+			);
+			path = PackageList;
+			sourceTree = "<group>";
+		};
+		5B5120052672B0E8AEB41F38 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				C9E95F0DDCB3C65539515F20 /* Info.plist */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		60733AD56B4AB9D73FB11221 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				49BD54FB00770A8851771A80 /* FS-ClanPro-NarrowUltra.ttf */,
+				4A5B60BDEC9EC5D64A681D2D /* Poppins-Bold.ttf */,
+				04A6B06482E742425F4A2E8A /* Poppins-Light.ttf */,
+				B8F3C564250FABD4BA512C36 /* Poppins-LightItalic.ttf */,
+				6C617C32B379D411E0A1FCE7 /* Poppins-Medium.ttf */,
+				551FE29DB4F379E2630EF1EF /* Poppins-SemiBold.ttf */,
+				BDFA49F14FA64C58065C4A9C /* Poppins-Thin.ttf */,
+			);
+			name = Fonts;
+			path = Sources/Fonts;
+			sourceTree = "<group>";
+		};
+		6976E74ED41E519CC837F279 /* Initializer */ = {
+			isa = PBXGroup;
+			children = (
+				9425015929CB4B515E384B14 /* PaymentSDKInitResponseDTO.swift */,
+			);
+			path = Initializer;
+			sourceTree = "<group>";
+		};
+		7C43EA4750490A9E25199012 /* BusinessLogic */ = {
+			isa = PBXGroup;
+			children = (
+				5F9E7CED12C74060F1BF4AD1 /* ApplePaymentGateway.swift */,
+				FCE663015DB138F8AC15F2CF /* DefaultGamePlayerManager.swift */,
+				A666543856331A59173E0B09 /* Initializer */,
+			);
+			path = BusinessLogic;
+			sourceTree = "<group>";
+		};
+		90D2197976CC6E0192A19299 /* Packages */ = {
+			isa = PBXGroup;
+			children = (
+				D41784976C9ED97140A4CF3F /* AuthSDK */,
+				A9DDFCC24A8656A020F9A06D /* TrackingSDK */,
+			);
+			name = Packages;
+			sourceTree = "<group>";
+		};
+		94217AC6B36C266453D3C31F /* Signature */ = {
+			isa = PBXGroup;
+			children = (
+				B233B80FFEB66AB5188312D9 /* Signature.swift */,
+			);
+			path = Signature;
+			sourceTree = "<group>";
+		};
+		98F7A99E34D3ADCB25F76A69 /* Error */ = {
+			isa = PBXGroup;
+			children = (
+				94A754CAF4574929E8E035D9 /* PaymentError.swift */,
+			);
+			path = Error;
+			sourceTree = "<group>";
+		};
+		A1971AAE840F828798E27D22 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				CB9B17335FBFD16B7EEA2E87 /* DefaultPaymentAPIClient.swift */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		A19CCCE71F8417F73E269564 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				DC33463C197F247B24CDDC8F /* AuthSession */,
+				CF4DCA5EB8A83D4EB039A394 /* DataEmptyness */,
+				E8DA96126B8EE197B91637C1 /* GameInfo */,
+				3365AA26448EA445161B5CC0 /* Init */,
+				4163D35F6EAA9373B2B59045 /* Transaction */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		A56C72E0E7CD2628FAE5A41B /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				D3A1368F0ED2ADDB09C2180E /* PaymentAPIClient.swift */,
+				27437C775E4110CB9EBC61A8 /* PaymentGateway.swift */,
+				A19CCCE71F8417F73E269564 /* Model */,
+				94217AC6B36C266453D3C31F /* Signature */,
+				C1E0F19EF6875E422CABBEDC /* Storage */,
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		A666543856331A59173E0B09 /* Initializer */ = {
+			isa = PBXGroup;
+			children = (
+				23842173A61E84132F1FA36E /* DefaultInitializer.swift */,
+			);
+			path = Initializer;
+			sourceTree = "<group>";
+		};
+		A82D3D5396DF284BA6D3F40D /* Storage */ = {
+			isa = PBXGroup;
+			children = (
+				723A3C481A12603842B85C25 /* DefaultAppInfoStorage.swift */,
+				C5C20FB3D40F5ADC5827A3AC /* DefaultGameInfoStorage.swift */,
+				80A3C9FD3768062538240174 /* DeviceInfoKeychainStorage.swift */,
+				711FB36C5B60E5833DFF1704 /* GamePlayerKeychainStorage.swift */,
+				3F60605A217BB454B23B24B1 /* KeyChainSessionManager.swift */,
+			);
+			path = Storage;
+			sourceTree = "<group>";
+		};
+		AA97804702A4FF92E625375D /* PaymentSDKUI */ = {
+			isa = PBXGroup;
+			children = (
+				30167C94DDB920BA164C6005 /* OpenViewModel.swift */,
+				BC4F2345DAE5A35FFB913DD7 /* Components */,
+				59CDDE0B984CC63E4B155896 /* PackageList */,
+				F0B8566D354CE10FE94B38AD /* Utils */,
+			);
+			name = PaymentSDKUI;
+			path = Sources/PaymentSDKUI;
+			sourceTree = "<group>";
+		};
+		B2E22623E448964C50E56ECD /* GamePlayer */ = {
+			isa = PBXGroup;
+			children = (
+				196B23F46FAD36D3CB83ED18 /* GamePlayerManager.swift */,
+			);
+			path = GamePlayer;
+			sourceTree = "<group>";
+		};
+		BC4F2345DAE5A35FFB913DD7 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				88BC6567A601329CB488E0F7 /* AlertType.swift */,
+				1E7381CADFE5262C64F4033E /* PopUpView.swift */,
+				7E13DECE2C8C99C21CAAFC30 /* PrimaryButton.swift */,
+				488F92B932517141AA31F3AA /* SquareContainer.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		BD9E314CDA88DA0CCE24BA1B /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				F9874FA9EC8C6A3811234069 /* Environment.swift */,
+			);
+			path = Config;
+			sourceTree = "<group>";
+		};
+		C1E0F19EF6875E422CABBEDC /* Storage */ = {
+			isa = PBXGroup;
+			children = (
+				2B540842996EE2CE087A3C58 /* AppInfoStorage.swift */,
+				446769FD34E08B6239DCAA9D /* DeviceInfoStorage.swift */,
+				955E912F03ADE35D59EFC55D /* GameInfoStorage.swift */,
+				A403F78AE346AE7370D62695 /* GamePlayerStorage.swift */,
+				8AC40A2F429B6928B3EF3A7E /* SessionManager.swift */,
+			);
+			path = Storage;
+			sourceTree = "<group>";
+		};
+		CF4DCA5EB8A83D4EB039A394 /* DataEmptyness */ = {
+			isa = PBXGroup;
+			children = (
+				40F3DB90C21807ECF830659F /* DataEmptynessModel.swift */,
+				C559588D8BF932887EEF575A /* DatalessModel.swift */,
+			);
+			path = DataEmptyness;
+			sourceTree = "<group>";
+		};
+		DC33463C197F247B24CDDC8F /* AuthSession */ = {
+			isa = PBXGroup;
+			children = (
+				865E063B926A64622ACBD185 /* AuthSessionModel.swift */,
+			);
+			path = AuthSession;
+			sourceTree = "<group>";
+		};
+		E08C9F6FFF3253B1385786BF = {
+			isa = PBXGroup;
+			children = (
+				60733AD56B4AB9D73FB11221 /* Fonts */,
+				90D2197976CC6E0192A19299 /* Packages */,
+				15FD27CC84A6C8685A80421E /* PaymentSDK */,
+				4B148045205843256E6636D5 /* PaymentSDKTests */,
+				AA97804702A4FF92E625375D /* PaymentSDKUI */,
+				3631EE0AA71962FB43D82AEF /* Sources */,
+				ED8A13E035F33E2A6585F4A0 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		E08F3CBD6669936FF4B27B7F /* Signature */ = {
+			isa = PBXGroup;
+			children = (
+				FCCA91A046D58E9A8F1D786B /* SHA256Signature.swift */,
+			);
+			path = Signature;
+			sourceTree = "<group>";
+		};
+		E3AC18351DE51608AC49D360 /* GameInfo */ = {
+			isa = PBXGroup;
+			children = (
+				6DE03B36E623786DAF71409E /* GameInfoResponseDTO.swift */,
+			);
+			path = GameInfo;
+			sourceTree = "<group>";
+		};
+		E8DA96126B8EE197B91637C1 /* GameInfo */ = {
+			isa = PBXGroup;
+			children = (
+				ABB7A558385FD7D8913918E1 /* GameInfoModel.swift */,
+				97FDB6824F9368E0FB049E65 /* GameStatus.swift */,
+			);
+			path = GameInfo;
+			sourceTree = "<group>";
+		};
+		ED8A13E035F33E2A6585F4A0 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				DDD34E6D02E039C2185511B4 /* PaymentSDK.framework */,
+				FB7094B9EF122B4CEF2FFD39 /* PaymentSDKTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F0B8566D354CE10FE94B38AD /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				D4903D98AF8975761809C914 /* AppFont.swift */,
+				FA8314BF7F5AF4C43A1D537C /* AuthSDKBundleToken.swift */,
+				4FD8667F6446CF6C2B574D21 /* Color+.swift */,
+				921618DAE0962BB43A82150D /* FontLoader.swift */,
+				86F1A108D00DA1A0088D2E80 /* PopupModifier.swift */,
+				A6A8684B067AA9756C54E99B /* String.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		FB3D2ADADBD51F9CA1468EBD /* DTO */ = {
+			isa = PBXGroup;
+			children = (
+				89CCBB3C237EF3C540BFB741 /* APIResponse.swift */,
+				BB5F84136E5B7B333AF5D276 /* APIResponseError.swift */,
+				C798A77B7AB7BD130722C2FD /* PaymentSessionServerResponseDTO.swift */,
+				E3AC18351DE51608AC49D360 /* GameInfo */,
+				6976E74ED41E519CC837F279 /* Initializer */,
+				42FEECE3A7CCD34FFB2B7435 /* Transaction */,
+			);
+			path = DTO;
+			sourceTree = "<group>";
+		};
+		FC1529706180109D929B3A38 /* Model+Output */ = {
+			isa = PBXGroup;
+			children = (
+				EA7E10C759CBA3CA6CD43CED /* AppleVerifiedTranskModel.swift */,
+				D26F15927F99A0D3811B846D /* AuthSessionOutput.swift */,
+				A4B77E7265DBFF0B52501F81 /* DataEmptynessOutput.swift */,
+				1142E1D4542286CF1A3EF2DE /* DatalessOutput.swift */,
+				EEECC9123BA7699264FDA062 /* GameInfoOutput.swift */,
+				B12C788A77D1495B922F65B4 /* GamePackageStatusOutput.swift */,
+				548D75E8126564B483E773B6 /* PaymentSDKInitOutput.swift */,
+				3EB0C9A95712D201D3FAA6A1 /* PurchasedError.swift */,
+				C16AF46D47F708BDACF48B14 /* PurchasedFailure.swift */,
+				08AE32AA06FAA00C35962E31 /* PurchasedInvalidSKU.swift */,
+				C1849E16C47A3AAC782FCD84 /* PurchasedSuccess.swift */,
+				A87B192B40F8401F55A1B48E /* PurchasedUserCancel.swift */,
+				27B5A7BACA96F29985580033 /* PurchaseVerificationOutput.swift */,
+				46CAB3592AE954EA85FEE306 /* TransactionOutput.swift */,
+			);
+			path = "Model+Output";
+			sourceTree = "<group>";
+		};
+		FC21046580745C0434F63CE4 /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				080E73FA847A43CD13A91981 /* Initialializer.swift */,
+				B2E22623E448964C50E56ECD /* GamePlayer */,
+				0B9552E3FFC02B7691E15563 /* Payment */,
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		093959B16B7FC712C2E75F86 /* PaymentSDKTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 75C35E3C04C9FE5830F10B39 /* Build configuration list for PBXNativeTarget "PaymentSDKTests" */;
+			buildPhases = (
+				23817B02F7A9D0DE9874F5B2 /* Sources */,
+				880FAA893CC1F6DE4EEC35C9 /* Frameworks */,
+				6037058B8075F170CB83B364 /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				33A6E42893D06AFA6B7F3E84 /* PBXTargetDependency */,
+			);
+			name = PaymentSDKTests;
+			packageProductDependencies = (
+			);
+			productName = PaymentSDKTests;
+			productReference = FB7094B9EF122B4CEF2FFD39 /* PaymentSDKTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		0E0226DA07D809EABB2C4D89 /* PaymentSDK */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4D97C7950D8D0345894ECC4F /* Build configuration list for PBXNativeTarget "PaymentSDK" */;
+			buildPhases = (
+				D5FAB74F47542F0BB5226541 /* Sources */,
+				FB7F62B5B97547FAEBCF0B71 /* Resources */,
+				4B39097F5C97FF14CCCD287C /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PaymentSDK;
+			packageProductDependencies = (
+				81071C6A9360DDF175B23131 /* Mixpanel */,
+				9A30EEFCA07FD1637DD09F2E /* AuthSDK */,
+				3A3F09C06FA402EB9FC80F3E /* TrackingSDK */,
+			);
+			productName = PaymentSDK;
+			productReference = DDD34E6D02E039C2185511B4 /* PaymentSDK.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		48A1023C5CC855417DF0AFFB /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+					093959B16B7FC712C2E75F86 = {
+						DevelopmentTeam = "";
+					};
+				};
+			};
+			buildConfigurationList = E618B96280FA7F804AA984C5 /* Build configuration list for PBXProject "PaymentSDK" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = E08C9F6FFF3253B1385786BF;
+			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				A55ED1A6336D124BD62FD8D5 /* XCRemoteSwiftPackageReference "mixpanel-swift" */,
+				542496559198A1628FA4D471 /* XCLocalSwiftPackageReference "../AuthSDK" */,
+				D25D4784BAA30A293BAFD62C /* XCLocalSwiftPackageReference "../TrackingSDK" */,
+			);
+			preferredProjectObjectVersion = 77;
+			productRefGroup = ED8A13E035F33E2A6585F4A0 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				0E0226DA07D809EABB2C4D89 /* PaymentSDK */,
+				093959B16B7FC712C2E75F86 /* PaymentSDKTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		FB7F62B5B97547FAEBCF0B71 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4CE693AF9980AAA336CE6BBF /* Assets.xcassets in Resources */,
+				E98B6F1382F48BF52BC44B83 /* FS-ClanPro-NarrowUltra.ttf in Resources */,
+				97AC978B5ACB8C031CDFECAD /* Localization.xcstrings in Resources */,
+				C25204FE68B2FF250C000F41 /* Poppins-Bold.ttf in Resources */,
+				2EA8A3C69FEA989CD1850941 /* Poppins-Light.ttf in Resources */,
+				598793958E0CF455E930111C /* Poppins-LightItalic.ttf in Resources */,
+				881535559143447203CAFB15 /* Poppins-Medium.ttf in Resources */,
+				C7263570FE14DB33ADE16492 /* Poppins-SemiBold.ttf in Resources */,
+				E524C0144A00A130066EE82D /* Poppins-Thin.ttf in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		23817B02F7A9D0DE9874F5B2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EF85AFE3A366551B279CF73A /* EnvironmentTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D5FAB74F47542F0BB5226541 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BE7383F079E4B6E7C369EEDD /* APIResponse.swift in Sources */,
+				712D86492E03004AAB7FC189 /* APIResponseError.swift in Sources */,
+				2F0F296EE5F4633DB7AB0A3B /* AlertType.swift in Sources */,
+				1312AB1FD46459CFD1CCB9F1 /* Analytics.swift in Sources */,
+				9579C2CC0E828FD3A3678A80 /* AppFont.swift in Sources */,
+				A1A7F864E5AE7F0B6D18F538 /* AppInfoInput.swift in Sources */,
+				357D5A4EB40F94A302CCBC66 /* AppInfoStorage.swift in Sources */,
+				20DCDAC25C263A3E0A27DEAC /* ApplePaymentGateway.swift in Sources */,
+				714B5F44F1EAE05D29386BEF /* AppleVerifiedTranskModel.swift in Sources */,
+				7F788E9C254D2AFA5149C1AB /* AuthSDKBundleToken.swift in Sources */,
+				C6E32E768D387C6CC19711D8 /* AuthSessionInput.swift in Sources */,
+				1FC4FEE1DA326AF7B9093BB7 /* AuthSessionModel.swift in Sources */,
+				7D5D1AAA2C053D77909A6183 /* AuthSessionOutput.swift in Sources */,
+				3731C1D008973815680E3EEC /* Color+.swift in Sources */,
+				B01E6439CB6D21236C3F4C61 /* DataEmptynessModel.swift in Sources */,
+				237CE7DCC0F76F712E92EFB7 /* DataEmptynessOutput.swift in Sources */,
+				E9B14D5250EE61C8AD47DCB5 /* DatalessModel.swift in Sources */,
+				0D252CF5F9C3F0CF92F9EF73 /* DatalessOutput.swift in Sources */,
+				522133C809EDD8102340650B /* DefaultAppInfoStorage.swift in Sources */,
+				3FB43891EF6D34A59D2A00E1 /* DefaultGameInfoStorage.swift in Sources */,
+				4F15F89011A9421CB0C6ECDF /* DefaultGamePlayerManager.swift in Sources */,
+				3EB7317C4515977249A6BA37 /* DefaultInitializer.swift in Sources */,
+				EB39AA2116474DE12AA21CDD /* DefaultPaymentAPIClient.swift in Sources */,
+				9DEC96F63B77E17F2145942A /* DefaultPaymentManager.swift in Sources */,
+				BDB90C8A6C867C16A3304718 /* DeviceInfoInput.swift in Sources */,
+				506589B95B159442DBBF8537 /* DeviceInfoKeychainStorage.swift in Sources */,
+				11DF87BD15E85855689226ED /* DeviceInfoStorage.swift in Sources */,
+				F778C578D9EE24652F304316 /* Encodable+.swift in Sources */,
+				3D1706E6043F25992751BA12 /* Environment.swift in Sources */,
+				39ADC8AFEA864292D61FF730 /* FontLoader.swift in Sources */,
+				22BAF6ABE4DA3939AF47EED3 /* GameInfoInput.swift in Sources */,
+				340B94A992B2516F0E94B1D9 /* GameInfoModel.swift in Sources */,
+				EA9A06AC73A8A96304D94D8B /* GameInfoOutput.swift in Sources */,
+				E9884360A3978AD88E6A6ABA /* GameInfoResponseDTO.swift in Sources */,
+				CCF2C3A51F95A0292DE0C44E /* GameInfoStorage.swift in Sources */,
+				A462610C50C95077612F1701 /* GamePackageInput.swift in Sources */,
+				BC377951597E4791C10F0123 /* GamePackagePurchaseInput.swift in Sources */,
+				BAA29D8449B9B09D42C377FC /* GamePackageStatusDTO.swift in Sources */,
+				347A489042CF33640D743AC4 /* GamePackageStatusModel.swift in Sources */,
+				BDD7741526668AA52F0B6442 /* GamePackageStatusOutput.swift in Sources */,
+				0806F4C21007617FC974181B /* GamePlayerInput.swift in Sources */,
+				2FED5F0193E9593F24476DDA /* GamePlayerKeychainStorage.swift in Sources */,
+				C6E1DD27C56BEBDD9EB448C9 /* GamePlayerManager.swift in Sources */,
+				7E6864F4E76EAF0A805BA497 /* GamePlayerStorage.swift in Sources */,
+				E05020AF29388E1D49325ACA /* GameStatus.swift in Sources */,
+				2947C1751E81AA4B66C1AB77 /* IAPAnalytics.swift in Sources */,
+				FBC94220EC3DC987E69FAC2E /* Initialializer.swift in Sources */,
+				4CABFD7B1A76960642198D11 /* KeyChainHelper.swift in Sources */,
+				ACB43AA06C2273FD2B1CD416 /* KeyChainSessionManager.swift in Sources */,
+				943A2F6F837C8F3CF4A2DD65 /* OpenViewModel.swift in Sources */,
+				67B092F611DA5D80DDE87B97 /* OrientationObserver.swift in Sources */,
+				FE5350C0A9DC06A627E3C0A9 /* PackageItemView.swift in Sources */,
+				2FDADFEFD895A7D29F3292C6 /* PackageListView.swift in Sources */,
+				21BA41BE4060475AE4412D40 /* PackageListViewModel.swift in Sources */,
+				E4F0DC0BCE8EB39F2ECF79D7 /* PaymentAPIClient.swift in Sources */,
+				7DF7FD2126BF84C5DC6089F8 /* PaymentError.swift in Sources */,
+				211266A3D62D520B7AF32113 /* PaymentGateway.swift in Sources */,
+				7B2AD9E1C4907AA8BEF6E15E /* PaymentManager.swift in Sources */,
+				B22D06BEAAB25B44053BA264 /* PaymentSDKInitModel.swift in Sources */,
+				BF0396C5CEC8487ED348FAB3 /* PaymentSDKInitOutput.swift in Sources */,
+				2587FF8377DE3F0F82614C6A /* PaymentSDKInitResponseDTO.swift in Sources */,
+				D2354830524AA1799710EA65 /* PaymentSessionServerResponseDTO.swift in Sources */,
+				69DE403D47E1C95BDF7772E6 /* PaymentTracking.swift in Sources */,
+				900C1CF494C701368422CA7D /* PopUpView.swift in Sources */,
+				64B5038C026D0BE54C155B7A /* PopupModifier.swift in Sources */,
+				22DA7CA4376E2AA9D5827131 /* PrimaryButton.swift in Sources */,
+				9E6F1616D2E5F5A518C65A7D /* PurchaseVerificationDTO.swift in Sources */,
+				CCCCA8C2082244965698A6AB /* PurchaseVerificationModel.swift in Sources */,
+				AD484A355146756EC3710BD3 /* PurchaseVerificationOutput.swift in Sources */,
+				0B38955F78908A713ADC1538 /* PurchasedError.swift in Sources */,
+				DC09A6E91E8F3FECBB878896 /* PurchasedFailure.swift in Sources */,
+				281EF839F5BA702BD5DA41B9 /* PurchasedInvalidSKU.swift in Sources */,
+				08EA1126FCC23BE60FA3EA81 /* PurchasedSuccess.swift in Sources */,
+				B396150502B1380BE3111800 /* PurchasedUserCancel.swift in Sources */,
+				96B467606688C7CB8821C4AA /* SDKInfo.swift in Sources */,
+				81446C508F17F176E7E1D5BC /* SHA256Signature.swift in Sources */,
+				7F1FA32F3201611FA63A88B9 /* SessionManager.swift in Sources */,
+				48D40B65F58E2A4088596666 /* Signature.swift in Sources */,
+				323D59AE1E5112CF7A6F400D /* SquareContainer.swift in Sources */,
+				3D0D8FD90DDA200C07FBB258 /* String.swift in Sources */,
+				B30FCC55C7DC04A40DE22D4D /* TransactionDTO.swift in Sources */,
+				B4DC8A49DD688707910BA2D2 /* TransactionModel.swift in Sources */,
+				EBAA8C8E0A73297F679DF8A4 /* TransactionOutput.swift in Sources */,
+				1A70315373CF1E7AB4BEE604 /* TransactionStatus.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		33A6E42893D06AFA6B7F3E84 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0E0226DA07D809EABB2C4D89 /* PaymentSDK */;
+			targetProxy = 876F19706F841FF9AE1A5545 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		03235863B19B129203699FDD /* Dev */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGNING_ALLOWED = NO;
+				CODE_SIGNING_REQUIRED = NO;
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_FILE = "Sources/PaymentSDKTests/Supporting Files/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.dar.paymentsdk.tests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Dev;
+		};
+		58497CDE29F2E4D70B44ED06 /* Staging */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGNING_ALLOWED = NO;
+				CODE_SIGNING_REQUIRED = NO;
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_FILE = "Sources/PaymentSDKTests/Supporting Files/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.dar.paymentsdk.tests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Staging;
+		};
+		6EF59989BAD779BB16F3F6F9 /* Production */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGNING_ALLOWED = NO;
+				CODE_SIGNING_REQUIRED = NO;
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_FILE = "Sources/PaymentSDKTests/Supporting Files/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.dar.paymentsdk.tests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Production;
+		};
+		760B8E6F37E6430263D131EC /* Production */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
+				CODE_SIGN_IDENTITY = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				INFOPLIST_FILE = "Sources/PaymentSDK/Supporting Files/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.dar.paymentsdk;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = NO;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+			};
+			name = Production;
+		};
+		89B534230AF0FB7B9DF48DFB /* Dev */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 2;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_LANGUAGE = vi;
+				ENABLE_PREVIEWS = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				MARKETING_VERSION = "0.9.0-alpha";
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "$(inherited)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEV;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.9;
+			};
+			name = Dev;
+		};
+		92223B17BED0933BC31884D2 /* Dev */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
+				CODE_SIGN_IDENTITY = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				INFOPLIST_FILE = "Sources/PaymentSDK/Supporting Files/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.dar.paymentsdk;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = NO;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+			};
+			name = Dev;
+		};
+		9C2594C3876CC2556085859B /* Staging */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
+				CODE_SIGN_IDENTITY = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				INFOPLIST_FILE = "Sources/PaymentSDK/Supporting Files/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.dar.paymentsdk;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = NO;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+			};
+			name = Staging;
+		};
+		D32914E67DA2BEC1A1DDDE4E /* Staging */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 2;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_LANGUAGE = vi;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_PREVIEWS = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				MARKETING_VERSION = "0.9.0-alpha";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				OTHER_LDFLAGS = "$(inherited)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = STAGING;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.9;
+			};
+			name = Staging;
+		};
+		D93A453F0B8BFD63C9C18EE5 /* Production */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 2;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_LANGUAGE = vi;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_PREVIEWS = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				MARKETING_VERSION = "0.9.0-alpha";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				OTHER_LDFLAGS = "$(inherited)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = PRODUCTION;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.9;
+			};
+			name = Production;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		4D97C7950D8D0345894ECC4F /* Build configuration list for PBXNativeTarget "PaymentSDK" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				92223B17BED0933BC31884D2 /* Dev */,
+				760B8E6F37E6430263D131EC /* Production */,
+				9C2594C3876CC2556085859B /* Staging */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Dev;
+		};
+		75C35E3C04C9FE5830F10B39 /* Build configuration list for PBXNativeTarget "PaymentSDKTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				03235863B19B129203699FDD /* Dev */,
+				6EF59989BAD779BB16F3F6F9 /* Production */,
+				58497CDE29F2E4D70B44ED06 /* Staging */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Dev;
+		};
+		E618B96280FA7F804AA984C5 /* Build configuration list for PBXProject "PaymentSDK" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				89B534230AF0FB7B9DF48DFB /* Dev */,
+				D93A453F0B8BFD63C9C18EE5 /* Production */,
+				D32914E67DA2BEC1A1DDDE4E /* Staging */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Dev;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCLocalSwiftPackageReference section */
+		542496559198A1628FA4D471 /* XCLocalSwiftPackageReference "../AuthSDK" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = ../AuthSDK;
+		};
+		D25D4784BAA30A293BAFD62C /* XCLocalSwiftPackageReference "../TrackingSDK" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = ../TrackingSDK;
+		};
+/* End XCLocalSwiftPackageReference section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		A55ED1A6336D124BD62FD8D5 /* XCRemoteSwiftPackageReference "mixpanel-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/mixpanel/mixpanel-swift.git";
+			requirement = {
+				kind = exactVersion;
+				version = 5.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		3A3F09C06FA402EB9FC80F3E /* TrackingSDK */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = TrackingSDK;
+		};
+		81071C6A9360DDF175B23131 /* Mixpanel */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A55ED1A6336D124BD62FD8D5 /* XCRemoteSwiftPackageReference "mixpanel-swift" */;
+			productName = Mixpanel;
+		};
+		9A30EEFCA07FD1637DD09F2E /* AuthSDK */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = AuthSDK;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = 48A1023C5CC855417DF0AFFB /* Project object */;
+}

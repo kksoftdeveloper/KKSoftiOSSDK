@@ -1,0 +1,4 @@
+framework module AuthSDK {
+  header "AuthSDK-Swift.h"
+  requires objc
+}
