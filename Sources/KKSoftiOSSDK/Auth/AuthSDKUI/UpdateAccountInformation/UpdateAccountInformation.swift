@@ -146,6 +146,7 @@ struct UpdateAccountInformation: View {
                 .frame(width: primaryButtonWidth, height: primaryButtonWidth * 0.35)
             }
         )
+        .hideKeyboardOnTap()
     }
 
     private var personalFields: some View {

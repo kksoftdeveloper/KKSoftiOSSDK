@@ -338,6 +338,7 @@ public struct WelcomeView: View {
                 )
                 .frame(width: primaryButtonWidth, height: primaryButtonWidth*0.35)
             }
+            .hideKeyboardOnTap()
         if showIDFVDialog {
             IDFVDialogView(
                 idfv: UIDevice.current.identifierForVendor?.uuidString ?? "Not Available",
@@ -478,6 +479,105 @@ public struct WelcomeView: View {
                     print("Guardian OTP verification failed with message \(authError)")
                 }
             )
+        case .accountInfoConfirmation:
+            AccountInfoConfirmationView(
+                onClose: {
+                    viewModel.presentedScreen = nil
+                },
+                onContinue: { isAtLeast16Confirmed in
+                    viewModel.startProfileCompletion(isAtLeast16Confirmed: isAtLeast16Confirmed)
+                }
+            )
+        case .postLoginPhoneNumberInput(let session, let isAtLeast16Confirmed):
+            PhoneNumberInputView(
+                flowType: .register,
+                presentedScreen: $viewModel.presentedScreen,
+                authManager: viewModel.authManager,
+                onOTPRequested: { phoneNumber, otpResponse, isAtLeast16Confirmed in
+                    viewModel.presentedScreen = .postLoginPhoneOTPInput(
+                        session: session,
+                        phoneNumber: phoneNumber,
+                        otpSendableResponse: otpResponse,
+                        isAtLeast16Confirmed: isAtLeast16Confirmed
+                    )
+                }
+            )
+        case .postLoginPhoneOTPInput(let session, let phoneNumber, let otpSendableResponse, let isAtLeast16Confirmed):
+            OTPInputView(
+                flowType: .register,
+                phoneNumber: phoneNumber,
+                otpSendableResponse: otpSendableResponse,
+                stepIndex: 2,
+                totalStepCount: isAtLeast16Confirmed ? 3 : 5,
+                presentedScreen: $viewModel.presentedScreen,
+                authManager: viewModel.authManager,
+                onSuccess: { phoneNumber, _ in
+                    viewModel.presentedScreen = .postLoginPersonalInformation(
+                        session: session,
+                        phoneNumber: phoneNumber,
+                        isAtLeast16Confirmed: isAtLeast16Confirmed
+                    )
+                },
+                onFailure: { authError in
+                    print("Post-login phone OTP verification failed with message \(authError)")
+                }
+            )
+        case .postLoginPersonalInformation(let session, let phoneNumber, let isAtLeast16Confirmed):
+            UpdateAccountInformation(
+                authManager: viewModel.authManager,
+                phoneNumber: phoneNumber,
+                isAtLeast16Confirmed: isAtLeast16Confirmed,
+                screenStep: .personal,
+                onClose: {
+                    viewModel.presentedScreen = nil
+                },
+                onPersonalInfoReady: { accountInformation in
+                    viewModel.presentedScreen = .postLoginGuardianInformation(
+                        session: session,
+                        isAtLeast16Confirmed: isAtLeast16Confirmed,
+                        accountInformation: accountInformation
+                    )
+                },
+                onRegistrationInfoReady: { accountInformation, _ in
+                    viewModel.finishProfileCompletion()
+                }
+            )
+        case .postLoginGuardianInformation(let session, let isAtLeast16Confirmed, let baseAccountInformation):
+            UpdateAccountInformation(
+                authManager: viewModel.authManager,
+                phoneNumber: baseAccountInformation.personalInfo.phoneNumber,
+                isAtLeast16Confirmed: isAtLeast16Confirmed,
+                screenStep: .guardian,
+                baseAccountInformation: baseAccountInformation,
+                onClose: {
+                    viewModel.presentedScreen = nil
+                },
+                onRegistrationInfoReady: { accountInformation, guardianOTPResponse in
+                    guard let guardianOTPResponse else { return }
+                    viewModel.presentedScreen = .postLoginGuardianOTPInput(
+                        session: session,
+                        guardianPhoneNumber: accountInformation.guardianInfo.phoneNumber,
+                        otpSendableResponse: guardianOTPResponse,
+                        accountInformation: accountInformation
+                    )
+                }
+            )
+        case .postLoginGuardianOTPInput(_, let guardianPhoneNumber, let otpSendableResponse, let accountInformation):
+            OTPInputView(
+                flowType: .register,
+                phoneNumber: guardianPhoneNumber,
+                otpSendableResponse: otpSendableResponse,
+                stepIndex: 5,
+                totalStepCount: 5,
+                presentedScreen: $viewModel.presentedScreen,
+                authManager: viewModel.authManager,
+                onSuccess: { _, _ in
+                    viewModel.finishProfileCompletion()
+                },
+                onFailure: { authError in
+                    print("Post-login guardian OTP verification failed with message \(authError)")
+                }
+            )
         case .passwordInput(let flowType, let phoneNumber, let otpVerifiedToken, let accountInformation):
             PasswordInputView(
                 flowType: flowType,
@@ -557,6 +657,12 @@ public enum PopupScreen: Hashable, Identifiable, Equatable {
     case guardianInformation(phoneNumber: String, otpVerifiedToken: String, isAtLeast16Confirmed: Bool, accountInformation: AccountInformation)
     case guardianOTPInput(phoneNumber: String, otpVerifiedToken: String, guardianPhoneNumber: String, otpSendableResponse: OTPSendableResponse, accountInformation: AccountInformation)
     case passwordInput(type: FlowType, phoneNumber: String, otpVerifiedToken: String, accountInformation: AccountInformation?)
+    case accountInfoConfirmation(session: AuthSessionResponse)
+    case postLoginPhoneNumberInput(session: AuthSessionResponse, isAtLeast16Confirmed: Bool)
+    case postLoginPhoneOTPInput(session: AuthSessionResponse, phoneNumber: String, otpSendableResponse: OTPSendableResponse, isAtLeast16Confirmed: Bool)
+    case postLoginPersonalInformation(session: AuthSessionResponse, phoneNumber: String, isAtLeast16Confirmed: Bool)
+    case postLoginGuardianInformation(session: AuthSessionResponse, isAtLeast16Confirmed: Bool, accountInformation: AccountInformation)
+    case postLoginGuardianOTPInput(session: AuthSessionResponse, guardianPhoneNumber: String, otpSendableResponse: OTPSendableResponse, accountInformation: AccountInformation)
     case linkAccount(guestToken: String)
     case updateAccountInfo
     case forceUpdate
@@ -583,6 +689,18 @@ public enum PopupScreen: Hashable, Identifiable, Equatable {
             return "guardian-otp-\(phoneNumber)-\(guardianPhoneNumber)"
         case .passwordInput(_, let phoneNumber, _, _):
             return "password-\(phoneNumber)"
+        case .accountInfoConfirmation(let session):
+            return "account-info-confirmation-\(session.accessToken)"
+        case .postLoginPhoneNumberInput(let session, let isAtLeast16Confirmed):
+            return "post-login-phone-\(session.accessToken)-\(isAtLeast16Confirmed)"
+        case .postLoginPhoneOTPInput(let session, let phoneNumber, _, let isAtLeast16Confirmed):
+            return "post-login-phone-otp-\(session.accessToken)-\(phoneNumber)-\(isAtLeast16Confirmed)"
+        case .postLoginPersonalInformation(let session, let phoneNumber, let isAtLeast16Confirmed):
+            return "post-login-personal-\(session.accessToken)-\(phoneNumber)-\(isAtLeast16Confirmed)"
+        case .postLoginGuardianInformation(let session, let isAtLeast16Confirmed, _):
+            return "post-login-guardian-\(session.accessToken)-\(isAtLeast16Confirmed)"
+        case .postLoginGuardianOTPInput(let session, let guardianPhoneNumber, _, _):
+            return "post-login-guardian-otp-\(session.accessToken)-\(guardianPhoneNumber)"
         case .linkAccount(let guestToken):
             return "link-\(guestToken)"
         case .updateAccountInfo:
@@ -661,6 +779,82 @@ private struct RegistrationCompletedView: View {
                     let primaryButtonWidth = contentWidth * 0.46
                     PrimaryButton(
                         action: onContinue,
+                        label: {
+                            Text(.sdkAsset("continue"))
+                        },
+                        isDisabled: false
+                    )
+                    .frame(width: primaryButtonWidth, height: primaryButtonWidth * 0.35)
+                }
+            )
+            .preferredColorScheme(.light)
+            .frame(width: geo.size.width, height: geo.size.height, alignment: .center)
+            .background(Color.black.opacity(0.5))
+        }
+    }
+}
+
+private struct AccountInfoConfirmationView: View {
+    @SwiftUI.Environment(\.verticalSizeClass) private var verticalSizeClass
+    @State private var isAtLeast16Confirmed = true
+
+    let onClose: () -> Void
+    let onContinue: (Bool) -> Void
+
+    private var confirmationText: AttributedString {
+        AttributedString("Tôi xác nhận mình từ đủ 16 tuổi trở lên")
+    }
+
+    var body: some View {
+        GeometryReader { geo in
+            let isLandscape = verticalSizeClass == .compact
+            let isPad = UIDevice.current.userInterfaceIdiom == .pad
+            let width = UIScreen.main.bounds.size.width
+            let height = UIScreen.main.bounds.size.height
+            let minValue = min(width, height, CGFloat((isPad ? 440 : Int.max)))
+            let contentWidth = isLandscape ? minValue * 0.8 * 0.9 : minValue
+            let contentHeight = isLandscape ? minValue * 0.9 : minValue * 1.2
+
+            AuthContainer(
+                wid: contentWidth,
+                hei: contentHeight,
+                onCloseClick: onClose,
+                content: {
+                    VStack(spacing: 14) {
+                        Image(systemName: "exclamationmark.circle.fill")
+                            .font(.system(size: 38, weight: .semibold))
+                            .foregroundColor(.orange)
+
+                        Text("Cần cập nhật thông tin")
+                            .font(AppFont.fsClanNarrowUltra.of(size: 18))
+                            .foregroundColor(.primaryText)
+                            .multilineTextAlignment(.center)
+
+                        Text("Vui lòng bổ sung thông tin bắt buộc để tiếp tục đăng nhập.")
+                            .font(AppFont.poppinsRegular.of(size: 12))
+                            .foregroundColor(.primaryText)
+                            .multilineTextAlignment(.center)
+                            .padding(.horizontal, isLandscape ? 24 : 48)
+
+                        CheckedBoxText(
+                            lineLimit: 2,
+                            isChecked: $isAtLeast16Confirmed,
+                            text: "",
+                            attributedText: confirmationText,
+                            onToggle: { newValue in
+                                isAtLeast16Confirmed = newValue
+                            }
+                        )
+                        .padding(.horizontal, isLandscape ? 24 : 48)
+                    }
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                },
+                footer: {
+                    let primaryButtonWidth = contentWidth * 0.46
+                    PrimaryButton(
+                        action: {
+                            onContinue(isAtLeast16Confirmed)
+                        },
                         label: {
                             Text(.sdkAsset("continue"))
                         },

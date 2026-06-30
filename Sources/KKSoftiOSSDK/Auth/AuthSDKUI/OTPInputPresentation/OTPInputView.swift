@@ -151,6 +151,7 @@ struct OTPInputView: View {
                 .frame(width: primaryButtonWidth, height: primaryButtonWidth*0.35)
             }
         )
+        .hideKeyboardOnTap()
     }
     
     @ViewBuilder

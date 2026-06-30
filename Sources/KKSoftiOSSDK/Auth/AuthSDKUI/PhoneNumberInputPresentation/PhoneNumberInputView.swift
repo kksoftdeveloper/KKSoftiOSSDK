@@ -11,11 +11,17 @@ struct PhoneNumberInputView: View {
     @FocusState private var phoneFocused: Bool
     @SwiftUI.Environment(\.verticalSizeClass) private var verticalSizeClass
     
-    init(flowType: FlowType, presentedScreen: Binding<PopupScreen?>, authManager: AuthManager) {
+    init(
+        flowType: FlowType,
+        presentedScreen: Binding<PopupScreen?>,
+        authManager: AuthManager,
+        onOTPRequested: ((String, OTPSendableResponse, Bool) -> Void)? = nil
+    ) {
         self._viewModel = StateObject(wrappedValue: PhoneNumberInputViewModel(
             flowType: flowType,
             presentedScreen: presentedScreen,
-            authManager: authManager
+            authManager: authManager,
+            onOTPRequested: onOTPRequested
         ))
     }
     
@@ -160,6 +166,7 @@ struct PhoneNumberInputView: View {
             )
             .frame(width: primaryButtonWidth, height: primaryButtonWidth*0.35)
         }
+        .hideKeyboardOnTap()
     }
 }
 

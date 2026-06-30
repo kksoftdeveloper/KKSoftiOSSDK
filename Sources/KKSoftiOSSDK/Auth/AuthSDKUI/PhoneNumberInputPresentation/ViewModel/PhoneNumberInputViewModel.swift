@@ -20,11 +20,18 @@ class PhoneNumberInputViewModel: OpenViewModel {
     @Published var errorMessage: LocalizedStringKey? = nil
     @Published var resendCountdown:  Int = 0
     let authManager: AuthManager
+    private let onOTPRequested: ((String, OTPSendableResponse, Bool) -> Void)?
 
-    init(flowType: FlowType, presentedScreen: Binding<PopupScreen?>, authManager: AuthManager) {
+    init(
+        flowType: FlowType,
+        presentedScreen: Binding<PopupScreen?>,
+        authManager: AuthManager,
+        onOTPRequested: ((String, OTPSendableResponse, Bool) -> Void)? = nil
+    ) {
         self.flowType = flowType
         self._presentedScreen = presentedScreen
         self.authManager = authManager
+        self.onOTPRequested = onOTPRequested
         super.init()
         
         $phoneNumber
@@ -35,6 +42,10 @@ class PhoneNumberInputViewModel: OpenViewModel {
     
     func handleContinue(otpSendableResponse: OTPSendableResponse) {
         if isValidPhoneNumber {
+            if let onOTPRequested {
+                onOTPRequested(phoneNumber, otpSendableResponse, isAtLeast16Confirmed)
+                return
+            }
             presentedScreen = .otpInput(
                 type: flowType,
                 phoneNumber: phoneNumber,

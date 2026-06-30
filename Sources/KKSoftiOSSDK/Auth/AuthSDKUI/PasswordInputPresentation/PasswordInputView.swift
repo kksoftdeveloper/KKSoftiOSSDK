@@ -194,6 +194,7 @@ struct PasswordInputView: View {
                 .frame(width: primaryButtonWidth, height: primaryButtonWidth*0.35)
             }
         )
+        .hideKeyboardOnTap()
     }
 }
 

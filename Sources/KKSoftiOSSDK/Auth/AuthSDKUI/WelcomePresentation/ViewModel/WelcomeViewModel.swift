@@ -51,6 +51,7 @@ public class WelcomeViewModel: OpenViewModel, AnalyticsProperties {
     
     private var timerCancellable: AnyCancellable?
     private let popupInterval = 60  // seconds
+    private var pendingLoginCompletionSession: AuthSessionResponse?
     
     deinit {
         timerCancellable?.cancel()
@@ -182,7 +183,7 @@ public class WelcomeViewModel: OpenViewModel, AnalyticsProperties {
                 guard let self else { return }
                 self.isLoading = false
                 print("✅ Login Success: \(data)")
-                self.onLoginSuccess(data)
+                self.completeLoginIfProfileReady(data)
             })
             .store(in: &cancellables)
     }
@@ -213,8 +214,7 @@ public class WelcomeViewModel: OpenViewModel, AnalyticsProperties {
             }, receiveValue: { [weak self] data in
                 guard let self else { return }
                 print("✅ Login Facebook Success: \(data.accessToken)")
-                self.authSession = data
-                self.onInputAccountInfo(data)
+                self.completeLoginIfProfileReady(data)
             })
             .store(in: &cancellables)
     }
@@ -246,8 +246,7 @@ public class WelcomeViewModel: OpenViewModel, AnalyticsProperties {
             }, receiveValue: { [weak self] data in
                 guard let self else { return }
                 print("✅ Login Google Success: \(data)")
-                self.authSession = data
-                self.onInputAccountInfo(data)
+                self.completeLoginIfProfileReady(data)
             })
             .store(in: &cancellables)
     }
@@ -279,19 +278,50 @@ public class WelcomeViewModel: OpenViewModel, AnalyticsProperties {
             }, receiveValue: { [weak self] data in
                 guard let self else { return }
                 print("✅ Apple Google Success: \(data.accessToken)")
-                self.authSession = data
-                self.onInputAccountInfo(data)
+                self.completeLoginIfProfileReady(data)
             })
             .store(in: &cancellables)
     }
     
-    private func onInputAccountInfo(_ data: AuthSessionResponse) {
-        if data.isNewUser == true {
-            authSession = data
-            presentedScreen = .updateAccountInfo
+    func completeLoginIfProfileReady(_ data: AuthSessionResponse) {
+        authSession = data
+        if requiresProfileCompletion(data) {
+            pendingLoginCompletionSession = data
+            presentedScreen = .accountInfoConfirmation(session: data)
         } else {
-            self.onLoginSuccess(data)
+            onLoginSuccess(data)
         }
+    }
+
+    func startProfileCompletion(isAtLeast16Confirmed: Bool) {
+        guard let session = pendingLoginCompletionSession ?? authSession else { return }
+        let phoneNumber = authManager.getPhoneNumber()
+        guard phoneNumber.isValidPhoneNumber() else {
+            presentedScreen = .postLoginPhoneNumberInput(
+                session: session,
+                isAtLeast16Confirmed: isAtLeast16Confirmed
+            )
+            return
+        }
+        presentedScreen = .postLoginPersonalInformation(
+            session: session,
+            phoneNumber: phoneNumber,
+            isAtLeast16Confirmed: isAtLeast16Confirmed
+        )
+    }
+
+    func finishProfileCompletion() {
+        guard let session = pendingLoginCompletionSession ?? authSession else {
+            presentedScreen = nil
+            return
+        }
+        pendingLoginCompletionSession = nil
+        presentedScreen = nil
+        onLoginSuccess(session)
+    }
+
+    private func requiresProfileCompletion(_ data: AuthSessionResponse) -> Bool {
+        data.isNewUser == true
     }
 
     func loginAsGuest() {
