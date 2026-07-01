@@ -37,7 +37,7 @@ In the Xcode project exported from Unity:
 https://github.com/kksoftdeveloper/KKSoftiOSSDK.git
 ```
 
-6. Select the required version or branch.
+6. Select Commit -> input Commit code.
 7. Add the `KKSoftiOSSDK` product to the `Unity-iPhone` target.
 8. Make sure both `UnityFramework` and `Unity-iPhone` use iOS deployment target 15.0+.
 
@@ -987,7 +987,7 @@ After login succeeds, the reference bridge calls `setupPayment(session:)` so Pay
 Unity may overwrite the Xcode project on every export. Create a `PostProcessBuild` script to:
 
 - Add the Swift bridge file to the Xcode project.
-- Add Swift Package dependency `https://github.com/kksoftdeveloper/KKSoftiOSSDK.git`.
+- Add Swift Package dependency `https://github.com/kksoftdeveloper/KKSoftiOSSDK.git`, select Commit, input: afe63641f596d16d651c529e5bf62ea68ced3379
 - Link the `KKSoftiOSSDK` product to the `Unity-iPhone` target.
 - Set iOS deployment target 15.0.
 - Add capabilities: Sign In with Apple, In-App Purchase.
@@ -1043,4 +1043,4 @@ If you do not have a post-process script yet, configure Xcode manually first, th
 - Test the ATT prompt on a real device.
 
 ## 12. Update the SDK:
-In Xcode, select Package Dependencies, then right-click and choose Update to Latest Package Versions. 
+In Xcode, select Project → Package Dependencies, input new Commit, then Enter. 

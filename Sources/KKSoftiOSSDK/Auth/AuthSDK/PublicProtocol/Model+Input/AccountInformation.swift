@@ -90,6 +90,7 @@ public struct GuardianInfo: Encodable, Equatable, Hashable {
     public let relation: String
     public let locked: Bool
     public let phoneNumber: String
+    public let otpVerifiedToken: String?
 
     public init(
         fullName: String,
@@ -101,7 +102,8 @@ public struct GuardianInfo: Encodable, Equatable, Hashable {
         idIssuePlace: String,
         relation: String,
         locked: Bool,
-        phoneNumber: String = ""
+        phoneNumber: String = "",
+        otpVerifiedToken: String? = nil
     ) {
         self.fullName = fullName
         self.gender = gender
@@ -113,5 +115,6 @@ public struct GuardianInfo: Encodable, Equatable, Hashable {
         self.relation = relation
         self.locked = locked
         self.phoneNumber = phoneNumber
+        self.otpVerifiedToken = otpVerifiedToken
     }
 }

@@ -101,18 +101,8 @@ class PasswordInputViewModel: OpenViewModel {
             publisher = authManager
                 .signup(phoneNumber: phoneNumber,
                         password: password,
-                        otpVerifiedToken: otpVerifiedToken)
-                .flatMap { [weak self] session -> AnyPublisher<AuthSessionResponse, Error> in
-                    guard let self, let accountInformation = self.accountInformation else {
-                        return Just(session)
-                            .setFailureType(to: Error.self)
-                            .eraseToAnyPublisher()
-                    }
-
-                    return self.authManager.updateAccountInfo(data: accountInformation)
-                        .map { _ in session }
-                        .eraseToAnyPublisher()
-                }
+                        otpVerifiedToken: otpVerifiedToken,
+                        accountInformation: accountInformation)
                 .receive(on: DispatchQueue.main)
                 .map { [weak self] session in
                     guard let self else { return }

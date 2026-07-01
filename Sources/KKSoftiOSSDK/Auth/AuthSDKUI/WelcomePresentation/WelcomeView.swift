@@ -231,6 +231,7 @@ public struct WelcomeView: View {
                         socialLoginButton(
                             iconName: "IconApple",
                             title: "Apple",
+                            iconSize: iconSize,
                             action: {
                                 focusedField = nil
                                 viewModel.loginViaApple()
@@ -240,6 +241,7 @@ public struct WelcomeView: View {
                         socialLoginButton(
                             iconName: "IconGoogle",
                             title: "Google",
+                            iconSize: iconSize,
                             action: {
                                 focusedField = nil
                                 viewModel.loginGoogle()
@@ -249,13 +251,13 @@ public struct WelcomeView: View {
                         socialLoginButton(
                             iconName: "IconFacebook",
                             title: "Facebook",
+                            iconSize: iconSize,
                             action: {
                                 focusedField = nil
                                 viewModel.loginFacebook()
                             }
                         )
                     }
-                    .environment(\.socialLoginIconSize, iconSize)
                     .padding(.top, isPortrait ? 4 : 2)
                     
                     HStack {
@@ -333,6 +335,81 @@ public struct WelcomeView: View {
         }
     }
     
+    private var loginTermsText: AttributedString {
+        var text = AttributedString("Tôi đồng ý với ")
+        text.foregroundColor = .grayish
+
+        var terms = AttributedString("Điều khoản")
+        terms.foregroundColor = .blue
+        terms.link = URL(string: "https://kksoft.vn/dieu-khoan")
+        text.append(terms)
+
+        var andText = AttributedString(" và ")
+        andText.foregroundColor = .grayish
+        text.append(andText)
+
+        var policy = AttributedString("Chính sách sử dụng")
+        policy.foregroundColor = .blue
+        policy.link = URL(string: "https://kksoft.vn/chinh-sach-su-dung")
+        text.append(policy)
+
+        return text
+    }
+
+    @ViewBuilder
+    private func requiredFieldLabel(_ title: LocalizedStringKey) -> some View {
+        HStack(spacing: 0) {
+            Text(title)
+                .font(AppFont.poppinsRegular.of(size: 13))
+                .foregroundColor(.primaryText)
+            Text("*")
+                .font(AppFont.poppinsRegular.of(size: 13))
+                .foregroundColor(.red)
+        }
+    }
+
+    private func socialLoginButton(
+        iconName: String,
+        title: String,
+        iconSize: CGFloat,
+        action: @escaping () -> Void
+    ) -> some View {
+        SecondaryButton(
+            action: action,
+            content: {
+                HStack(spacing: 5) {
+                    Image(sdkAsset: iconName)
+                        .resizable()
+                        .renderingMode(.original)
+                        .frame(width: iconSize, height: iconSize)
+
+                    Text(title)
+                        .font(AppFont.poppinsMedium.of(size: 12))
+                        .foregroundColor(.white)
+                        .lineLimit(1)
+                        .minimumScaleFactor(0.75)
+                }
+                .frame(maxWidth: .infinity, minHeight: 20)
+            }
+        )
+        .frame(height: 36)
+        .layoutPriority(1)
+    }
+
+    private func loginTextButton(
+        title: LocalizedStringKey,
+        action: @escaping () -> Void
+    ) -> some View {
+        Button(action: action) {
+            Text(title)
+                .font(AppFont.poppinsBold.of(size: 13))
+                .foregroundColor(.blue)
+                .lineLimit(1)
+                .minimumScaleFactor(0.85)
+        }
+        .buttonStyle(.plain)
+    }
+
     private func requestTrackingAuthorizationIfNeeded() {
         guard !hasRequestedTrackingAuthorization else { return }
         hasRequestedTrackingAuthorization = true
@@ -450,12 +527,32 @@ public struct WelcomeView: View {
                 totalStepCount: 6,
                 presentedScreen: $viewModel.presentedScreen,
                 authManager: viewModel.authManager,
-                onSuccess: { _, _ in
+                onSuccess: { _, guardianOTPToken in
+                    let verifiedGuardianInfo = GuardianInfo(
+                        fullName: accountInformation.guardianInfo.fullName,
+                        gender: accountInformation.guardianInfo.gender,
+                        dob: accountInformation.guardianInfo.dob,
+                        address: accountInformation.guardianInfo.address,
+                        idNumber: accountInformation.guardianInfo.idNumber,
+                        idIssueDate: accountInformation.guardianInfo.idIssueDate,
+                        idIssuePlace: accountInformation.guardianInfo.idIssuePlace,
+                        relation: accountInformation.guardianInfo.relation,
+                        locked: accountInformation.guardianInfo.locked,
+                        phoneNumber: accountInformation.guardianInfo.phoneNumber,
+                        otpVerifiedToken: guardianOTPToken
+                    )
+                    let verifiedAccountInformation = AccountInformation(
+                        avatarUrl: accountInformation.avatarUrl,
+                        displayName: accountInformation.displayName,
+                        personalInfo: accountInformation.personalInfo,
+                        guardianInfo: verifiedGuardianInfo,
+                        sign: accountInformation.sign
+                    )
                     viewModel.presentedScreen = .passwordInput(
                         type: .register,
                         phoneNumber: phoneNumber,
                         otpVerifiedToken: otpVerifiedToken,
-                        accountInformation: accountInformation
+                        accountInformation: verifiedAccountInformation
                     )
                 },
                 onFailure: { authError in

@@ -269,6 +269,20 @@ public struct DefaultAuthManager: AuthManager, AnalyticsProperties {
     }
     
     public func signup(phoneNumber: String, password: String, otpVerifiedToken: String?) -> AnyPublisher<AuthSessionResponse, Error> {
+        signup(
+            phoneNumber: phoneNumber,
+            password: password,
+            otpVerifiedToken: otpVerifiedToken,
+            accountInformation: nil
+        )
+    }
+
+    public func signup(
+        phoneNumber: String,
+        password: String,
+        otpVerifiedToken: String?,
+        accountInformation: AccountInformation?
+    ) -> AnyPublisher<AuthSessionResponse, Error> {
 
         do {
             let validatedPhoneSignupParameters = PhoneSignupParameters(phone: phoneNumber, password: password)
@@ -278,7 +292,12 @@ public struct DefaultAuthManager: AuthManager, AnalyticsProperties {
                 throw AuthErrorResponse.unknownError()
             }
             
-            return manager.signup(phone: phoneNumber, password: password, otpVerifiedToken: otpVerifiedToken)
+            return manager.signup(
+                phone: phoneNumber,
+                password: password,
+                otpVerifiedToken: otpVerifiedToken,
+                accountInformation: accountInformation
+            )
                 .flatMap { session -> AnyPublisher<AuthSessionResponse, Error> in
                     guard
                         let pwdManager = self.phonePasswordLoginManager,

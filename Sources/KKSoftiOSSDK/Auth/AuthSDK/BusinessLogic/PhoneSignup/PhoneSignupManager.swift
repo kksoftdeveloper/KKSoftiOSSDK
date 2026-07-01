@@ -5,6 +5,7 @@
 
 import Foundation
 import Combine
+import UIKit
 
 
 final class PhoneSignupManager : SignupManager, DeviceIdentifiable, SDKInfo, SignupAnalytics {
@@ -30,6 +31,15 @@ final class PhoneSignupManager : SignupManager, DeviceIdentifiable, SDKInfo, Sig
     }
     
     func signup(phone: String, password: String, otpVerifiedToken: String?) -> AnyPublisher<AuthSessionResponse, any Error> {
+        signup(phone: phone, password: password, otpVerifiedToken: otpVerifiedToken, accountInformation: nil)
+    }
+
+    func signup(
+        phone: String,
+        password: String,
+        otpVerifiedToken: String?,
+        accountInformation: AccountInformation?
+    ) -> AnyPublisher<AuthSessionResponse, any Error> {
         
         guard let verifiedToken = otpVerifiedToken else {
             BaseAnalytics.track(event: self.phoneSignup, properties: [self.failure: AuthErrorResponse.otpError().message])
@@ -53,6 +63,7 @@ final class PhoneSignupManager : SignupManager, DeviceIdentifiable, SDKInfo, Sig
         
         let body = PhoneSignupRequestBody(
             appVersion: appVersion,
+            device: UIDevice.current.model,
             deviceId: deviceID,
             gameId: gameId,
             serverId: serverId,
@@ -61,6 +72,7 @@ final class PhoneSignupManager : SignupManager, DeviceIdentifiable, SDKInfo, Sig
             platform: platform,
             otpVerifiedToken: verifiedToken,
             sdkVersion: versionName,
+            accountInformation: accountInformation,
             sign: sign
         )
         BaseAnalytics.track(event: self.phoneSignup, properties: [self.request: body.toDictionary().toMixpanelType() ])
@@ -162,16 +174,94 @@ final class PhoneSignupManager : SignupManager, DeviceIdentifiable, SDKInfo, Sig
 
 private struct PhoneSignupRequestBody: Encodable {
     let appVersion: String
+    let device: String
     let deviceId: String
     let gameId: Int
     let serverId: Int
-    let type: String = "phone"
     let phone: String
     let password: String
     let platform: String
     let otpVerifiedToken: String
     let sdkVersion: String
+    let accountInformation: AccountInformation?
     let sign: String
+
+    enum CodingKeys: String, CodingKey {
+        case appVersion
+        case device
+        case deviceId
+        case gameId
+        case serverId
+        case phone
+        case password
+        case platform
+        case otpVerifiedToken
+        case sdkVersion
+        case fullName
+        case dateOfBirth
+        case gender
+        case address
+        case consent
+        case guardian
+        case sign
+    }
+
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(appVersion, forKey: .appVersion)
+        try container.encode(device, forKey: .device)
+        try container.encode(deviceId, forKey: .deviceId)
+        try container.encode(gameId, forKey: .gameId)
+        try container.encode(serverId, forKey: .serverId)
+        try container.encode(phone, forKey: .phone)
+        try container.encode(password, forKey: .password)
+        try container.encode(platform, forKey: .platform)
+        try container.encode(otpVerifiedToken, forKey: .otpVerifiedToken)
+        try container.encode(sdkVersion, forKey: .sdkVersion)
+        try container.encode(sign, forKey: .sign)
+
+        guard let accountInformation else { return }
+        let personalInfo = accountInformation.personalInfo
+        try container.encode(personalInfo.fullName, forKey: .fullName)
+        try container.encode(personalInfo.dob, forKey: .dateOfBirth)
+        try container.encode(personalInfo.gender, forKey: .gender)
+        try container.encode(personalInfo.address, forKey: .address)
+
+        let hasGuardian = !accountInformation.guardianInfo.phoneNumber.isEmpty
+        try container.encode(
+            SignupConsent(
+                legalAccepted: true,
+                selfRegistrationAgeConfirmed: !hasGuardian
+            ),
+            forKey: .consent
+        )
+
+        if hasGuardian {
+            try container.encode(
+                SignupGuardian(
+                    fullName: accountInformation.guardianInfo.fullName,
+                    dateOfBirth: accountInformation.guardianInfo.dob,
+                    phone: accountInformation.guardianInfo.phoneNumber,
+                    address: accountInformation.guardianInfo.address,
+                    otpVerifiedToken: accountInformation.guardianInfo.otpVerifiedToken ?? ""
+                ),
+                forKey: .guardian
+            )
+        }
+    }
+}
+
+private struct SignupConsent: Encodable {
+    let legalAccepted: Bool
+    let selfRegistrationAgeConfirmed: Bool
+}
+
+private struct SignupGuardian: Encodable {
+    let fullName: String
+    let dateOfBirth: String
+    let phone: String
+    let address: String
+    let otpVerifiedToken: String
 }
 
 private struct LinkPhoneAccountRequestBody: Encodable {

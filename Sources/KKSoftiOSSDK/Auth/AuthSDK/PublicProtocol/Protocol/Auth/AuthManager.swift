@@ -25,6 +25,7 @@ public protocol AuthManager {
     
     func refreshToken() -> AnyPublisher<AuthSessionResponse, Error>
     func signup(phoneNumber: String, password: String, otpVerifiedToken: String?) -> AnyPublisher<AuthSessionResponse, Error>
+    func signup(phoneNumber: String, password: String, otpVerifiedToken: String?, accountInformation: AccountInformation?) -> AnyPublisher<AuthSessionResponse, Error>
 
     func linkToNewAccount(
         phoneNumber: String,
