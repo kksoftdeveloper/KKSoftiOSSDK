@@ -162,7 +162,7 @@ public struct WelcomeView: View {
                         set: { viewModel.formState.password = $0 }
                     )
                     
-                    VStack(alignment: .leading, spacing: 6) {
+                    VStack(alignment: .leading, spacing: 3) {
                         requiredFieldLabel(.sdkAsset("phone_number"))
                         
                         PhoneNumberInputText(
@@ -183,7 +183,7 @@ public struct WelcomeView: View {
                         .submitLabel(.next)
                     }
                     
-                    VStack(alignment: .leading, spacing: 6) {
+                    VStack(alignment: .leading, spacing: 3) {
                         requiredFieldLabel(.sdkAsset("password"))
                         
                         SecureInputView("6–20 kí tự", text: passBinding, height: 40)
@@ -196,10 +196,10 @@ public struct WelcomeView: View {
                     }
                     .padding(.top, 4)
                     
-                    loginTextButton(title: .sdkAsset("forgot_password")) {
+                    loginTextButton(title: .sdkAsset("forgot_password"), isPortrait: isPortrait) {
                         focusedField = nil
                         viewModel.presentedScreen = .register(type: .forgetPassword)
-                    }.padding(.top, isPortrait ? 4 : 3)
+                    }.padding(.top, isPortrait ? 2 : 0)
                     
                     CheckedBoxText(
                         lineLimit: 2,
@@ -229,7 +229,7 @@ public struct WelcomeView: View {
                             .foregroundColor(Color.gray.opacity(0.5))
                     }
                     .padding(.horizontal, 6)
-                    .padding(.top, isPortrait ? 8 : 3)
+                    .padding(.top, isPortrait ? 6 : 2)
 
                     let iconSize = isPortrait ? 15.0 : 10.0
                     HStack(spacing: 12) {
@@ -263,19 +263,19 @@ public struct WelcomeView: View {
                             }
                         )
                     }
-                    .padding(.top, isPortrait ? 4 : 2)
+                    .padding(.top, isPortrait ? 2 : 0)
                     
                     HStack {
                         Text(.sdkAsset("donot_have_an_account"))
                             .foregroundColor(.sdkSecondaryText)
                             .font(AppFont.poppinsRegular.of(size: 10))
                         
-                        loginTextButton(title: .sdkAsset("sign_up_now")) {
+                        loginTextButton(title: .sdkAsset("sign_up_now"), isPortrait: isPortrait) {
                                 focusedField = nil
                                 viewModel.presentedScreen = .register(type: .register)
                         }
                     }
-                    .padding(.top, isPortrait ? 4 : 2)
+                    .padding(.top, isPortrait ? 2 : 0)
 
                     if viewModel.isLoading == false && viewModel.errorMessage != nil {
                         ErrorMessageView(
@@ -399,16 +399,13 @@ public struct WelcomeView: View {
 
     private func loginTextButton(
         title: LocalizedStringKey,
+        isPortrait: Bool = true,
         action: @escaping () -> Void
     ) -> some View {
-        Button(action: action) {
-            Text(title)
-                .font(AppFont.poppinsBold.of(size: 13))
-                .foregroundColor(.blue)
-                .lineLimit(1)
-                .minimumScaleFactor(0.85)
-        }
-        .buttonStyle(.plain)
+        UnderlinedButton(
+            title: title, action: action,
+            font: AppFont.poppinsLight.of(size: isPortrait ? 10 : 8)
+        )
     }
 
     private func requestTrackingAuthorizationIfNeeded() {
