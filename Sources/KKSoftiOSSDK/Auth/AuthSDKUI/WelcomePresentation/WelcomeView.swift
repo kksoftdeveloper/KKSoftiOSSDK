@@ -196,6 +196,11 @@ public struct WelcomeView: View {
                     }
                     .padding(.top, 4)
                     
+                    loginTextButton(title: .sdkAsset("forgot_password")) {
+                        focusedField = nil
+                        viewModel.presentedScreen = .register(type: .forgetPassword)
+                    }.padding(.top, isPortrait ? 4 : 3)
+                    
                     CheckedBoxText(
                         lineLimit: 2,
                         isChecked: Binding(
@@ -203,8 +208,8 @@ public struct WelcomeView: View {
                             set: { viewModel.formState.isAcceptedTerm = $0 }
                         ),
                         text: "",
-                        attributedText: loginTermsText,
                         highlight: viewModel.shouldHighlightTerms,
+                        attributedText: loginTermsText,
                         onToggle: {
                             viewModel.formState.isAcceptedTerm = $0
                         }
@@ -227,7 +232,7 @@ public struct WelcomeView: View {
                     .padding(.top, isPortrait ? 8 : 3)
 
                     let iconSize = isPortrait ? 15.0 : 10.0
-                    HStack(spacing: 8) {
+                    HStack(spacing: 12) {
                         socialLoginButton(
                             iconName: "IconApple",
                             title: "Apple",
@@ -261,19 +266,15 @@ public struct WelcomeView: View {
                     .padding(.top, isPortrait ? 4 : 2)
                     
                     HStack {
+                        Text(.sdkAsset("donot_have_an_account"))
+                            .foregroundColor(.sdkSecondaryText)
+                            .font(AppFont.poppinsRegular.of(size: 10))
+                        
                         loginTextButton(title: .sdkAsset("sign_up_now")) {
                                 focusedField = nil
                                 viewModel.presentedScreen = .register(type: .register)
                         }
-
-                        Spacer()
-
-                        loginTextButton(title: .sdkAsset("forgot_password")) {
-                                focusedField = nil
-                                viewModel.presentedScreen = .register(type: .forgetPassword)
-                        }
                     }
-                    .padding(.horizontal, 18)
                     .padding(.top, isPortrait ? 4 : 2)
 
                     if viewModel.isLoading == false && viewModel.errorMessage != nil {
