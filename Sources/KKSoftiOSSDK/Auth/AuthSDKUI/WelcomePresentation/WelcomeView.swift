@@ -260,7 +260,7 @@ public struct WelcomeView: View {
                     }
                     
                     HStack {
-                        HStack() {
+                        HStack {
                             Text(.sdkAsset("donot_have_an_account"))
                                 .foregroundColor(.sdkSecondaryText)
                                 .font(AppFont.poppinsRegular.of(size: 10))
@@ -270,11 +270,13 @@ public struct WelcomeView: View {
                                     viewModel.presentedScreen = .register(type: .register)
                             }
                         }
-                        Spacer()
+                        Text("hoặc")
+                            .foregroundColor(.sdkSecondaryText)
+                            .font(AppFont.poppinsRegular.of(size: 10))
                         loginTextButton(title: .sdkAsset("forgot_password"), isPortrait: isPortrait) {
                             focusedField = nil
                             viewModel.presentedScreen = .register(type: .forgetPassword)
-                        }.padding(.top, isPortrait ? 2 : 0)
+                        }
                     }
                     .padding(.top, isPortrait ? 2 : 0)
 
