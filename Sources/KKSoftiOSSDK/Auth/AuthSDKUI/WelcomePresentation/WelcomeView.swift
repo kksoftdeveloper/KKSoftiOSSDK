@@ -129,7 +129,7 @@ public struct WelcomeView: View {
     public func content(width: CGFloat, height: CGFloat) -> some View {
         let isPortrait = verticalSizeClass == .regular
         AuthContainer(
-            wid: width,
+            wid: width - 32,
             hei: height,
             shouldShowCross: false,
             // shouldShowLogo: false,
@@ -196,11 +196,6 @@ public struct WelcomeView: View {
                     }
                     .padding(.top, 4)
                     
-                    loginTextButton(title: .sdkAsset("forgot_password"), isPortrait: isPortrait) {
-                        focusedField = nil
-                        viewModel.presentedScreen = .register(type: .forgetPassword)
-                    }.padding(.top, isPortrait ? 2 : 0)
-                    
                     CheckedBoxText(
                         lineLimit: 2,
                         isChecked: Binding(
@@ -263,17 +258,23 @@ public struct WelcomeView: View {
                             }
                         )
                     }
-                    .padding(.top, isPortrait ? 2 : 0)
                     
                     HStack {
-                        Text(.sdkAsset("donot_have_an_account"))
-                            .foregroundColor(.sdkSecondaryText)
-                            .font(AppFont.poppinsRegular.of(size: 10))
-                        
-                        loginTextButton(title: .sdkAsset("sign_up_now"), isPortrait: isPortrait) {
-                                focusedField = nil
-                                viewModel.presentedScreen = .register(type: .register)
+                        HStack() {
+                            Text(.sdkAsset("donot_have_an_account"))
+                                .foregroundColor(.sdkSecondaryText)
+                                .font(AppFont.poppinsRegular.of(size: 10))
+                            
+                            loginTextButton(title: .sdkAsset("sign_up_now"), isPortrait: isPortrait) {
+                                    focusedField = nil
+                                    viewModel.presentedScreen = .register(type: .register)
+                            }
                         }
+                        Spacer()
+                        loginTextButton(title: .sdkAsset("forgot_password"), isPortrait: isPortrait) {
+                            focusedField = nil
+                            viewModel.presentedScreen = .register(type: .forgetPassword)
+                        }.padding(.top, isPortrait ? 2 : 0)
                     }
                     .padding(.top, isPortrait ? 2 : 0)
 
@@ -283,34 +284,7 @@ public struct WelcomeView: View {
                         )
                     }
                 }
-                .padding(.horizontal, 12)
-//                .toolbar {
-//                    ToolbarItemGroup(placement: .keyboard) {
-//                        if focusedField != nil {
-//                            Spacer()
-//                            if focusedField == .password {
-//                                Button("Previous") {
-//                                    focusedField = .phone
-//                                }
-//                            } else {
-//                                Button("Next") {
-//                                    switch focusedField {
-//                                    case .phone:
-//                                        focusedField = .password
-//                                    default:
-//                                        viewModel.login()
-//                                        focusedField = nil
-//                                    }
-//                                }
-//                            }
-//                            Button("Done") {
-//                                viewModel.login()
-//                                focusedField = nil
-//                            }
-//                        }
-//                        
-//                    }
-//                }
+                .padding(.horizontal, 16)
             } footer: {
                 let primaryButtonWidth = width*0.46
                 PrimaryButton(
@@ -342,6 +316,7 @@ public struct WelcomeView: View {
 
         var terms = AttributedString("Điều khoản")
         terms.foregroundColor = .blue
+        terms.underlineStyle = .single
         terms.link = URL(string: "https://kksoft.vn/dieu-khoan")
         text.append(terms)
 
@@ -351,6 +326,7 @@ public struct WelcomeView: View {
 
         var policy = AttributedString("Chính sách sử dụng")
         policy.foregroundColor = .blue
+        policy.underlineStyle = .single
         policy.link = URL(string: "https://kksoft.vn/chinh-sach-su-dung")
         text.append(policy)
 
